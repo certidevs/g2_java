@@ -10,4 +10,6 @@ public class G2JavaApplication {
         SpringApplication.run(G2JavaApplication.class, args);
     }
     //Hola se puede ver este comentario?
+    //Hola, si se puede ver
+
 }
