@@ -11,6 +11,5 @@ public class G2JavaApplication {
     }
     //Hola se puede ver este comentario?
     //Hola, si se puede ver
-    //
 
 }
