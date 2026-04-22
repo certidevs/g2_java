@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name="Compras")
+@Table(name="purchase")
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,5 +52,16 @@ public class Purchase {
 
     public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "id=" + id +
+                ", unitPrice=" + unitPrice +
+                ", quantity=" + quantity +
+                ", total=" + total +
+                ", purchaseDate=" + purchaseDate +
+                '}';
     }
 }
