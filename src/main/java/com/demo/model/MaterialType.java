@@ -1,4 +1,4 @@
-package model;
+package com.demo.model;
 
 import jakarta.persistence.*;
 
@@ -8,6 +8,9 @@ public class MaterialType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
+    private String name;
 
     private Integer maxLoanDays;
 
