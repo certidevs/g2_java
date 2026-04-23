@@ -20,10 +20,10 @@ public class G2JavaApplication {
         reviewRepository.save(re);
 
         Review re2 = new Review();
-        re.setRating(2);
-        re.setComment("Es mejorable");
+        re2.setRating(2);
+        re2.setComment("Es mejorable");
         re2.setUserVerified(false);
-        re.setCreatedAt(java.time.LocalDateTime.now());
+        re2.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re2);
 
         Review re3 = new Review();
