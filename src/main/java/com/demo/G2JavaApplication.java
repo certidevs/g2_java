@@ -50,10 +50,6 @@ public class G2JavaApplication {
         re3.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re3);
 
-        Category objects = new Category();
-        objects.setName("Vanilla");
-        objects.setDescription("Proteins made of vanilla");
-        categoryRepository.save(objects);
 
         Purchase p1 = new Purchase();
         p1.setQuantity(2);
@@ -75,6 +71,12 @@ public class G2JavaApplication {
         p3.setTotal(129.98);
         p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p3);
+
+        Category objects = new Category();
+        objects.setName("Vanilla");
+        objects.setDescription("Proteins made of vanilla");
+        categoryRepository.save(objects);
+
 
 
     }
