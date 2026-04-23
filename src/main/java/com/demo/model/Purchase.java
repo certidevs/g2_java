@@ -1,6 +1,7 @@
 package com.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -9,8 +10,9 @@ import java.time.LocalDate;
 //ManyToOne product
 //ManyToOne purchase
 
+@Setter
+@Getter
 @Entity
-@Table(name="purchases")
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +38,7 @@ public class Purchase {
     public Purchase() {
 
     }
+
 
     @Override
     public String toString() {
