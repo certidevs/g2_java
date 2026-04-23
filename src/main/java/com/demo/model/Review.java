@@ -3,8 +3,6 @@ package com.demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,10 +11,11 @@ public class Review {
     @Id
     private Long id;
 
-    @Getter
     private Integer rating;
 
     private String comment;
+
+    private Boolean userVerified;
 
     private LocalDateTime createdAt;
 
@@ -26,8 +25,20 @@ public class Review {
         this.rating = rating;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Boolean getUserVerified() {
+        return userVerified;
+    }
+
+    public void setUserVerified(Boolean userVerified) {
+        this.userVerified = userVerified;
     }
 
     public LocalDateTime getCreatedAt() {
