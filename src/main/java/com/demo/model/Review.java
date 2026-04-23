@@ -1,15 +1,16 @@
 package com.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 public class Review {
     //Creacion de variables (las declaramos vacias)
@@ -29,28 +30,6 @@ public class Review {
 
     @ManyToOne
     private Product product;
-    //Constructor vacio y con variables para crear objetos de tipo Review
-    public Review(){}
 
-    public Review(Long id, Integer rating, String comment, Boolean userVerified, LocalDateTime createdAt) {
-        this.id = id;
-        this.rating = rating;
-        this.comment = comment;
-        this.userVerified = userVerified;
-        this.createdAt = createdAt;
     }
 
-
-    //Creamos toString para que veamos en la terminal los datos de la reseña(las variables declaradas)
-    @Override
-    public String toString() {
-        return "Review{" +
-                "id=" + id +
-                ", rating=" + rating +
-                ", comment='" + comment + '\'' +
-                ", userVerified=" + userVerified +
-                ", createdAt=" + createdAt +
-                '}';
-    }
-}
-//

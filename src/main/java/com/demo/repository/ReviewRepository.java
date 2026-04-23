@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review,Long> {
     List<Review> findByRatingGreaterThanEqual(Integer rating);
+    List<Review> findbyuserid(Long id);
 
 }
