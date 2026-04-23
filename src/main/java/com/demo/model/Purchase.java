@@ -5,10 +5,12 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+//Crear purchaseLine para unir pedidos a uno solo
+//ManyToOne product
+//ManyToOne purchase
 
-@Setter
 @Entity
-@Table(name="purchase")
+@Table(name="purchases")
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
