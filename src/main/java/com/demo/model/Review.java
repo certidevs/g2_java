@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
+
 @Entity
 public class Review {
     //Creacion de variables (las declaramos vacias)
