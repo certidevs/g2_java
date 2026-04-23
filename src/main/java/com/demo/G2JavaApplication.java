@@ -19,18 +19,21 @@ public class G2JavaApplication {
 
     public static void main(String[] args) {
         var context = SpringApplication.run(G2JavaApplication.class, args);
+
         ProductRepository productRepository = context.getBean(ProductRepository.class);
-
-
         ReviewRepository reviewRepository = context.getBean(ReviewRepository.class);
         CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
         PurchaseRepository purchaseRepository = context.getBean(PurchaseRepository.class);
+
+        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99);
+        productRepository.save(producto);
 
         Review re = new Review();
         re.setRating(5);
         re.setComment("Excelente producto");
         re.setUserVerified(true);
         re.setCreatedAt(java.time.LocalDateTime.now());
+        re.setProduct(producto);
         reviewRepository.save(re);
 
         Review re2 = new Review();
@@ -73,8 +76,7 @@ public class G2JavaApplication {
         p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p3);
 
-        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99);
-        productRepository.save(producto);
+
     }
 
 
