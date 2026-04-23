@@ -1,6 +1,8 @@
 package com.demo.model;
 
 import jakarta.persistence.*;
+import org.apache.catalina.User;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,6 +22,8 @@ public class Review {
 
     //Asociaciones (ManyToOne) Muchas reseñas a 1 producto,usuario
 
+    @ManyToOne
+    private Product product;
     //Constructor vacios
     public Review(){}
 
@@ -58,6 +62,14 @@ public class Review {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     //Creamos toString para que veamos en la terminal los datos de la reseña(las variables declaradas)
