@@ -1,17 +1,18 @@
 package com.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 
+@Setter
 @Entity
 @Table(name="purchase")
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+// ofertas//descuentos//
     private Long id;
 
     private Double unitPrice;
@@ -32,26 +33,6 @@ public class Purchase {
 
     public Purchase() {
 
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
     }
 
     @Override
