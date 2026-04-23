@@ -25,5 +25,15 @@ public class Product {
     //@Column(nullable = false)
     private Integer stock;
 
-    //TODO [Reverse Engineering] generate columns from DB
+    public Product(String name, String shortDescription, String longDescription, Double price, Integer stock) {
+        this.name = name;
+        this.shortDescription = shortDescription;
+        this.longDescription = longDescription;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public Product() {
+    }
+//TODO [Reverse Engineering] generate columns from DB
 }
