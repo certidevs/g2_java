@@ -19,6 +19,21 @@ public class G2JavaApplication {
         re.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re);
 
+        Review re2 = new Review();
+        re.setRating(2);
+        re.setComment("Es mejorable");
+        re2.setUserVerified(false);
+        re.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re2);
+
+        Review re3 = new Review();
+        re3.setRating(4);
+        re3.setComment("Buen producto");
+        re3.setUserVerified(true);
+        re3.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re3);
+
+
     }
 
 
