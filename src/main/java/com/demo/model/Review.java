@@ -3,6 +3,7 @@ package com.demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ public class Review {
     @Id
     private Long id;
 
+    @Getter
     private Integer rating;
 
     private String comment;
@@ -20,16 +22,8 @@ public class Review {
 
     public Review(){}
 
-    public Integer getRating() {
-        return rating;
-    }
-
     public void setRating(Integer rating) {
         this.rating = rating;
-    }
-
-    public String getComment() {
-        return comment;
     }
 
     public void setComment(String comment) {
