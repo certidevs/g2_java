@@ -38,7 +38,6 @@ public class G2JavaApplication {
         reviewRepository.save(re3);
 
         Category objects = new Category();
-        objects.setId(1L);
         objects.setName("Vanilla");
         objects.setDescription("Proteins made of vanilla");
         categoryRepository.save(objects);
