@@ -5,6 +5,7 @@ import com.demo.model.CategoryType;
 import com.demo.model.Review;
 import com.demo.repository.CategoryRepository;
 import com.demo.repository.ReviewRepository;
+import com.demo.repository.ProductRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
@@ -12,6 +13,7 @@ public class G2JavaApplication {
 
     public static void main(String[] args) {
         var context = SpringApplication.run(G2JavaApplication.class, args);
+
 
         ReviewRepository reviewRepository = context.getBean(ReviewRepository.class);
         CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
