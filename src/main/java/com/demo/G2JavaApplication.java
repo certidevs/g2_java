@@ -56,6 +56,7 @@ public class G2JavaApplication {
         p1.setUnitPrice(64.99);
         p1.setTotal(129.98);
         p1.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
+        purchaseRepository.save(p1);
 
         Purchase p2 = new Purchase();
         p2.setQuantity(1);
