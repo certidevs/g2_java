@@ -3,6 +3,7 @@ package com.demo;
 import com.demo.model.Category;
 import com.demo.model.CategoryType;
 import com.demo.model.Review;
+import com.demo.model.Product;
 import com.demo.repository.CategoryRepository;
 import com.demo.repository.ReviewRepository;
 import com.demo.repository.ProductRepository;
