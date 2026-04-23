@@ -6,7 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class G2JavaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(G2JavaApplication.class, args);
+        var context = SpringApplication.run(G2JavaApplication.class, args);
+
+
+
+
     }
+
 
 }
