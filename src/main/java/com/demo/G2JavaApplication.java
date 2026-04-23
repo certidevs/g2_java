@@ -1,6 +1,9 @@
 package com.demo;
 
+import com.demo.model.Category;
+import com.demo.model.CategoryType;
 import com.demo.model.Review;
+import com.demo.repository.CategoryRepository;
 import com.demo.repository.ReviewRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +14,7 @@ public class G2JavaApplication {
         var context = SpringApplication.run(G2JavaApplication.class, args);
 
         ReviewRepository reviewRepository = context.getBean(ReviewRepository.class);
+        CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
 
         Review re = new Review();
         re.setRating(5);
@@ -32,6 +36,12 @@ public class G2JavaApplication {
         re3.setUserVerified(true);
         re3.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re3);
+
+        Category objects = new Category();
+        objects.setId(1L);
+        objects.setName("Vanilla");
+        objects.setDescription("Proteins made of vanilla");
+        categoryRepository.save(objects);
 
 
     }
