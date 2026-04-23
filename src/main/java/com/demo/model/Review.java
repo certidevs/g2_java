@@ -6,8 +6,8 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 //test
 @Entity
-@Table(name="Reseñas")
 public class Review {
+    //Creacion de variables (las declaramos vacias)
     @Id
     private Long id;
 
@@ -19,8 +19,10 @@ public class Review {
 
     private LocalDateTime createdAt;
 
+    //Constructor vacios
     public Review(){}
 
+    //Creamos Getter y setter de las variables declaradas arriba
     public void setRating(Integer rating) {
         this.rating = rating;
     }
@@ -47,6 +49,18 @@ public class Review {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    //Creamos toString para que veamos en la terminal los datos de la reseña(las variables declaradas)
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", rating=" + rating +
+                ", comment='" + comment + '\'' +
+                ", userVerified=" + userVerified +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
 //
