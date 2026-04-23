@@ -26,6 +26,10 @@ public class G2JavaApplication {
         CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
         PurchaseRepository purchaseRepository = context.getBean(PurchaseRepository.class);
 
+        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99);
+        productRepository.save(producto);
+
+
         Review re = new Review();
         re.setRating(5);
         re.setComment("Excelente producto");
@@ -73,8 +77,7 @@ public class G2JavaApplication {
         p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p3);
 
-        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99);
-        productRepository.save(producto);
+
     }
 
 
