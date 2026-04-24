@@ -1,5 +1,6 @@
 package com.demo.model;
 
+import com.demo.model.Enum.PurchaseStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,9 @@ public class Purchase {
     private Double total;
 
     private LocalDate purchaseDate;
+
+    @Enumerated(EnumType.STRING)
+    private PurchaseStatus status;
 
     public Purchase(Long id, Double unitPrice, Integer quantity, Double total, LocalDate purchaseDate) {
         this.id = id;

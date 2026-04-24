@@ -1,7 +1,7 @@
 package com.demo;
 
 import com.demo.model.Category;
-import com.demo.model.CategoryType;
+import com.demo.model.Enum.PurchaseStatus;
 import com.demo.model.Purchase;
 import com.demo.model.Review;
 import com.demo.model.Product;
@@ -71,6 +71,18 @@ public class G2JavaApplication {
         p3.setUnitPrice(64.99);
         p3.setTotal(129.98);
         p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
+        purchaseRepository.save(p3);
+
+        p1.setTotal(119.98);
+        p1.setStatus(PurchaseStatus.FINISHED);
+        purchaseRepository.save(p1);
+
+        p2.setTotal(59.99);
+        p2.setStatus(PurchaseStatus.CANCELADO);
+        purchaseRepository.save(p2);
+
+        p3.setTotal(119.98);
+        p3.setStatus(PurchaseStatus.PENDING);
         purchaseRepository.save(p3);
 
         Category objects = new Category();
