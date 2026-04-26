@@ -35,6 +35,7 @@ public class G2JavaApplication {
         re.setComment("Excelente producto");
         re.setUserVerified(true);
         re.setCreatedAt(java.time.LocalDateTime.now());
+        re.setProduct(producto);
         reviewRepository.save(re);
 
         Review re2 = new Review();
