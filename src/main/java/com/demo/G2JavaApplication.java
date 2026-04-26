@@ -95,8 +95,8 @@ public class G2JavaApplication {
         purchaseRepository.save(p3);
 
         Category objects2 = new Category();
-        objects.setName("Chocolate");
-        objects.setDescription("Proteins made of vanilla");
+        objects2.setName("Chocolate");
+        objects2.setDescription("Proteins made of Chocolate");
         categoryRepository.save(objects2);
 
     }
