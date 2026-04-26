@@ -32,5 +32,3 @@ public class Review {
     private Product product;
 
     }
-
-//Hola
