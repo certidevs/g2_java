@@ -25,12 +25,18 @@ public class Product {
     //@Column(nullable = false)
     private Integer stock;
 
-    public Product(String name, String shortDescription, String longDescription, Double price, Integer stock) {
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Product(String name, String shortDescription, String longDescription, Double price, Integer stock,Category category) {
         this.name = name;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.price = price;
         this.stock = stock;
+        this.category = category;
+
     }
 
     public Product() {

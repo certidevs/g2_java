@@ -26,9 +26,6 @@ public class G2JavaApplication {
         CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
         PurchaseRepository purchaseRepository = context.getBean(PurchaseRepository.class);
 
-        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99);
-        productRepository.save(producto);
-
 
         Review re = new Review();
         re.setRating(5);
@@ -90,6 +87,9 @@ public class G2JavaApplication {
         objects.setName("Vanilla");
         objects.setDescription("Proteins made of vanilla");
         categoryRepository.save(objects);
+
+        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99,objects);
+        productRepository.save(producto);
 
 
 
