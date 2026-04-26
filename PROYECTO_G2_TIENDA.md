@@ -177,5 +177,3 @@ List<Product> findByNameContainingIgnoreCase(String text);
 List<Purchase> findByUserId(Long userId);
 List<Review> findByRatingGreaterThanEqual(Integer rating);
 ```
-
-test
