@@ -26,6 +26,9 @@ public class Review {
 
     private LocalDateTime createdAt;
 
+    //Añadido campo adicional
+    private String title;
+
     //Asociaciones (ManyToOne) Muchas reseñas a 1 producto,usuario
 
     @ManyToOne
