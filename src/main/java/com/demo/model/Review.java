@@ -1,47 +1,35 @@
 package com.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
-@Table(name="Reseñas")
 public class Review {
+    //Creacion de variables (las declaramos vacias)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Integer rating;
 
     private String comment;
 
+    private Boolean userVerified;
+
     private LocalDateTime createdAt;
 
+    //Asociaciones (ManyToOne) Muchas reseñas a 1 producto,usuario
 
-    public Review(){}
+    @ManyToOne
+    private Product product;
 
-    public Integer getRating() {
-        return rating;
     }
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-}

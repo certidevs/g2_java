@@ -1,17 +1,23 @@
 package com.demo.model;
 
+import com.demo.model.Enum.PurchaseStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
+//Crear purchaseLine para unir pedidos a uno solo
+//ManyToOne product
+//ManyToOne purchase
 
+@Setter
+@Getter
 @Entity
-@Table(name="purchase")
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+// ofertas//descuentos//
     private Long id;
 
     private Double unitPrice;
@@ -21,6 +27,9 @@ public class Purchase {
     private Double total;
 
     private LocalDate purchaseDate;
+
+    @Enumerated(EnumType.STRING)
+    private PurchaseStatus status;
 
     public Purchase(Long id, Double unitPrice, Integer quantity, Double total, LocalDate purchaseDate) {
         this.id = id;
@@ -34,25 +43,6 @@ public class Purchase {
 
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
 
     @Override
     public String toString() {
