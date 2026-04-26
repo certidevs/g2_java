@@ -35,6 +35,7 @@ public class G2JavaApplication {
         productRepository.save(producto);
 
         Review re = new Review();
+        re.setTitle("Creatina Perfecta");
         re.setRating(5);
         re.setComment("Excelente producto");
         re.setUserVerified(true);
@@ -55,6 +56,9 @@ public class G2JavaApplication {
         re3.setUserVerified(true);
         re3.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re3);
+
+        Product producto2 = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99,objects);
+        productRepository.save(producto2);
 
 
         Purchase p1 = new Purchase();
@@ -90,15 +94,10 @@ public class G2JavaApplication {
         p3.setStatus(PurchaseStatus.PENDING);
         purchaseRepository.save(p3);
 
-        Category objects = new Category();
-        objects.setName("Vanilla");
+        Category objects2 = new Category();
+        objects.setName("Chocolate");
         objects.setDescription("Proteins made of vanilla");
-        categoryRepository.save(objects);
-
-        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99,objects);
-        productRepository.save(producto);
-
-
+        categoryRepository.save(objects2);
 
     }
 
