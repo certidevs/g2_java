@@ -24,7 +24,8 @@ public class Review {
 
     private Boolean userVerified;
 
-    private LocalDateTime createdAt;
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     //Añadido campo adicional
     private String title;

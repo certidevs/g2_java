@@ -44,7 +44,7 @@ public class G2JavaApplication {
         productRepository.save(producto2);
 
         Review re2 = new Review();
-        re2.setTitle(" Opinión de Crema de Arroz");
+        re2.setTitle("Opinión de Crema de Arroz");
         re2.setRating(2);
         re2.setComment("Malo");
         re2.setUserVerified(false);
@@ -53,7 +53,7 @@ public class G2JavaApplication {
         reviewRepository.save(re2);
 
         Review re3 = new Review();
-        re3.setTitle(" Opinión de Proteina whey Isolate");
+        re3.setTitle("Opinión de Proteina whey Isolate");
         re3.setRating(4);
         re3.setComment("Muy Buen producto");
         re3.setUserVerified(true);
