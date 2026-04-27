@@ -35,7 +35,7 @@ public class G2JavaApplication {
         productRepository.save(producto);
 
         Review re = new Review();
-        re.setTitle("Creatina Perfecta");
+        re.setTitle(" Opinión de Creatina Creapure");
         re.setRating(5);
         re.setComment("Excelente producto");
         re.setUserVerified(true);
@@ -43,22 +43,25 @@ public class G2JavaApplication {
         re.setProduct(producto);
         reviewRepository.save(re);
 
+        Product producto2 = new Product("Producto_2","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99,objects);
+        productRepository.save(producto2);
+
         Review re2 = new Review();
+        re2.setTitle(" Opinión de Crema de Arroz");
         re2.setRating(2);
-        re2.setComment("Es mejorable");
+        re2.setComment("Malo");
         re2.setUserVerified(false);
+        re2.setProduct(producto2);
         re2.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re2);
 
         Review re3 = new Review();
+        re3.setTitle(" Opinión de Proteina whey Isolate");
         re3.setRating(4);
-        re3.setComment("Buen producto");
+        re3.setComment("Muy Buen producto");
         re3.setUserVerified(true);
         re3.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re3);
-
-        Product producto2 = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99,objects);
-        productRepository.save(producto2);
 
 
         Purchase p1 = new Purchase();
