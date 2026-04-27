@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "product")
 public class Product {
@@ -17,7 +18,7 @@ public class Product {
     private String name;
     private String shortDescription;
     //Para descripcion larga vendria bien poner mas caracteres, osea un lenght que sea mas grande que el default de 255
-    //@Column(length = 1000)
+    @Column(length = 1000)
     private String longDescription;
     //tambien seria buena idea poner que los precios no sean null?
     //@Column(nullable = false)

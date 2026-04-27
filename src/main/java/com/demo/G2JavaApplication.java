@@ -27,8 +27,32 @@ public class G2JavaApplication {
         objects.setDescription("Proteins made of vanilla");
         categoryRepository.save(objects);
 
-        Product producto = new Product("Producto_1","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99,objects);
-        productRepository.save(producto);
+        Product producto = Product.builder()
+                .name("Creatina Creapure, Sabor Vanilla")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(26.50)
+                .stock(99)
+                .category(objects)
+                .build();
+        Product producto2 = Product.builder()
+                .name("Crema de arroz proteica")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(8.99)
+                .stock(99)
+                .category(null)
+                .build();
+        Product producto3 = Product.builder()
+                .name("Proteina whey Isolate")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(34.99)
+                .stock(99)
+                .category(null)
+                .build();
+        productRepository.saveAll(List.of(producto,producto2,producto3));
+
 
         Review re = new Review();
         re.setTitle(" Opinión de Creatina Creapure");
@@ -39,8 +63,7 @@ public class G2JavaApplication {
         re.setProduct(producto);
         reviewRepository.save(re);
 
-        Product producto2 = new Product("Producto_2","Lorem ipsum dolor sit amet","Lorem ipsum dolor sit ametconsectetur adipiscing elit. Quisque semper est et lectus condimentum, vel pellentesque sem laoreet",0.0,99,objects);
-        productRepository.save(producto2);
+
 
         Review re2 = new Review();
         re2.setTitle("Opinión de Crema de Arroz");
