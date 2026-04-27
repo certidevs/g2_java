@@ -1,17 +1,18 @@
 package com.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+// 1.Añadir comandos para quitar costructores.
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
     private String name;
     private String shortDescription;
@@ -24,22 +25,12 @@ public class Product {
     //igual que el stock?
     //@Column(nullable = false)
     private Integer stock;
-
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    //2. si es necesario o quitar los join column.
     private Category category;
 
-    public Product(String name, String shortDescription, String longDescription, Double price, Integer stock,Category category) {
-        this.name = name;
-        this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
-        this.price = price;
-        this.stock = stock;
-        this.category = category;
 
-    }
+    //3. Hacer lombook para cosntruir datos.
 
-    public Product() {
-    }
 //TODO [Reverse Engineering] generate columns from DB
 }
