@@ -1,16 +1,17 @@
 package com.demo.model;
 
-import com.demo.model.Enum.PurchaseStatus;
+import com.demo.model.enums.PurchaseStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 //Crear purchaseLine para unir pedidos a uno solo
 //ManyToOne product
 //ManyToOne purchase
-
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -28,30 +29,11 @@ public class Purchase {
 
     private LocalDate purchaseDate;
 
+    private Double discount;//10%
+
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
 
-    public Purchase(Long id, Double unitPrice, Integer quantity, Double total, LocalDate purchaseDate) {
-        this.id = id;
-        this.unitPrice = unitPrice;
-        this.quantity = quantity;
-        this.total = total;
-        this.purchaseDate = purchaseDate;
-    }
+    @ManyToOne Product product;
 
-    public Purchase() {
-
-    }
-
-
-    @Override
-    public String toString() {
-        return "Purchase{" +
-                "id=" + id +
-                ", unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
-                ", total=" + total +
-                ", purchaseDate=" + purchaseDate +
-                '}';
-    }
 }
