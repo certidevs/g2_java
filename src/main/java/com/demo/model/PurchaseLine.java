@@ -19,7 +19,8 @@ public class PurchaseLine {
     private Purchase purchase;
 @ManyToOne
     private Product product;
-
+//quantity * price
+    //(discount*price)
     public PurchaseLine( Integer quantity, Purchase purchase, Product product) {
         this.quantity = quantity;
         this.purchase = purchase;

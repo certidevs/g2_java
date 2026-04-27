@@ -1,10 +1,7 @@
 package com.demo;
 
-import com.demo.model.Category;
-import com.demo.model.Enum.PurchaseStatus;
-import com.demo.model.Purchase;
-import com.demo.model.Review;
-import com.demo.model.Product;
+import com.demo.model.*;
+import com.demo.model.enums.PurchaseStatus;
 import com.demo.repository.CategoryRepository;
 import com.demo.repository.PurchaseRepository;
 import com.demo.repository.ReviewRepository;
@@ -85,12 +82,17 @@ public class G2JavaApplication {
         p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p3);
 
+        PurchaseLine CremaDeArroz = new PurchaseLine(2,p1,producto);
+        PurchaseLine ProteinaWheyIsolate = new PurchaseLine(1,p2,producto2);
+        PurchaseLine pL3 = new PurchaseLine(2,p3,producto2);
+
+
         p1.setTotal(119.98);
         p1.setStatus(PurchaseStatus.FINISHED);
         purchaseRepository.save(p1);
 
         p2.setTotal(59.99);
-        p2.setStatus(PurchaseStatus.CANCELADO);
+        p2.setStatus(PurchaseStatus.CANCEL);
         purchaseRepository.save(p2);
 
         p3.setTotal(119.98);

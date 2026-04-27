@@ -1,10 +1,10 @@
-package com.demo.model.Enum;
+package com.demo.model.enums;
 
 public enum PurchaseStatus {
     PENDING("Pendiente"),
     IN_PROGRESS("En proceso"),
     FINISHED("Finalizada"),
-    CANCELADO("Cancelado");
+    CANCEL("Cancelado");
 
     private final String label;
 
