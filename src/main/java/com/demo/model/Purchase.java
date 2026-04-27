@@ -29,7 +29,8 @@ public class Purchase {
 
     private LocalDate purchaseDate;
 
-    private Double discount;//10%
+    private String discountCode;//Dogo10%
+
 
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;

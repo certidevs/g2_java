@@ -2,14 +2,12 @@ package com.demo;
 
 import com.demo.model.*;
 import com.demo.model.enums.PurchaseStatus;
-import com.demo.repository.CategoryRepository;
-import com.demo.repository.PurchaseRepository;
-import com.demo.repository.ReviewRepository;
-import com.demo.repository.ProductRepository;
+import com.demo.repository.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class G2JavaApplication {
@@ -22,6 +20,7 @@ public class G2JavaApplication {
         ReviewRepository reviewRepository = context.getBean(ReviewRepository.class);
         CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
         PurchaseRepository purchaseRepository = context.getBean(PurchaseRepository.class);
+        PurchaseLineRepository PurchaseLineRepository = context.getBean(PurchaseLineRepository.class);
 
         Category objects = new Category();
         objects.setName("Vanilla");
@@ -65,6 +64,7 @@ public class G2JavaApplication {
         p1.setQuantity(2);
         p1.setUnitPrice(64.99);
         p1.setTotal(129.98);
+        p1.setDiscountCode("David15%");
         p1.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p1);
 
@@ -72,6 +72,7 @@ public class G2JavaApplication {
         p2.setQuantity(1);
         p2.setUnitPrice(64.99);
         p2.setTotal(64.99);
+        p2.setDiscountCode("Dogo10%");
         p2.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p2);
 
@@ -79,12 +80,9 @@ public class G2JavaApplication {
         p3.setQuantity(2);
         p3.setUnitPrice(64.99);
         p3.setTotal(129.98);
+        p3.setDiscountCode("Adri5%");
         p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p3);
-
-        PurchaseLine CremaDeArroz = new PurchaseLine(2,p1,producto);
-        PurchaseLine ProteinaWheyIsolate = new PurchaseLine(1,p2,producto2);
-        PurchaseLine pL3 = new PurchaseLine(2,p3,producto2);
 
 
         p1.setTotal(119.98);
@@ -98,6 +96,13 @@ public class G2JavaApplication {
         p3.setTotal(119.98);
         p3.setStatus(PurchaseStatus.PENDING);
         purchaseRepository.save(p3);
+
+        PurchaseLine pL1 = new PurchaseLine(2,p1,producto);
+        PurchaseLine pL2 = new PurchaseLine(1,p2,producto2);
+        PurchaseLine pL3 = new PurchaseLine(2,p3,producto2);
+        List<PurchaseLine> purchaseLines = PurchaseLineRepository.saveAll(List.of(pL1,pL2,pL3));
+
+
 
         Category objects2 = new Category();
         objects2.setName("Chocolate");
