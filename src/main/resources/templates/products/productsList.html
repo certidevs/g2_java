@@ -7,15 +7,18 @@
 <body>
 
 <h1>Esta es la pantalla de Productos</h1>
+<table>
 
+</table>
 <ul>
     <li th:each="product : ${products}">
         <span th:text="${product.name}"> </span>
         <span th:text="${product.shortDescription}"> </span>
         <span th:text="${product.price}"> </span>
-        <!--<span th:text="${products.categories}"></span>-->
+        <span th:if="${product.category != null}" th:text="${product.category.name}"></span>
+        <span th:unless="${product.category != null}">Sin categoria</span>
         <a th:href="@{/products}">Ver Producto</a>
-        <a th:href="@{/products}">Agregar Producto</a>
+        <a th:href="@{/products}">Agregar al Carrito</a>
     </li>
 </ul>
 </body>

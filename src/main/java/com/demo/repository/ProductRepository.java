@@ -12,4 +12,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //Precio Mayor a menor
     List<Product> findProductsByPriceOrderByPriceDesc(Double price);
 
+
 }
