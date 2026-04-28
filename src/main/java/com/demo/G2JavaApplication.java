@@ -27,6 +27,11 @@ public class G2JavaApplication {
         objects.setDescription("Proteins made of vanilla");
         categoryRepository.save(objects);
 
+        Category objects2 = new Category();
+        objects2.setName("Chocolate");
+        objects2.setDescription("Proteins made of Chocolate");
+        categoryRepository.save(objects2);
+
         Product producto = Product.builder()
                 .name("Creatina Creapure, Sabor Vanilla")
                 .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
@@ -44,12 +49,12 @@ public class G2JavaApplication {
                 .category(null)
                 .build();
         Product producto3 = Product.builder()
-                .name("Proteina whey Isolate")
+                .name("Proteina whey Isolate, Chocolate")
                 .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
                 .price(34.99)
                 .stock(99)
-                .category(null)
+                .category(objects2)
                 .build();
         productRepository.saveAll(List.of(producto,producto2,producto3));
 
@@ -127,10 +132,7 @@ public class G2JavaApplication {
 
 
 
-        Category objects2 = new Category();
-        objects2.setName("Chocolate");
-        objects2.setDescription("Proteins made of Chocolate");
-        categoryRepository.save(objects2);
+
 
     }
 
