@@ -3,7 +3,7 @@ package com.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-// 1.Añadir comandos para quitar costructores.
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,11 +27,8 @@ public class Product {
     //@Column(nullable = false)
     private Integer stock;
     @ManyToOne
-    //2. si es necesario o quitar los join column.
     private Category category;
 
-
-    //3. Hacer lombook para cosntruir datos.
 
 //TODO [Reverse Engineering] generate columns from DB
 }

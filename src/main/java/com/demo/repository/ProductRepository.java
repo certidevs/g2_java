@@ -12,9 +12,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //Precio Mayor a menor
     List<Product> findProductsByPriceOrderByPriceDesc(Double price);
 
-
-
-    // 4. Pensar atributos para productos
-
 }
-//5. Crear controllers de para la pàgina de
