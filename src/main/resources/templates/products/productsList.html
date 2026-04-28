@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pantalla Hola</title>
+</head>
+<body>
+
+<h1>Esta es la pantalla de Productos</h1>
+
+<ul>
+    <li th:each="product : ${products}">
+        <span th:text="${product.name}"> </span>
+        <span th:text="${product.shortDescription}"> </span>
+        <span th:text="${product.price}"> </span>
+        <!--<span th:text="${products.categories}"></span>-->
+        <a th:href="@{/products}">Ver Producto</a>
+        <a th:href="@{/products}">Agregar Producto</a>
+    </li>
+</ul>
+</body>
+</html>
