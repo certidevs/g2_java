@@ -3,6 +3,7 @@ package com.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Builder
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,13 +23,6 @@ public class PurchaseLine {
 @ManyToOne
     private Product product;
 
-
-
-    public PurchaseLine(int i, Purchase p1, Product producto) {
-    this.quantity = i;
-    this.purchase = p1;
-    this.product = producto;
-    }
 //quantity * price
     //(discount*price)
 

@@ -2,7 +2,7 @@ package com.demo.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+// /images/productos/creatina.jpg
 
 @Getter
 @Setter
