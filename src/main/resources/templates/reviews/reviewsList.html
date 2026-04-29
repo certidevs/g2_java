@@ -6,10 +6,14 @@
 </head>
 <body>
 <h1>Lista de Reviews </h1>
-<p th:each="reviewsproductos: ${reviewsproductos}">
-    <span th:text="${reviewsproductos.title}"></span>
-    <span th:text="${reviewsproductos.comment}"></span>
-    <span th:text="${reviewsproductos.rating}"></span>
-</p>
+<ul>
+<li th:each="reviews: ${reviewsproductos}">
+    <span th:text="${reviews.title}"></span>
+    <span th:text="${reviews.comment}"></span>
+    <span th:text="${reviews.rating}"></span>
+</li>
+</ul>
 </body>
 </html>
+
+<!--jj-->

@@ -18,7 +18,7 @@ public class ReviewController {
     }
 
     //Hacemos el mapeo para mostrar la lista de reseñas
-    @GetMapping("/reviewsProductos")
+    @GetMapping("/reviews-productos")
     //Cargamos los datos
     public String reviewsList(Model model){
         model.addAttribute("reviewsproductos", reviewRepository.findAll());
