@@ -1,0 +1,66 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: #0f0f0f;
+    color: #f0f0f0;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 60px 40px;
+}
+
+.review-card {
+    background: #161616;
+    border: 1px solid #222;
+    border-radius: 4px;
+    padding: 28px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    animation: fadeUp 0.5s ease both;
+}
+
+.review-card:hover {
+    border-color: #c8ff00;
+    transform: translateY(-4px);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.review-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 14px;
+}
+
+.star {
+    width: 16px;
+    height: 16px;
+    background: #222;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.star.filled { background: #c8ff00; }
+
+
+.accent-line {
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 3px;
+    background: #c8ff00;
+    border-radius: 4px 4px 0 0;
+    transition: width 0.4s ease;
+}
+
+.review-card:hover .accent-line { width: 100%; }

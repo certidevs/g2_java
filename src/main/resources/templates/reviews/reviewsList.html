@@ -6,14 +6,22 @@
 </head>
 <body>
 <h1>Lista de Reviews </h1>
-<img th:src="@{/static/images/suplementos.jpg}" alt="Imagen de sumplementos" width="300" height="300">
-<ul>
-<li th:each="reviews: ${reviewsproductos}">
-    <span th:text="${reviews.title}"></span>
-    <span th:text="${reviews.comment}"></span>
-    <span th:text="${reviews.rating}"></span>
-</li>
-</ul>
+<img th:src="@{images/suplementos.jpg}" alt="Imagen de sumplementos" width="300" height="300">
+<link rel="stylesheet" th:href="@{/css/reviews.css}">
+
+<div class="review-card" th:each="review : ${reviewsproductos}">
+    <div class="accent-line"></div>
+
+    <div class="review-title" th:text="${review.title}">Título de la review</div>
+
+    <div class="stars">
+        <div class="star" th:classappend="${review.rating >= 1} ? 'filled'"></div>
+        <div class="star" th:classappend="${review.rating >= 2} ? 'filled'"></div>
+        <div class="star" th:classappend="${review.rating >= 3} ? 'filled'"></div>
+        <div class="star" th:classappend="${review.rating >= 4} ? 'filled'"></div>
+        <div class="star" th:classappend="${review.rating >= 5} ? 'filled'"></div>
+    </div>
+</div>
 </body>
 </html>
 
