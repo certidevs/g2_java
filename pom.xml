@@ -30,8 +30,9 @@
         <java.version>25</java.version>
     </properties>
     <dependencies>
+        <!-- Source: https://mvnrepository.com/artifact/org.webjars/bootstrap -->
         <dependency>
-            <groupId>org.webjars.npm</groupId>
+            <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>5.3.8</version>
         </dependency>
@@ -60,12 +61,6 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>5.3.3</version>
         </dependency>
 
         <dependency>
