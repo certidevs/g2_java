@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Pantalla Hola</title>
-</head>
-<body>
-
-<h1>Esta es la pantalla de Categoria</h1>
-<table>
-
-</table>
-<ul>
-    <li th:each="category : ${categories}">
-        <span th:text="${category.id}"> </span>
-        <span th:text="${category.name}"> </span>
-        <span th:text="${category.description}"> </span>
-
-    </li>
-</ul>
+<head th:replace="~{layout/head :: head('Five Chill GYM')}"></head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+<main class="container flex-grow-1">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0" th:text="${title}">Five Chill GYM</h1>
+    </div>
+    <!--5. hacerlo mas bonito-->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col" th:each="category : ${categories}">
+            <div class="card card-restaurant h-100 shadow-sm">
+                <div class="card-body">
+                    <img>
+                    <h5 class="card-title">
+                        <i></i>
+                        <span th:text="${category.name}">Nombre</span>
+                    </h5>
+                    <h5 class="card-body">
+                        <span th:text="${category.description}">Descripcion</span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 </html>

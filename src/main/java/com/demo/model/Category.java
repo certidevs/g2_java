@@ -1,12 +1,15 @@
 package com.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
 @Table(name = "category")
 public class Category {
     //Long id
