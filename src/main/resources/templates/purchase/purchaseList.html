@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pantalla Hola</title>
+</head>
+<body>
+
+<h1>Esta es la pantalla de Compras</h1>
+<table>
+
+</table>
+<ul>
+    <li th:each="purchase : ${purchases}">
+        <span th:text="${purchase.id}"> </span>
+        <span th:text="${purchase.totalPrice}"> </span>
+        <span th:text="${purchase.purchaseDateTime}"> </span>
+        <span th:text="${purchase.discountCode}"> </span>
+
+    </li>
+</ul>
+</body>
+</html>
