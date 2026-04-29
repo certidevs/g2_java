@@ -123,9 +123,9 @@ public class G2JavaApplication {
         // crear cuatro reviews de un restaurante usando Builder de lombok
 
 
-        PurchaseLine pL1 = new PurchaseLine(2,p1,producto);
-        PurchaseLine pL2 = new PurchaseLine(1,p2,producto2);
-        PurchaseLine pL3 = new PurchaseLine(2,p3,producto2);
+        PurchaseLine pL1 = new PurchaseLine(null,2,p1,producto);
+        PurchaseLine pL2 = new PurchaseLine(null,1,p2,producto2);
+        PurchaseLine pL3 = new PurchaseLine(null,2,p3,producto2);
 
         List<PurchaseLine> purchaseLines = PurchaseLineRepository.saveAll(List.of(pL1,pL2,pL3));
 
