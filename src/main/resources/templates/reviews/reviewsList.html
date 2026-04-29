@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Lista de Reviews </h1>
+<img th:src="@{/static/images/suplementos.jpg}" alt="Imagen de sumplementos" width="300" height="300">
 <ul>
 <li th:each="reviews: ${reviewsproductos}">
     <span th:text="${reviews.title}"></span>
@@ -16,4 +17,3 @@
 </body>
 </html>
 
-<!--jj-->
