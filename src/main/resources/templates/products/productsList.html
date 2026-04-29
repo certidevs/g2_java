@@ -1,60 +1,52 @@
 <!DOCTYPE html>
-<html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/head :: head('Five Chill GYM')}"></head>
 <body class="d-flex flex-column min-vh-100">
+
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
+
 <main class="container flex-grow-1">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0" th:text="${title}">Five Chill GYM</h1>
-        <span class="badge bg-secondary fs-6" th:text="|${products.size()} resultados|">0 resultados</span>
-    </div>
-    <!--5. hacerlo mas bonito-->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-        <div class="col" th:each="product : ${products}">
-            <div class="card card-restaurant h-100 shadow-sm">
-                <div class="card-body">
-                    <img>
-                    <h5 class="card-title">
-                        <i></i>
-                        <span th:text="${product.name}">Nombre</span>
-                    </h5>
-                    <h5 class="card-body">
-                        <span th:text="${product.shortDescription}">Descripcion</span>
-                    </h5>
-                    <p class="card-text">
-                        <span class="badge bg-success">
-                            <i class="fa-solid fa-euro-sign me-1"></i>
-                            <span th:text="${product.price}">0</span>
-                        </span>
-                        <span th:if="${product.stock !=0}" class="badge bg-success">
-                            <span >Disponible</span>
-                        </span>
-                        <span th:unless="${product.stock != 0}" class="badge bg-danger">
-                            <span >No Disponible</span>
-                        </span>
-                    </p>
-                </div>
-                <div class="card-footer bg-transparent border-0 pt-0">
-                    <a th:href="@{/products}"
-                       class="btn btn-outline-primary btn-sm w-100">
-                        <i class="fa-regular fa-eye me-1"></i> Ver Producto
-                    </a>
-                </div>
-                <div class="card-footer bg-transparent border-0 pt-0">
-                    <a th:href="@{/products}"
-                       class="btn btn-outline-primary btn-sm w-100">
-                        <i class="fa-solid fa-cart-shopping"></i>Añadir al carrito
-                    </a>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Productos</h1>
+                <p class="lead text-body-secondary">Aqui podras ver nuestros mejores productos para musculacion, equipamiento deportivos para todos los casos, Con las mejores ofertas y marcas de de un poco todo (nike®, addidas®, Under Armour®, Jordan®, etc)</p>
+                <p> <a th:href="@{reviews}" class="btn btn-primary my-2">Opinioses sobre nuestros productos</a>
+                    <a href="#" class="btn btn-secondary my-2">Opinioses sobre nuestras tiendas</a>
+                </p>
+            </div>
+        </div>
+    </section>
+    <div  class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div th:each="product : ${products}" class="col">
+                    <div class="card shadow-sm">
+                        <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="FFFFFF"></rect>
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${product.name}">Titulo</h5>
+                        <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </div>
+                            <small th:if="${product.stock != 0}" class="text-body-secondary">Disponibe</small>
+                            <small th:unless="${product.stock != 0}" class="text-body-secondary">No Disponibe</small>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="mt-4">
-        <a th:href="@{/products}" class="btn btn-success">
-            <i class="fa-solid fa-plus me-1"></i> Añadir producto
-        </a>
-    </div>
 </main>
+
 </body>
 </html>
