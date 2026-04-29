@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Pantalla Hola</title>
-</head>
-<body>
+<head th:replace="~{layout/head :: head('Five Chill GYM')}"></head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+<main class="container flex-grow-1">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0" th:text="${title}">Five Chill GYM</h1>
+        <span class="badge bg-secondary fs-6" th:text="|${products.size()} resultados|">0 resultados</span>
+    </div>
+    <!--5. hacerlo mas bonito-->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col" th:each="product : ${products}">
+            <div class="card card-restaurant h-100 shadow-sm">
+                <div class="card-body">
+                    <img>
+                    <h5 class="card-title">
+                        <i></i>
+                        <span th:text="${product.name}">Nombre</span>
+                    </h5>
+                    <h5 class="card-body">
+                        <span th:text="${product.shortDescription}">Descripcion</span>
+                    </h5>
+                    <p class="card-text">
+                        <span class="badge bg-success">
+                            <i class="fa-solid fa-euro-sign me-1"></i>
+                            <span th:text="${product.price}">0</span>
+                        </span>
+                        <span th:if="${product.stock !=0}" class="badge bg-success">
+                            <span >Disponible</span>
+                        </span>
+                        <span th:unless="${product.stock != 0}" class="badge bg-danger">
+                            <span >No Disponible</span>
+                        </span>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <a th:href="@{/products}"
+                       class="btn btn-outline-primary btn-sm w-100">
+                        <i class="fa-regular fa-eye me-1"></i> Ver Producto
+                    </a>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <a th:href="@{/products}"
+                       class="btn btn-outline-primary btn-sm w-100">
+                        <i class="fa-solid fa-cart-shopping"></i>Añadir al carrito
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h1>Esta es la pantalla de Productos</h1>
-<table>
-
-</table>
-<ul>
-    <li th:each="product : ${products}">
-        <span th:text="${product.name}"> </span>
-        <span th:text="${product.shortDescription}"> </span>
-        <span th:text="${product.price}"> </span>
-        <span th:if="${product.category != null}" th:text="${product.category.name}"></span>
-        <span th:unless="${product.category != null}">Sin categoria</span>
-        <a th:href="@{/products}">Ver Producto</a>
-        <a th:href="@{/products}">Agregar al Carrito</a>
-    </li>
-</ul>
+    <div class="mt-4">
+        <a th:href="@{/products}" class="btn btn-success">
+            <i class="fa-solid fa-plus me-1"></i> Añadir producto
+        </a>
+    </div>
+</main>
 </body>
 </html>

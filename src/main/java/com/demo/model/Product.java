@@ -9,10 +9,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//1.usar to String
 @Entity
 @Table(name = "product")
 public class Product {
     @Id
+    //2. Cambiar de auto a identity.
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
@@ -26,7 +28,9 @@ public class Product {
     //igual que el stock?
     //@Column(nullable = false)
     private Integer stock;
+    //4?.Quiza añadir imagenes.
     @ManyToOne
+    //3.Excluir los may to one
     private Category category;
 
 
