@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pantalla Hola</title>
+</head>
+<body>
+
+<h1>Esta es la pantalla de Categoria</h1>
+<table>
+
+</table>
+<ul>
+    <li th:each="category : ${categories}">
+        <span th:text="${category.id}"> </span>
+        <span th:text="${category.name}"> </span>
+        <span th:text="${category.description}"> </span>
+
+    </li>
+</ul>
+</body>
+</html>
