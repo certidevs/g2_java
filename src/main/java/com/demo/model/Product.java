@@ -9,13 +9,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//1.usar to String
+@ToString
 @Entity
 @Table(name = "product")
 public class Product {
     @Id
-    //2. Cambiar de auto a identity.
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String shortDescription;
@@ -28,9 +27,8 @@ public class Product {
     //igual que el stock?
     //@Column(nullable = false)
     private Integer stock;
-    //4?.Quiza añadir imagenes.
+    @ToString.Exclude
     @ManyToOne
-    //3.Excluir los may to one
     private Category category;
 
 
