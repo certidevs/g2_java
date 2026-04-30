@@ -27,6 +27,8 @@ public class Product {
     //igual que el stock?
     //@Column(nullable = false)
     private Integer stock;
+    @Lob
+    private String image;
     @ToString.Exclude
     @ManyToOne
     private Category category;
