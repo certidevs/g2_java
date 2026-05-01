@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head th:replace="~{layout/head :: head('Lista de Rwviews')}"></head>
     <meta charset="UTF-8">
     <title>Lista de Productos</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+
+<main class="container flex-grow-1 my-4">
+
+
 <h1>Lista de Reviews </h1>
 <img th:src="@{images/suplementos.jpg}" alt="Imagen de sumplementos" width="300" height="300">
 <link rel="stylesheet" th:href="@{/css/reviews.css}">
@@ -22,6 +28,9 @@
         <div class="star" th:classappend="${review.rating >= 5} ? 'filled'"></div>
     </div>
 </div>
+</main>
+    <footer th:replace="~{layout/footer :: footer}"></footer>
+    <script th:replace="~{layout/footer :: scripts}"></script>
 </body>
 </html>
 
