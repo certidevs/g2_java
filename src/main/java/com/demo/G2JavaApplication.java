@@ -95,19 +95,19 @@ public class G2JavaApplication {
         Purchase p1 = new Purchase();
         p1.setTotalPrice(129.98);
         p1.setDiscountCode("David15%");
-        p1.setPurchaseDateTime(LocalDateTime.from(java.time.LocalDateTime.now()));
+        p1.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p1);
 
         Purchase p2 = new Purchase();
         p2.setTotalPrice(64.99);
         p2.setDiscountCode("Dogo10%");
-        p2.setPurchaseDateTime(LocalDateTime.from(java.time.LocalDateTime.now()));
+        p2.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p2);
 
         Purchase p3 = new Purchase();
         p3.setTotalPrice(129.98);
         p3.setDiscountCode("Adri5%");
-        p3.setPurchaseDateTime(LocalDateTime.from(java.time.LocalDateTime.now()));
+        p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
         purchaseRepository.save(p3);
 
 

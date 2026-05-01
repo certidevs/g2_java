@@ -1,23 +1,57 @@
 <!DOCTYPE html>
-<html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Pantalla Hola</title>
-</head>
-<body>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-<h1>Esta es la pantalla de Compras</h1>
-<table>
+<head th:replace="~{layout/head :: head('Detalle Restaurante')}"></head>
 
-</table>
-<ul>
-    <li th:each="purchase : ${purchases}">
-        <span th:text="${purchase.id}"> </span>
-        <span th:text="${purchase.totalPrice}"> </span>
-        <span th:text="${purchase.purchaseDateTime}"> </span>
-        <span th:text="${purchase.discountCode}"> </span>
+<body class="d-flex flex-column min-vh-100">
 
-    </li>
-</ul>
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+
+<main class="container flex-grow-1">
+
+
+    <h1 class="mb-2">Listado de compras</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle table-bordered border-success">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dish : ${dishes}">
+                <td th:text="${dish.id}"></td>
+                <td class="fw-semibold" th:text="${dish.name}"></td>
+                <td class="text-muted small" th:text="${dish.description}"></td>
+                <td>
+                    <span class="badge bg-success" th:text="${dish.price} + ' €'"></span>
+                </td>
+                <td>
+                    <span class="badge bg-light text-dark border" th:text="${dish.dishType.label}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/dishes/{id}(id=${dish.id})}"
+                       class="btn btn-sm btn-outline-primary">
+                        <i class="fa-regular fa-eye me-1"></i> Ver
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
+
 </body>
 </html>

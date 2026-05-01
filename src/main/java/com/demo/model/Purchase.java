@@ -25,12 +25,13 @@ private Long id;
 
     private Double totalPrice;
 
-    private LocalDateTime purchaseDateTime;
+    private LocalDate purchaseDate;
 
     private String discountCode;//Dogo10%
 
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
+
 //@ManyToOne User user
 
 }

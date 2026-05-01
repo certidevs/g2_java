@@ -17,6 +17,6 @@ public class PurchaseLineController {
     @GetMapping("/purchaseLines")
     public String purchaseLinesList(Model model) {
         model.addAttribute("purchaseLines", purchaseLineRepository.findAll());
-        return "purchaseLines/purchaseLinesList";
+        return "purchase/purchaseList";
     }
 }
