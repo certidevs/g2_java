@@ -64,7 +64,7 @@ public class G2JavaApplication {
 
 
         Review re = new Review();
-        re.setTitle(" Opinión de Creatina Creapure");
+        re.setTitle("Creatina Creapure, Sabor Vanilla");
         re.setRating(5);
         re.setComment("Excelente producto");
         re.setUserVerified(true);
@@ -75,7 +75,7 @@ public class G2JavaApplication {
 
 
         Review re2 = new Review();
-        re2.setTitle("Opinión de Crema de Arroz");
+        re2.setTitle("Crema de arroz proteica");
         re2.setRating(2);
         re2.setComment("Malo");
         re2.setUserVerified(false);
@@ -84,7 +84,7 @@ public class G2JavaApplication {
         reviewRepository.save(re2);
 
         Review re3 = new Review();
-        re3.setTitle("Opinión de Proteina whey Isolate");
+        re3.setTitle("Proteina whey Isolate, Chocolate");
         re3.setRating(4);
         re3.setComment("Muy Buen producto");
         re3.setUserVerified(true);
