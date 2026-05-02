@@ -24,8 +24,8 @@ public class G2JavaApplication {
         PurchaseLineRepository PurchaseLineRepository = context.getBean(PurchaseLineRepository.class);
 
         Category objects = new Category();
-        objects.setName("Vanilla");
-        objects.setDescription("Proteins made of vanilla");
+        objects.setName("Fresa");
+        objects.setDescription("Proteins made of Fresa");
         categoryRepository.save(objects);
 
         Category objects2 = new Category();
@@ -34,7 +34,7 @@ public class G2JavaApplication {
         categoryRepository.save(objects2);
 
         Product producto = Product.builder()
-                .name("Creatina Creapure, Sabor Vanilla")
+                .name("Creatina Creapure, Sabor Fresa")
                 .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
                 .price(26.50)
@@ -64,7 +64,7 @@ public class G2JavaApplication {
 
 
         Review re = new Review();
-        re.setTitle("Creatina Creapure, Sabor Vanilla");
+        re.setTitle("Creatina Creapure, Sabor Fresa");
         re.setRating(5);
         re.setComment("Excelente producto");
         re.setUserVerified(true);
