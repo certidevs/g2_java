@@ -23,16 +23,22 @@
         </div>
     </div>
     <div class="container text-lg-end">
+        <a th:href="@{/purchases}" style="text-decoration: none;color: inherit">
         <button type="button" class="btn btn-sm btn-outline-secondary me-3">
             <i class="fa-solid fa-cart-shopping"></i>
             Comprar
         </button>
-        <button th:href="@{redirect:/productsList}" type="button" class="btn btn-sm btn-outline-secondary me-3">
+        </a>
+        <a th:href="@{/products}" style="text-decoration: none; color: inherit;">
+        <button type="button" class="btn btn-sm btn-outline-secondary me-3">
             <i class="fa-solid fa-arrow-left"></i>
             Volver
         </button>
+        </a>
     </div>
     <div>
+        <h1><i class="fa-solid fa-comment "></i>
+        Opiniones de este producto </h1>
         <div class="row ">
             <div class="col" th:each="review : ${reviews}">
                 <div class="card h-100 shadow-sm">
@@ -41,7 +47,8 @@
                             <h5 class="card-title mb-0" th:text="${review.title}">Título</h5>
                             <span class="badge bg-warning text-dark">
                             <i class="fa-solid fa-star me-1"></i>
-                            <span th:text="${review.rating + ' / 5'}"></span>
+                                <span th:text="${review.rating + ' / 5'}"></span>
+                            </span>
                         </div>
                         <p th:text="${review.comment}"></p>
                     </div>
