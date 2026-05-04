@@ -39,6 +39,9 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
                                 </a>
+                                <!--<a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning ">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </a>-->
                             </div>
                             <small th:if="${product.stock != 0}" class="text-body-secondary">Disponibe</small>
                             <small th:unless="${product.stock != 0}" class="text-body-secondary">No Disponibe</small>
