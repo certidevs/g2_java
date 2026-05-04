@@ -9,7 +9,6 @@ public interface ReviewRepository extends JpaRepository<Review,Long> {
     List<Review> findByRatingGreaterThanEqual(Integer rating);
     //List<Review> findByUserId(Long id);
     List<Review> findByProduct_IdOrderByCreatedAtDesc(Long id);
-
-
+    List<Review> findByIdOrderByRatingAsc(Long id);
 
 }

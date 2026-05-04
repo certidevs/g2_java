@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString
-@Table(name = "category")
+@Table(name = "categories")
 public class Category {
     //Long id
     //String name

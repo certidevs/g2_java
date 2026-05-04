@@ -20,25 +20,32 @@
         <div class="container">
             <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div id="sombra" th:each="product : ${products}" class="col">
-                    <a href="#">
                     <div>
+                        <a th:href="@{/products/{id}(id=${product.id})}">
                         <img th:src="${product.image}" class="card-img-top" alt="..." role="img" width="100%">
+                    </a>
                     <div class="card-body" >
-                        <h5 class="card-title" th:text="${product.name}">Titulo</h5>
-                        <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
+                        <a th:href="@{/products/{id}(id=${product.id})}">
+                            <h5 class="card-title" th:text="${product.name}">Titulo</h5>
+                            <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
+                        </a>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <a th:href="@{/products/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;">
+                                    <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </a>
+                                <a th:href="@{/purchases}">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
+                                </a>
                             </div>
                             <small th:if="${product.stock != 0}" class="text-body-secondary">Disponibe</small>
                             <small th:unless="${product.stock != 0}" class="text-body-secondary">No Disponibe</small>
                         </div>
                     </div>
                     </div>
-                    </a>
+
                 </div>
             </div>
         </div>
