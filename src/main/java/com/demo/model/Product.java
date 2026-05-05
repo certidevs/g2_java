@@ -29,6 +29,7 @@ public class Product {
     private Integer stock;
     @Lob
     private String image;
+    private Boolean activo;
     @ToString.Exclude
     @ManyToOne
     private Category category;

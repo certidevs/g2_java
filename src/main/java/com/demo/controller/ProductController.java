@@ -21,9 +21,21 @@ public class ProductController {
 
     @GetMapping("/products")
     public String productList(Model model) {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findByActivoTrue();
         model.addAttribute("products", products);
         return "products/productsList";
+    }
+    @GetMapping("products/deactivate/{id}")
+    public String productsDeactivate(@PathVariable Long id, Model model) {
+        Optional<Product> restaurantOptional = productRepository.findById(id);
+
+        if(restaurantOptional.isPresent()) {
+            Product down = restaurantOptional.get();
+            down.setActivo(false);
+            productRepository.save(down);
+        }
+
+        return "redirect:/products";
     }
 
     @GetMapping("products/{id}")
@@ -52,5 +64,9 @@ public class ProductController {
         // CUIDADO no apunta a HTML
         // APUNTA al Controller
         return "redirect:/productsList";
+    }
+    @GetMapping("products/back")
+    public String productsBack(Model model){
+        return "redirect:/products";
     }
 }

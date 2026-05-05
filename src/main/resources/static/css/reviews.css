@@ -1,7 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background: #0f0f0f;
+    background: #848181;
     color: #f0f0f0;
     font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
@@ -9,7 +9,7 @@ body {
 }
 
 .review-card {
-    background: #161616;
+
     border: 1px solid #222;
     border-radius: 4px;
     padding: 28px;
@@ -20,15 +20,9 @@ body {
 
 .review-card:hover {
     border-color: #c8ff00;
+    border-bottom-width: 4px;
     transform: translateY(-4px);
 }
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-
 
 .review-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -47,7 +41,7 @@ body {
 .star {
     width: 16px;
     height: 16px;
-    background: #222;
+    background: #7a7a7a;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 

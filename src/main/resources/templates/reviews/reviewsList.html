@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{layout/head :: head('Lista de Rwviews')}"></head>
+<head th:replace="~{layout/head :: head('Lista de Reviews')}"></head>
     <meta charset="UTF-8">
-    <title>Lista de Productos</title>
+
+<link rel="stylesheet"  th:href="@{/css/reviews.css}">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
-
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="container flex-grow-1 my-4">
+    <h1 style="color:black" class="mb-4">Lista de Reviews</h1>
 
+    <!-- Contenedor Principal Flex -->
+    <div class="d-flex flex-wrap gap-4 align-items-start">
 
-<h1>Lista de Reviews </h1>
-<img th:src="@{images/suplementos.jpg}" alt="Imagen de sumplementos" width="300" height="300">
-<link rel="stylesheet" th:href="@{/css/reviews.css}">
+        <!-- Columna de las imágenes de los productos que apareceran a la (Izquierda) de las Reviews -->
+        <div class="d-flex flex-column  gap-3 flex-shrink-0" style="width: 300px;">
 
-<div class="review-card" th:each="review : ${reviewsproductos}">
-    <div class="accent-line"></div>
+            <!-- Primera Imagen -->
+            <img th:src="@{https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946}"
+                 alt="Logo 1" class="img-fluid rounded shadow-sm" width="150" height="auto">
+            <!-- Segunda Imagen (aparecerá abajo de la 1era) -->
+            <img th:src="@{https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA}"
+                 alt="Crema de arroz" class="img-fluid rounded shadow-sm" width="150" height="auto">
+            <!-- Tercera imagen (aparecerá debajo de la 2nda) -->
+            <img th:src="@{https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn }"
+                 alt="Proteina why isolate de chocolate" class="img-fluid rounded shadow-sm" width="150" height="auto">
+        </div>
 
-    <div class="review-title" th:text="${review.title}">Título de la review</div>
+        <!-- Columna de Reviews que aparecerá en la (Derecha) -->
+        <div class="flex-grow-1 ">
+            <div class="review-card mb-3 bg-primary" th:each="review : ${reviewsproductos}">
+                <div class="accent-line"></div>
+                <div class="review-title" th:text="${review.title}">Título</div>
+                <div class="stars">
+                    <div class="star" th:classappend="${review.rating >= 1} ? 'filled'"></div>
+                    <div class="star" th:classappend="${review.rating >= 2} ? 'filled'"></div>
+                    <div class="star" th:classappend="${review.rating >= 3} ? 'filled'"></div>
+                    <div class="star" th:classappend="${review.rating >= 4} ? 'filled'"></div>
+                    <div class="star" th:classappend="${review.rating >= 5} ? 'filled'"></div>
+                </div>
+                <div class="review-body" th:text="${review.comment}">Comentario</div>
+            </div>
+        </div>
 
-    <div class="stars">
-        <div class="star" th:classappend="${review.rating >= 1} ? 'filled'"></div>
-        <div class="star" th:classappend="${review.rating >= 2} ? 'filled'"></div>
-        <div class="star" th:classappend="${review.rating >= 3} ? 'filled'"></div>
-        <div class="star" th:classappend="${review.rating >= 4} ? 'filled'"></div>
-        <div class="star" th:classappend="${review.rating >= 5} ? 'filled'"></div>
     </div>
-</div>
 </main>
+
     <footer th:replace="~{layout/footer :: footer}"></footer>
     <script th:replace="~{layout/footer :: scripts}"></script>
 </body>
