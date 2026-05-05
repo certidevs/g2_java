@@ -21,8 +21,8 @@ public class ProductController {
     private final ReviewRepository reviewRepository;
 
     @GetMapping("/products")
-    public String productList(Model model) {
-        List<Product> products = productRepository.findByActivoTrue();
+    public String productList(Model model, @RequestParam(required = false)String name) {
+        List<Product> products = productRepository.findActivoFiltering(name);
         model.addAttribute("products", products);
         return "products/productsList";
     }

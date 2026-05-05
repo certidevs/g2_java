@@ -31,6 +31,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
         ORDER BY p.price DESC
         """)
     List<Product> findActivoMaxMin(@Param("prices") Double prices);
+    @Query("""
+        SELECT p FROM Product p
+        WHERE p.activo = true
+        AND (:name IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%')))
+        """)
+    List<Product> findActivoFiltering(@Param("name") String name);
 
     //boolean isPresent();
 }

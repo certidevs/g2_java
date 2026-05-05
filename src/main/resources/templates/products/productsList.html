@@ -17,13 +17,21 @@
     </section>
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
-            <div class="align-items-start">
+            <div class="align-items-start col-auto">
                 <a th:href="@{/filter-mintomax}" class="btn btn-sm btn-outline-info column">
                     <i class="fa-solid fa-arrow-up"></i>
                 </a>
                 <a th:href="@{/filter-maxtomin}" class="btn btn-sm btn-outline-info">
                     <i class="fa-solid fa-arrow-down"></i>
                 </a>
+                <form th:action="@{/products}" method="get" class="row align-items-end">
+                    <div class="col-auto">
+                        <label class="form-label form-label-sm">Buscar:</label>
+                        <input type="text" name="name" class="form-control form-control-sm"
+                               placeholder="Busca por título..." th:value="${param.name}">
+                    </div>
+
+                </form>
             </div>
             <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div id="sombra" th:each="product : ${products}" class="col">
