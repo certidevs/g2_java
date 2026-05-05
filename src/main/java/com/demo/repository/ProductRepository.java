@@ -17,14 +17,20 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByActivoTrue();
     Optional<Product> findByIdAndActivoTrue(Long id);
-    /*@Query("""
-        SELECT price from Product
-         WHERE Product .activo = true
-        AND (price IS NOT NULL)
-        ORDER BY price ASC
+    @Query("""
+        SELECT p FROM Product p
+        WHERE p.activo = true
+        AND (:price IS NULL OR p.price <= :price)
+        ORDER BY p.price asc
         """)
-    List<Product> findActiveFiltering(@Param("productAsc") Product product);*/
-
+    List<Product> findActivoMinMax(@Param("price") Double price);
+    @Query("""
+        SELECT p FROM Product p
+        WHERE p.activo = true
+        AND (:prices IS NULL OR p.price <= :prices)
+        ORDER BY p.price DESC
+        """)
+    List<Product> findActivoMaxMin(@Param("prices") Double prices);
 
     //boolean isPresent();
 }

@@ -17,6 +17,14 @@
     </section>
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
+            <div class="align-items-start">
+                <a th:href="@{/filter-mintomax}" class="btn btn-sm btn-outline-info column">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+                <a th:href="@{/filter-maxtomin}" class="btn btn-sm btn-outline-info">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            </div>
             <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div id="sombra" th:each="product : ${products}" class="col">
                     <div>
@@ -29,6 +37,7 @@
                             <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
+                            <h2 class="align-items-start card-title" th:text="${product.price} + '€'">€</h2>
                             <div class="btn-group">
                                 <a th:href="@{/products/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;">
                                     <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -42,9 +51,9 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </a>-->
                             </div>
-                            <small th:if="${product.stock != 0}" class="text-body-secondary">Disponibe</small>
-                            <small th:unless="${product.stock != 0}" class="text-body-secondary">No Disponibe</small>
                         </div>
+                        <small th:if="${product.stock != 0}" class="text-body-secondary align-items-start">Disponibe</small>
+                        <small th:unless="${product.stock != 0}" class="text-body-secondary align-items-start">No Disponibe</small>
                     </div>
                     </div>
 

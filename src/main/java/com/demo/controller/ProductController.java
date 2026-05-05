@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,18 @@ public class ProductController {
     @GetMapping("/products")
     public String productList(Model model) {
         List<Product> products = productRepository.findByActivoTrue();
+        model.addAttribute("products", products);
+        return "products/productsList";
+    }
+    @GetMapping("filter-mintomax")
+    public String productMinToMax(Model model, @RequestParam(required = false)Double price) {
+        List<Product> products = productRepository.findActivoMinMax(price);
+        model.addAttribute("products", products);
+        return "products/productsList";
+    }
+    @GetMapping("filter-maxtomin")
+    public String productMaxToMin(Model model, @RequestParam(required = false)Double prices){
+        List<Product> products = productRepository.findActivoMaxMin(prices);
         model.addAttribute("products", products);
         return "products/productsList";
     }
