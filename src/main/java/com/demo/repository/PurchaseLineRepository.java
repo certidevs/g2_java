@@ -1,6 +1,7 @@
 package com.demo.repository;
 
 import com.demo.model.PurchaseLine;
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,4 +14,6 @@ public interface PurchaseLineRepository extends JpaRepository<PurchaseLine, Long
             FROM PurchaseLine pl where pl.purchase.id =?1
             """)
     Double calculateTotalPrice(Long purchaseId);
+
+
 }

@@ -15,25 +15,23 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 public class PurchaseController {
+
     private final PurchaseRepository purchaseRepository;
-    private final PurchaseLineRepository purchaseLineRepository;
+    private final PurchaseLineRepository purchaseLinesRepository;
 
-    @GetMapping("/purchases")
-    public String purchasesList(Model model) {
-
-        //if user admin
-        //      findAll
-        //else
-        //      findById
-        List<Purchase> purchases = purchaseRepository.findAll();
-        model.addAttribute("purchases", purchases);
+    // @GetMapping orders
+    // filtrar por restaurante, filtrar por usuario
+    @GetMapping("purchases")
+    public String orders(Model model) {
+        model.addAttribute("purchase",  purchaseRepository.findAll());
         return "purchase/purchaseList";
     }
+
+    // @GetMapping orders/{id}
     @GetMapping("purchases/{id}")
-    public String purchase(Model model, @PathVariable Long id) {
-        Purchase purchase = purchaseRepository.findById(id).orElseThrow();
-        model.addAttribute("purchase", purchase);
-        model.addAttribute("purchaseLines", purchaseLineRepository.findAll());
+    public String order(Model model, @PathVariable Long id){
+        model.addAttribute("purchase", purchaseRepository.findById(id).orElseThrow());
+        model.addAttribute("purchaseLines", purchaseLinesRepository.findByPurchaseId(id));
         return "purchase/purchaseDetails";
     }
 }
