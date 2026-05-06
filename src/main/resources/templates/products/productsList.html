@@ -11,44 +11,69 @@
                 <h1 class="fw-light">Productos</h1>
                 <p class="lead text-body-secondary">Aquí podrás ver nuestros mejores productos para musculación y equipamiento deportivo para todos los casos, Con las mejores ofertas y marcas variadas (nike®, addidas®, Under Armour®, Jordan®, etc)</p>
                 <p> <a th:href="@{reviews-productos}" class="btn btn-primary my-2">Opiniones sobre nuestros productos</a>
-                    <a href="#" class="btn btn-secondary my-2">Opiniones sobre nuestras tiendas</a>
                 </p>
             </div>
         </div>
     </section>
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
+            <div class="row">
+                <div class="col-0">
+                    <a th:href="@{/filter-mintomax}" class="btn btn-sm btn-outline-info column">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                    <a th:href="@{/filter-maxtomin}" class="btn btn-sm btn-outline-info">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+                <form th:action="@{/products}" method="get" class="col">
+                    <label class="form-label form-label-sm">Buscar:</label>
+                    <input type="text" name="name" class=" form-control-sm col-3"
+                           placeholder="Busca por título..." th:value="${param.name}">
+                    <a th:href="@{products/create}" class="btn btn-secondary btn-sm col-1">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                </form>
+            </div>
             <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div id="sombra" th:each="product : ${products}" class="col">
                     <div>
                         <a th:href="@{/products/{id}(id=${product.id})}">
-                        <img th:src="${product.image}" class="card-img-top" alt="..." role="img" width="100%">
-                    </a>
-                    <div class="card-body" >
-                        <a th:href="@{/products/{id}(id=${product.id})}">
-                            <h5 class="card-title" th:text="${product.name}">Titulo</h5>
-                            <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
+                            <img th:src="${product.image}" class="card-img-top" alt="..." role="img" width="100%">
                         </a>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a th:href="@{/products/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;">
-                                    <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                </a>
-                                <a th:href="@{/purchases}">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                                </a>
+                        <div class="card-body" >
+                            <a th:href="@{/products/{id}(id=${product.id})}">
+                                <h5 class="card-title" th:text="${product.name}">Titulo</h5>
+                                <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
+                            </a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h2 class="align-items-start card-title" th:text="${product.price} + '€'">€</h2>
+                                <div class="btn-group">
+                                    <a th:href="@{/products/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;">
+                                        <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    </a>
+                                    <a th:href="@{/purchases}">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </button>
+                                    </a>
+                                    <!--<a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning ">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>-->
+                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary visually-hidden">
+                                        <i class="fa-solid fa-pencil me-1"></i>
+
+                                    </a>
+                                </div>
                             </div>
-                            <small th:if="${product.stock != 0}" class="text-body-secondary">Disponibe</small>
-                            <small th:unless="${product.stock != 0}" class="text-body-secondary">No Disponibe</small>
+                            <small th:if="${product.stock != 0}" class="text-body-secondary align-items-start">Disponibe</small>
+                            <small th:unless="${product.stock != 0}" class="text-body-secondary align-items-start">No Disponibe</small>
                         </div>
                     </div>
-                    </div>
-
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </main>
 

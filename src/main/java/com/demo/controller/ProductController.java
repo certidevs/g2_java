@@ -6,8 +6,7 @@ import com.demo.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,10 +19,34 @@ public class ProductController {
     private final ReviewRepository reviewRepository;
 
     @GetMapping("/products")
-    public String productList(Model model) {
-        List<Product> products = productRepository.findAll();
+    public String productList(Model model, @RequestParam(required = false)String name) {
+        List<Product> products = productRepository.findActivoFiltering(name);
         model.addAttribute("products", products);
         return "products/productsList";
+    }
+    @GetMapping("filter-mintomax")
+    public String productMinToMax(Model model, @RequestParam(required = false)Double price) {
+        List<Product> products = productRepository.findActivoMinMax(price);
+        model.addAttribute("products", products);
+        return "products/productsList";
+    }
+    @GetMapping("filter-maxtomin")
+    public String productMaxToMin(Model model, @RequestParam(required = false)Double prices){
+        List<Product> products = productRepository.findActivoMaxMin(prices);
+        model.addAttribute("products", products);
+        return "products/productsList";
+    }
+    @GetMapping("products/deactivate/{id}")
+    public String productsDeactivate(@PathVariable Long id, Model model) {
+        Optional<Product> restaurantOptional = productRepository.findById(id);
+
+        if(restaurantOptional.isPresent()) {
+            Product down = restaurantOptional.get();
+            down.setActivo(false);
+            productRepository.save(down);
+        }
+
+        return "redirect:/products";
     }
 
     @GetMapping("products/{id}")
@@ -51,6 +74,38 @@ public class ProductController {
         // El restaurante NO existe
         // CUIDADO no apunta a HTML
         // APUNTA al Controller
-        return "redirect:/productsList";
+        return "redirect:/products";
+    }
+    @GetMapping("products/back")
+    public String productsBack(Model model){
+        return "redirect:/products";
+    }
+
+    @GetMapping("products/create")
+    public String productsCreate(Model model){
+        model.addAttribute("product", new Product());
+        return "products/products-form";
+    }
+
+    @GetMapping("products/edit/{id}")
+    public String productsEdit(@PathVariable Long id, Model model) {
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setImage("/images/productos/creatina.jpg");
+            model.addAttribute("product", product);
+            return "products/products-form";
+        }
+        return "redirect:/products";
+    }
+
+
+    @PostMapping("products")
+    public String createProduct(@ModelAttribute Product product) {
+
+        System.out.println("ACCION COMPLETADA CON EXITO: " + product);
+        product.setActivo(true);
+        productRepository.save(product);
+        return "redirect:/products/" + product.getId();
     }
 }

@@ -40,6 +40,8 @@ public class G2JavaApplication {
                 .price(26.50)
                 .stock(99)
                 .category(objects)
+                .activo(true)
+                .image("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946")
                 .build();
         Product producto2 = Product.builder()
                 .name("Crema de arroz proteica")
@@ -48,6 +50,8 @@ public class G2JavaApplication {
                 .price(8.99)
                 .stock(10)
                 .category(null)
+                .activo(true)
+                .image("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA")
                 .build();
         Product producto3 = Product.builder()
                 .name("Proteina whey Isolate, Chocolate")
@@ -56,10 +60,9 @@ public class G2JavaApplication {
                 .price(34.99)
                 .stock(0)
                 .category(objects2)
+                .activo(true)
+                .image("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn")
                 .build();
-        producto.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
-        producto2.setImage("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA");
-        producto3.setImage("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn");
         productRepository.saveAll(List.of(producto,producto2,producto3));
 
 
