@@ -60,6 +60,10 @@
                                     <!--<a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning ">
                                         <i class="fa-solid fa-cart-shopping"></i>
                                     </a>-->
+                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary visually-hidden">
+                                        <i class="fa-solid fa-pencil me-1"></i>
+
+                                    </a>
                                 </div>
                             </div>
                             <small th:if="${product.stock != 0}" class="text-body-secondary align-items-start">Disponibe</small>

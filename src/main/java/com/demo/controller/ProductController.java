@@ -86,6 +86,20 @@ public class ProductController {
         model.addAttribute("product", new Product());
         return "products/products-form";
     }
+
+    @GetMapping("products/edit/{id}")
+    public String productsEdit(@PathVariable Long id, Model model) {
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setImage("/images/productos/creatina.jpg");
+            model.addAttribute("product", product);
+            return "products/products-form";
+        }
+        return "redirect:/products";
+    }
+
+
     @PostMapping("products")
     public String createProduct(@ModelAttribute Product product) {
 
