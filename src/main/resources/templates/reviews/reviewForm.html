@@ -22,39 +22,42 @@
         <div class="mb-3">
             <label for="title" class="form-label">Nombre</label>
             <input type="text" class="form-control" th:field="*{title}"
-                   placeholder="Escribe un Titulo de la Review">
+                   placeholder="Escribe un Titulo de la Review" required>
         </div>
 
         <!-- Ponemos un campo que se tenga que escribir el Comentario de una Review-->
         <div class="mb-3">
             <label for="comment" class="form-label">Comentario</label>
-            <input type="text" class="form-control" th:field="*{comment}">
+            <input type="text" class="form-control" th:field="*{comment}" required>
         </div>
 
         <!-- Selector de Producto -->
         <div class="mb-3">
             <label for="product" class="form-label">Producto</label>
-            <select th:field="*{product}" class="form-select" required>
+            <select  class="form-select" id="product" th:field="*{product}" required>
                 <option value="">Selecciona un producto</option>
                 <option th:each="producto : ${product}"
-                        th:value="${producto.id}"
+                        th:value="${producto}"
                         th:text="${producto.name}"></option>
             </select>
 
         </div>
+        <!-- Ponemos un campo que se tenga que salga la fecha que se hizo una  Review-->
+
         <div class="mb-3">
             <label class="form-label" for="createdAt">Fecha de Opinión</label>
             <input type="datetime-local" class="form-control" id="createdAt" th:field="*{createdAt}">
 
         </div>
 
+        <!-- Ponemos 2 botones, 1 de guardar y otro de cancelar -->
         <button type="submit" class="btn btn-primary">Guardar Reseña</button>
-        <a th:href="@{/reviews-productos}" class="btn btn-secondary">Cancelar</a>
+        <a th:href="@{/reviews-productos}"  class="btn btn-secondary">Cancelar</a>
 
 
 
     </form>
 </main>
-<footer th:replace="~{layout/footer :: footer}"></footer>
-<script th:replace="~{layout/footer :: scripts}"></script>
+    <footer th:replace="~{layout/footer :: footer}"></footer>
+    <script th:replace="~{layout/footer :: scripts}"></script>
 </html>
