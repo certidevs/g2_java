@@ -31,7 +31,7 @@ public class Review {
     private String title;
 
     //Asociaciones (ManyToOne) Muchas reseñas a 1 producto,usuario
-
+    @ToString.Exclude
     @ManyToOne
     private Product product;
 
