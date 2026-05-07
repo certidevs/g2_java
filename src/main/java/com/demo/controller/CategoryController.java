@@ -19,6 +19,7 @@ import java.util.Optional;
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     @GetMapping("category")
     public String categoriesList( Model model){
@@ -35,6 +36,9 @@ public class CategoryController {
 
             Category category = categoryOptional.get();
             model.addAttribute("category", category);
+
+
+            model.addAttribute("products", productRepository.findByCategoryId(id));
             // opcional:
             // cargar los platos (Dish) de este restaurant en el model
 
