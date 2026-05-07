@@ -35,11 +35,11 @@
 
         <!-- Selector de Producto -->
         <div class="mb-3">
-            <label for="product" class="form-label">Producto</label>
-            <select  class="form-select" id="product" th:field="*{product}" required>
+            <label for="products" class="form-label">Producto</label>
+            <select  class="form-select" id="products" th:field="*{product}" required>
                 <option value="">Selecciona un producto</option>
-                <option th:each="producto : ${product}"
-                        th:value="${producto}"
+                <option th:each="producto : ${products}"
+                        th:value="${producto.id}"
                         th:text="${producto.name}"></option>
             </select>
 
@@ -54,7 +54,7 @@
 
         <!-- Ponemos 2 botones, 1 de guardar y otro de cancelar -->
         <button type="submit" class="btn btn-primary">Guardar Reseña</button>
-        <a th:href="@{/reviews-productos}"  class="btn btn-secondary">Cancelar</a>
+        <a th:href="@{/reviews-productos}" class="btn btn-outline-danger">Cancelar</a>
 
 
 
