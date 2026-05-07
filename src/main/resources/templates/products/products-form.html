@@ -7,7 +7,7 @@
 <main class="container flex-grow-1">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 class="mb-4">Crear Producto</h1>
+            <h1 class="mb-4">Crear/Editar Producto</h1>
             <form th:action="@{/products}" method="post" th:object="${product}">
                 <input type="hidden" th:field="*{id}">
                 <div class="mb-3">
@@ -32,7 +32,7 @@
                 <div class="mb-3">
                     <label for="image" class="form-label">URL imagen</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="image" th:field="*{image}" disabled>
+                        <input type="text" class="form-control" id="image" th:field="*{image}" readonly>
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="checkbox" id="editImageToggle"
                                    aria-label="Permitir edición de imagen">
@@ -40,7 +40,6 @@
                     </div>
                     <small class="form-text text-muted">Marca para editar la URL</small>
                 </div>
-
                 <script>
                     document.getElementById('editImageToggle').addEventListener('change', function() {
                         const imageInput = document.getElementById('image');
@@ -50,7 +49,19 @@
                         }
                     });
                 </script>
+                <div class="mb-3">
+                    <label class="form-label" for="dishTypes">Categoria</label>
+                    <select class="form-select" id="dishTypes" th:field="*{category}">
+                        <option value=""></option>
 
+                        <option
+                                th:each="category : ${category}"
+                                th:value="${category.id}"
+                                th:text="${category.name}">
+                        </option>
+
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-success">
                     <i class="fa-solid fa-floppy-disk"></i> Guardar
                 </button>
