@@ -37,6 +37,7 @@ public class ReviewController {
     @GetMapping("/reviews/new")
     public String newReviews(Model model){
         model.addAttribute("review", new Review());
+        model.addAttribute("products" , productRepository.findAll());
         return "reviews/reviewForm";
     }
 
@@ -47,7 +48,7 @@ public class ReviewController {
     @GetMapping("/reviews/edit/{id}")
     public String editReviews(@PathVariable Long id, Model model){
         model.addAttribute("review", reviewRepository.findById(id).orElseThrow()); //Review existente para editarlo(Actualizarlo)
-        model.addAttribute("product" , productRepository.findAll());
+        model.addAttribute("products" , productRepository.findAll());
         return "reviews/reviewForm";
     }
 
