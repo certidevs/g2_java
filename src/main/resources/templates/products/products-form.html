@@ -31,8 +31,25 @@
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">URL imagen</label>
-                    <input type="text" class="form-control" id="image" th:field="*{image}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="image" th:field="*{image}" disabled>
+                        <div class="input-group-text">
+                            <input class="form-check-input mt-0" type="checkbox" id="editImageToggle"
+                                   aria-label="Permitir edición de imagen">
+                        </div>
+                    </div>
+                    <small class="form-text text-muted">Marca para editar la URL</small>
                 </div>
+
+                <script>
+                    document.getElementById('editImageToggle').addEventListener('change', function() {
+                        const imageInput = document.getElementById('image');
+                        imageInput.disabled = !this.checked;
+                        if (this.checked) {
+                            imageInput.focus();
+                        }
+                    });
+                </script>
 
                 <button type="submit" class="btn btn-success">
                     <i class="fa-solid fa-floppy-disk"></i> Guardar
