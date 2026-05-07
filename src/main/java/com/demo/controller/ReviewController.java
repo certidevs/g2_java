@@ -57,7 +57,7 @@ public class ReviewController {
     public String createReviews(@ModelAttribute Review review){
         System.out.println("Review recibida" +review);
         reviewRepository.save(review);
-        return "redirect:/reviews-productos" +review.getId();
+        return "redirect:/reviews-productos";
     }
 
 

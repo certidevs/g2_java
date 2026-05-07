@@ -6,13 +6,14 @@
     <title>Title</title>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
-</body>
+
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 <main class ="container flex-grow-1 my-4">
 
-<h1 class="mb-0">
-    <i class="fa-regular fa-comment-pen"></i>
-</h1>
+    <h1 class="mb-4">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <span th:text="${review.id != null} ? 'Editar Reseña' : 'Nueva Reseña'">Reseña</span>
+    </h1>
     <!-- Todo Formulario para crear o editar una Review -->
     <form th:action="@{/reviews}" method="post" th:object="${review}">
         <!-- Aparece id invisible  gracias al "hidden-->
@@ -31,6 +32,13 @@
             <textarea type="text" class="form-control" id="comment" th:field="*{comment}" required>
 
             </textarea>
+        </div>
+
+        <!-- Ponemos las estrellas de una Review -->
+        <div class="mb-3">
+            <label class="form-label" for="rating">Puntuación (1 a 5 )</label>
+            <input type="number" class="form-control" id="rating" th:field="*{rating}"
+                   min="1" max="5" required>
         </div>
 
         <!-- Selector de Producto -->
@@ -62,4 +70,5 @@
 </main>
     <footer th:replace="~{layout/footer :: footer}"></footer>
     <script th:replace="~{layout/footer :: scripts}"></script>
+</body>
 </html>
