@@ -39,6 +39,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
         """)
     List<Product> findActivoFiltering(@Param("name") String name);
 
+    List<Product> findByCategory_Id(Long id);
+
+
     @Nullable Object findByCategoryId(Long id);
 
     //boolean isPresent();
