@@ -31,25 +31,26 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="purchase : ${purchases}">
-                <td th:text="${purchase.id}"></td>
-                <!--                        <td class="fw-semibold" th:text="${#temporals.format(order.date)}"></td>-->
-                <td class="fw-semibold" th:text="${#temporals.format(purchase.purchaseDate, 'dd/MM/yy HH:mm')}"></td>
-                <td class="text-muted small" th:text="${#numbers.formatDecimal(purchase.totalPrice, 1, 2)}"></td>
 
+            <tr th:each="purchase : ${purchases}">
+
+                <td th:text="${purchase.id}"></td>
+
+                <td th:text="${purchase.purchaseDate}"></td>
+
+                <td th:text="${purchase.totalPrice} + ' €'"></td>
 
                 <td th:text="${purchase.status}"></td>
 
                 <td>
-                    <a th:href="@{/purchase/{id}(id=${purchase.id})}"
-                       class="btn btn-sm btn-outline-primary">
-                        <i class="fa-regular fa-eye me-1"></i> Ver pedido
+                    <a class="btn btn-primary btn-sm"
+                       th:href="@{/purchases/{id}(id=${purchase.id})}">
+                        Ver
                     </a>
-                    <!--                            <a>Finalizar pedido</a>-->
-                    <!--                            <a>Editar pedido</a>-->
-                    <!--                            <a>Borrar pedido</a>-->
                 </td>
+
             </tr>
+
             </tbody>
         </table>
     </div>
