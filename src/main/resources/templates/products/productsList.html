@@ -57,10 +57,10 @@
                                             <i class="fa-solid fa-cart-shopping"></i>
                                         </button>
                                     </a>
-                                    <!--<a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning ">
+                                    <a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning visually-hidden">
                                         <i class="fa-solid fa-cart-shopping"></i>
-                                    </a>-->
-                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary visually-hidden">
+                                    </a>
+                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary">
                                         <i class="fa-solid fa-pencil me-1"></i>
 
                                     </a>
@@ -70,10 +70,11 @@
                             <small th:unless="${product.stock != 0}" class="text-body-secondary align-items-start">No Disponibe</small>
                         </div>
                     </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </main>
 
