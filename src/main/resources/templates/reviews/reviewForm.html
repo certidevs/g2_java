@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html leng="es">
-<head th:replace="~{layout/head :: head('ReviewsFor')}">
+<head th:replace="~{layout/head :: head('ReviewsFormulario')}">
 
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,14 +21,16 @@
         <!-- Ponemos un campo que se tenga que escribir el titulo de una Review-->
         <div class="mb-3">
             <label  class="form-label" for="title">Titulo</label>
-            <input type="text" class="form-control" th:field="*{title}"
+            <input type="text" class="form-control" id="title" th:field="*{title}"
                    placeholder="Escribe un Titulo de la Review" required>
         </div>
 
         <!-- Ponemos un campo que se tenga que escribir el Comentario de una Review-->
         <div class="mb-3">
             <label  class="form-label" for="comment">Comentario</label>
-            <input type="text" class="form-control" th:field="*{comment}" required>
+            <textarea type="text" class="form-control" id="comment" th:field="*{comment}" required>
+
+            </textarea>
         </div>
 
         <!-- Selector de Producto -->
