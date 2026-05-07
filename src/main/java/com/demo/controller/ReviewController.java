@@ -1,9 +1,13 @@
 package com.demo.controller;
 
+import com.demo.model.Review;
 import com.demo.repository.ReviewRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ReviewController {
@@ -23,6 +27,30 @@ public class ReviewController {
     public String reviewsList(Model model){
         model.addAttribute("reviewsproductos", reviewRepository.findAll());
         return "reviews/reviewsList";
+    }
+//Formulario de Reviews Vacio, para crear Review existente
+    @GetMapping("/reviews/new")
+    public String newReviews(Model model){
+        model.addAttribute("review", new Review());
+        return "reviews/reviewForm";
+    }
+
+    //Formulario (Reviews) Con datos
+
+    //Todo Editar un Review Existente
+
+    @GetMapping("/reviews/edit/{id}")
+    public String editReviews(@PathVariable Long id, Model model){
+        model.addAttribute("review", reviewRepository.findById(id).orElseThrow()); //Review existente para editarlo(Actualizarlo)
+        return "reviews/reviewForm";
+    }
+
+    //Recibir datos , Guardar DB
+    @PostMapping("/reviews")
+    public String createReviews(@ModelAttribute Review review){
+        System.out.println("Review recibida" +review);
+        reviewRepository.save(review);
+        return "redirect:/reviews-productos" +review.getId();
     }
 
 
