@@ -129,9 +129,18 @@ public class G2JavaApplication {
         // crear cuatro reviews de un restaurante usando Builder de lombok
 
 
-        PurchaseLine pL1 = new PurchaseLine(null,2,p1,producto);
-        PurchaseLine pL2 = new PurchaseLine(null,1,p2,producto2);
-        PurchaseLine pL3 = new PurchaseLine(null,2,p3,producto2);
+        PurchaseLine pL1 = new PurchaseLine();
+        pL1.setPurchase(p1);
+        pL1.setProduct(producto);
+        pL1.setQuantity(2);
+        PurchaseLine pL2 = new PurchaseLine();
+        pL2.setPurchase(p2);
+        pL2.setProduct(producto);
+        pL2.setQuantity(1);
+        PurchaseLine pL3 = new PurchaseLine();
+        pL3.setPurchase(p2);
+        pL3.setProduct(producto);
+        pL3.setQuantity(2);
 
         List<PurchaseLine> purchaseLines = PurchaseLineRepository.saveAll(List.of(pL1,pL2,pL3));
 
@@ -139,8 +148,10 @@ public class G2JavaApplication {
         double totalPrice = 0;
         for (PurchaseLine lineaPedido : purchaseLines) {
             // sacar el precio del plato
-            double precioLinea = lineaPedido.getProduct().getPrice() * lineaPedido.getQuantity();
-             totalPrice += precioLinea;
+            if (lineaPedido.getProduct() != null) {
+                double precioLinea = lineaPedido.getProduct().getPrice() * lineaPedido.getQuantity();
+                totalPrice += precioLinea;
+            }
         }
         // guardar el totalPrice en base de datos:
         p1.setTotalPrice(totalPrice);

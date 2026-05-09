@@ -25,6 +25,8 @@ public class PurchaseLine {
 @ManyToOne
     private Product product;
 
+
+
 //quantity * price
     //(discount*price)
 
