@@ -9,7 +9,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +24,7 @@ public class CategoryController {
     private final ProductRepository productRepository;
 
     @GetMapping("category")
-    public String categoriesList(Model model) {
+    public String categoriesList( Model model){
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
         return "categories/categoriesList";
@@ -51,9 +53,19 @@ public class CategoryController {
         }
         return "redirect:/categoriesList";
     }
-
+    @GetMapping("categories/new")
+    public String newCategory(Model model){
+        model.addAttribute("category", new Category());
+        return "categories/category-form";
+    }
+    @GetMapping("categories/edit/{id}")
+    public String editCategory(@PathVariable Long id, Model model){
+        model.addAttribute("category", categoryRepository.findById(id).orElseThrow());
+        return "categories/category-form";
+    }
+    @PostMapping("categories")
+    public String saveCategory(@ModelAttribute Category category) {
+        categoryRepository.save(category);
+        return "redirect:/categories" + category.getId();
+    }
 }
-    // TODO
-    // @GetMapping("categories/new")
-    // @GetMapping("categories/edit/{id}")
-    // @PostMapping("categories}")
