@@ -63,6 +63,18 @@ public class CategoryController {
         model.addAttribute("category", categoryRepository.findById(id).orElseThrow());
         return "categories/category-form";
     }
+    @GetMapping("categories/deactivate/{id}")
+    public String deactivateCategory(@PathVariable Long id, Model model) {
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+
+        if(categoryOptional.isPresent()) {
+            Category down = categoryOptional.get();
+            down.setActivo(false);
+            categoryRepository.save(down);
+        }
+
+        return "redirect:/categories";
+    }
     @PostMapping("categories")
     public String saveCategory(@ModelAttribute Category category) {
         categoryRepository.save(category);
