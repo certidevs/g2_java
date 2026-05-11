@@ -22,7 +22,7 @@ public class CategoryController {
     private final ProductRepository productRepository;
 
     @GetMapping("category")
-    public String categoriesList( Model model){
+    public String categoriesList(Model model) {
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
         return "categories/categoriesList";
@@ -51,4 +51,9 @@ public class CategoryController {
         }
         return "redirect:/categoriesList";
     }
+
 }
+    // TODO
+    // @GetMapping("categories/new")
+    // @GetMapping("categories/edit/{id}")
+    // @PostMapping("categories}")

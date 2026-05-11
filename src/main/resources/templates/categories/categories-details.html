@@ -21,7 +21,8 @@
                                 <img th:src="@{${product.image}}" class="card-img-top" alt="Product Image">
                                 <div class="card-body">
                                     <h5 class="card-title" th:text="${product.name}"></h5>
-                                    <p class="card-text" th:text="${product.description}"></p>
+<!--                                    <p class="card-text" th:text="${product.shortDescription}"></p>-->
+                                    <p class="card-text" th:text="${product.longDescription}"></p>
                                     <p class="card-text">
                                         <strong th:text="${'$' + product.price}"></strong>
                                     </p>
