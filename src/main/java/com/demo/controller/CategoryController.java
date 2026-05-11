@@ -38,7 +38,7 @@ public class CategoryController {
             model.addAttribute("category", category);
 
 
-            //model.addAttribute("products", productRepository.findByCategoryId(id));
+            model.addAttribute("products", productRepository.findByCategory_Id(id));
             // opcional:
             // cargar los platos (Dish) de este restaurant en el model
 
