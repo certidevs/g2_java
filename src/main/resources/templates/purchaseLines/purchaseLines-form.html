@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/head :: head('Five Chill GYM')}"></head>
+<body class="d-flex flex-column min-vh-100">
+<link rel="stylesheet" th:href="@{/css/products.css}">
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+<main class="container flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="mb-4">Añadir al Carrito</h1>
+            <form th:action="@{/purchase-lines}" method="post" th:object="${purchaseLine}">
+
+                <!-- Campos ocultos para Product ID y Category ID -->
+                <input type="hidden" th:field="*{product.id}">
+                <input type="hidden" th:field="*{unitPrice}">
+                <input type="hidden" th:if="${category}" th:value="${category.id}">
+
+                <!-- Información del Producto -->
+                <div class="mb-3" th:if="${purchaseLine.product}">
+                    <label class="form-label"><strong>Producto:</strong></label>
+                    <p class="form-control-plaintext" th:text="${purchaseLine.product.name}"></p>
+                </div>
+
+                <div class="mb-3" th:if="${category}">
+                    <label class="form-label"><strong>Categoría:</strong></label>
+                    <p class="form-control-plaintext" th:text="${category.name}"></p>
+                </div>
+
+                <div class="mb-3" th:if="${purchaseLine.product}">
+                    <label class="form-label"><strong>Precio Unitario:</strong></label>
+                    <p class="form-control-plaintext" th:text="${purchaseLine.product.price} + '€'"></p>
+                </div>
+
+                <!-- Campo visible para la cantidad -->
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="quantity" th:field="*{quantity}"
+                           min="1" value="1" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    <i class="fa-solid fa-shopping-cart"></i> Añadir al Carrito
+                </button>
+
+                <a th:href="@{/purchase-lines}" class="btn btn-secondary">Volver al Carrito</a>
+
+            </form>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

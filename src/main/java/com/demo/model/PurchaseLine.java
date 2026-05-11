@@ -18,10 +18,14 @@ public class PurchaseLine {
 
    private Integer quantity;
 
+   private Double unitPrice;
+
 @ManyToOne
     private Purchase purchase;
 @ManyToOne
     private Product product;
+
+
 
 //quantity * price
     //(discount*price)

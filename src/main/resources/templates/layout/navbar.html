@@ -5,7 +5,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" th:href="@{/products}">
             <img th:src="@{/images/fivechillingA.png}" alt="Five chill guys GYM"
-                 height="100" class="me-2 rounded-3" width="auto">
+                 height="32" class="me-2 rounded-3">
 <!--            <span>Restaurantes</span>-->
         </a>
         <button class="navbar-toggler" type="button"
@@ -26,16 +26,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/reviews-productos}">
+                    <a class="nav-link" th:href="@{/reviews-productosz}">
                         <i class="fa-regular fa-comment"></i> Opiniones
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/purchases}">
-                        <i class="fa-solid fa-cart-shopping"></i> Compras
-                        <!-- fa-solid fa-bag-shopping en vez de carro, una bolsa-->
+                    <a class="nav-link" th:href="@{/purchase-lines}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Carrito
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>

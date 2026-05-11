@@ -1,6 +1,7 @@
 package com.demo.controller;
 import com.demo.model.Product;
 import com.demo.model.Review;
+import com.demo.repository.CategoryRepository;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class ProductController {
     private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;
+    private final CategoryRepository categoryRepository;
 
     @GetMapping("/products")
     public String productList(Model model, @RequestParam(required = false)String name) {
@@ -77,22 +79,20 @@ public class ProductController {
         // APUNTA al Controller
         return "redirect:/products";
     }
-    @GetMapping("products/back")
-    public String productsBack(Model model){
-        return "redirect:/products";
-    }
 
     @GetMapping("products/create")
     public String productsCreate(Model model){
         model.addAttribute("product", new Product());
+        model.addAttribute("category", categoryRepository.findAll());
         return "products/products-form";
     }
 
     @GetMapping("products/edit/{id}")
     public String productsEdit(@PathVariable Long id, Model model) {
-            model.addAttribute("product", productRepository.findById(id));
+            model.addAttribute("product", productRepository.findById(id).orElseThrow());
+            model.addAttribute("category", categoryRepository.findAll());
             return "products/products-form";
-    }
+        }
 
 
     @PostMapping("products")

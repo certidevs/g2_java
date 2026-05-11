@@ -51,7 +51,7 @@ public class G2JavaApplication {
                 .stock(10)
                 .category(null)
                 .activo(true)
-                .image("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA")
+                .image("https://media.discordapp.net/attachments/1501942535688552552/1502030406428655757/high-protein-rice-cream-neutral-500g-front-hsn_1_1-removebg-preview.png?ex=69fe3a53&is=69fce8d3&hm=65177e53e373d50fbae3fa22f2e3fb84afd36dbfffe4eb1f95b12e6b6fbc903b&=&format=webp&quality=lossless")
                 .build();
         Product producto3 = Product.builder()
                 .name("Proteina whey Isolate, Chocolate")
@@ -61,7 +61,7 @@ public class G2JavaApplication {
                 .stock(0)
                 .category(objects2)
                 .activo(true)
-                .image("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn")
+                .image("https://media.discordapp.net/attachments/1501942535688552552/1502031054628720751/1481702ef5c003d220c6d5d0611a88c4-removebg-preview.png?ex=69fe3aed&is=69fce96d&hm=d24c183441b38784be0914c2734ef36e26c0928bc0b104f5ff31a74de50caa7f&=&format=webp&quality=lossless")
                 .build();
         productRepository.saveAll(List.of(producto,producto2,producto3));
 
@@ -129,9 +129,18 @@ public class G2JavaApplication {
         // crear cuatro reviews de un restaurante usando Builder de lombok
 
 
-        PurchaseLine pL1 = new PurchaseLine(null,2,p1,producto);
-        PurchaseLine pL2 = new PurchaseLine(null,1,p2,producto2);
-        PurchaseLine pL3 = new PurchaseLine(null,2,p3,producto2);
+        PurchaseLine pL1 = new PurchaseLine();
+        pL1.setPurchase(p1);
+        pL1.setProduct(producto);
+        pL1.setQuantity(2);
+        PurchaseLine pL2 = new PurchaseLine();
+        pL2.setPurchase(p2);
+        pL2.setProduct(producto);
+        pL2.setQuantity(1);
+        PurchaseLine pL3 = new PurchaseLine();
+        pL3.setPurchase(p2);
+        pL3.setProduct(producto);
+        pL3.setQuantity(2);
 
         List<PurchaseLine> purchaseLines = PurchaseLineRepository.saveAll(List.of(pL1,pL2,pL3));
 
@@ -139,8 +148,10 @@ public class G2JavaApplication {
         double totalPrice = 0;
         for (PurchaseLine lineaPedido : purchaseLines) {
             // sacar el precio del plato
-            double precioLinea = lineaPedido.getProduct().getPrice() * lineaPedido.getQuantity();
-             totalPrice += precioLinea;
+            if (lineaPedido.getProduct() != null) {
+                double precioLinea = lineaPedido.getProduct().getPrice() * lineaPedido.getQuantity();
+                totalPrice += precioLinea;
+            }
         }
         // guardar el totalPrice en base de datos:
         p1.setTotalPrice(totalPrice);

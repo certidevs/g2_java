@@ -1,5 +1,6 @@
 package com.demo.repository;
 import com.demo.model.Product;
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -37,6 +38,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
         AND (:name IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%')))
         """)
     List<Product> findActivoFiltering(@Param("name") String name);
+
+    List<Product> findByCategory_Id(Long id);
+
 
     //boolean isPresent();
 }

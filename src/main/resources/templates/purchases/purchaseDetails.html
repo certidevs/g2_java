@@ -63,63 +63,31 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between">
                         <span class="text-muted"><i class="fa-solid fa-hashtag me-2"></i>ID</span>
-                        <span class="fw-semibold" th:text="${purchase.id}"></span>
+                        <span class="fw-semibold" th:text="${order.id}"></span>
                     </li>
-
-
-
                 </ul>
             </div>
         </div>
 
-<!--        &lt;!&ndash; Información de la tienda &ndash;&gt;-->
-<!--        <div class="col-md-4">-->
-<!--            <div class="card shadow-sm border-0 h-100">-->
-<!--                <div class="card-header bg-danger text-white">-->
-<!--                    <h5 class="mb-0">-->
-<!--                        <i class="fa-solid fa-store me-2"></i>Tienda-->
-<!--                    </h5>-->
-<!--                </div>-->
-<!--                <div class="card-body pb-2">-->
-<!--                    <h5 class="card-title mb-1">-->
-<!--                        <a th:href="@{/restaurants/{id}(id=${purchase..id})}"-->
-<!--                           class="text-decoration-none link-dark"-->
-<!--                           th:text="${order.restaurant.name}"></a>-->
-<!--                    </h5>-->
-<!--                    <span class="badge bg-light text-dark border"-->
-<!--                          th:if="${order.restaurant.foodType != null}"-->
-<!--                          th:text="${order.restaurant.foodType.label}"></span>-->
-<!--                </div>-->
-<!--                <ul class="list-group list-group-flush">-->
-<!--                    <li class="list-group-item d-flex justify-content-between">-->
-<!--                        <span class="text-muted"><i class="fa-solid fa-euro-sign me-2"></i>Precio medio</span>-->
-<!--                        <span class="fw-semibold">-->
-<!--                                    <span th:text="${#numbers.formatDecimal(order.restaurant.averagePrice, 1, 2)}"></span> €-->
-<!--                                </span>-->
-<!--                    </li>-->
-<!--                    <li class="list-group-item d-flex justify-content-between">-->
-<!--                        <span class="text-muted"><i class="fa-solid fa-users me-2"></i>Empleados</span>-->
-<!--                        <span class="fw-semibold" th:text="${order.restaurant.numberEmployees}"></span>-->
-<!--                    </li>-->
-<!--                    <li class="list-group-item d-flex justify-content-between">-->
-<!--                        <span class="text-muted"><i class="fa-solid fa-calendar-day me-2"></i>Apertura</span>-->
-<!--                        <span class="fw-semibold"-->
-<!--                              th:text="${#temporals.format(order.restaurant.startDate, 'dd/MM/yyyy')}"></span>-->
-<!--                    </li>-->
-<!--                    <li class="list-group-item d-flex justify-content-between">-->
-<!--                        <span class="text-muted"><i class="fa-solid fa-circle-check me-2"></i>Estado</span>-->
-<!--                        <span th:if="${order.restaurant.active}" class="badge bg-success">Activo</span>-->
-<!--                        <span th:unless="${order.restaurant.active}" class="badge bg-secondary">Inactivo</span>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--                <div class="card-body pt-2">-->
-<!--                    <a th:href="@{/restaurants/{id}(id=${order.restaurant.id})}"-->
-<!--                       class="btn btn-outline-danger btn-sm w-100">-->
-<!--                        <i class="fa-regular fa-eye me-1"></i> Ver restaurante-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!-- Información del restaurante -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fa-solid fa-store me-2"></i>Producto
+                    </h5>
+                </div>
+                <div class="card-body pb-2">
+                    <h5 class="card-title mb-1">
+                        <a th:href="@{/product/{id}(id=${purchase.product.id})}"
+                           class="text-decoration-none link-dark"
+                           th:text="${purchase.product.name}"></a>
+                    </h5>
+
+                </div>
+
+            </div>
+        </div>
 
         <!-- Información del usuario (datos ficticios: la entidad User aún no existe) -->
         <div class="col-md-4">
@@ -177,8 +145,8 @@
                 <thead class="table-light">
                 <tr>
                     <th class="ps-3">#</th>
-                    <th>Plato</th>
-                    <th>Tipo</th>
+                    <th>Producto</th>
+                    <th>Categoria</th>
                     <th class="text-center">Cantidad</th>
                     <th class="text-end">Precio</th>
                     <th class="text-end">Subtotal</th>
@@ -195,13 +163,9 @@
                                th:text="${line.product.name}"></a>
                         </div>
                         <div class="small text-muted text-truncate" style="max-width: 320px;"
-                             th:text="${line.product.shortDescription}"></div>
+                             th:text="${line.product.description}"></div>
                     </td>
-<!--                    <td>-->
-<!--                                    <span class="badge bg-light text-dark border"-->
-<!--                                          th:if="${line.category.categoryType != null}"-->
-<!--                                          th:text="${line.dish.dishType.label}"></span>-->
-<!--                    </td>-->
+
                     <td class="text-center">
                         <span class="badge bg-secondary rounded-pill" th:text="${line.quantity}"></span>
                     </td>
@@ -209,11 +173,11 @@
                         <span th:text="${#numbers.formatDecimal(line.product.price, 1, 2)}"></span> €
                     </td>
                     <td class="text-end fw-semibold"
-                        th:text="|${#numbers.formatDecimal(line.quantity * line.product.price, 1, 2)}|"></td>
+                        th:text="|${#numbers.formatDecimal(line.quantity * line.product.price, 1, 2)} €|"></td>
                     <td class="text-end pe-3">
                         <a th:href="@{/products/{id}(id=${line.product.id})}"
                            class="btn btn-sm btn-outline-primary"
-                           title="Ver plato">
+                           title="Ver Producto">
                             <i class="fa-regular fa-eye"></i>
                         </a>
                     </td>

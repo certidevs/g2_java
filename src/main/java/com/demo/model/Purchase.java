@@ -32,6 +32,8 @@ private Long id;
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
 
+
+
 //@ManyToOne User user
 
 }

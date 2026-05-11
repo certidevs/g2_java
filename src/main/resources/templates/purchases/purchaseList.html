@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout/head :: head('Listado Pedidos')}"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+
+<main class="container flex-grow-1">
+
+
+    <h1 class="mb-3">Listado de pedidos</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle table-bordered border-success">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>
+                    <i class="fa-solid fa-calendar"></i>
+                    Fecha
+                </th>
+                <th>
+                    <i class="fa-solid fa-euro"></i>
+                    Precio
+                </th>
+                <th>Estado</th>
+
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="purchase : ${purchases}">
+
+                <td th:text="${purchase.id}"></td>
+
+                <td th:text="${purchase.purchaseDate}"></td>
+
+                <td th:text="${purchase.totalPrice} + ' €'"></td>
+
+                <td th:text="${purchase.status}"></td>
+
+                <td>
+                    <a class="btn btn-primary btn-sm"
+                       th:href="@{/purchases/{id}(id=${purchase.id})}">
+                        Ver
+                    </a>
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
+
+</body>
+</html>
