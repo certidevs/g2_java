@@ -30,7 +30,8 @@
                     <label class="form-label form-label-sm">Buscar:</label>
                     <input type="text" name="name" class=" form-control-sm col-3"
                            placeholder="Busca por título..." th:value="${param.name}">
-                    <a th:href="@{products/create}" class="btn btn-secondary btn-sm col-1">
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-magnifying-glass"></i>Buscar</button>
+                    <a th:href="@{products/create}" class="btn btn-secondary btn-sm col-1 visually-hidden">
                         <i class="fa-solid fa-plus"></i>
                     </a>
                 </form>
@@ -74,7 +75,7 @@
                                     <a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning visually-hidden">
                                         <i class="fa-solid fa-cart-shopping"></i>
                                     </a>
-                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary">
+                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary visually-hidden">
                                         <i class="fa-solid fa-pencil me-1"></i>
 
                                     </a>
