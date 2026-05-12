@@ -24,8 +24,13 @@
                         <span th:text="${category.description}">Descripcion</span>
                     </p>
                     <!-- TODO enlace th:href que lleve a category detail -->
-                    <a th:href="@{/categories/{id}">Ver</a>
-                    <a th:href="@{/categories/edit/{id}">Editar</a>
+                    <a th:href="@{/categories/{id}(id=${category.id})}">
+                        Ver
+                    </a>
+
+                    <a th:href="@{/categories/edit/{id}(id=${category.id})}">
+                        Editar
+                    </a>
 <!--                <a th:href="@{/categories/deactivate/{id}">Desactivar</a>-->
                 </div>
             </div>
