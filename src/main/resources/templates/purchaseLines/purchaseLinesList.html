@@ -30,11 +30,35 @@
 
             <td th:text="${line.product.price} + '€'"></td>
 
-            <td th:text="${line.quantity}"></td>
+<!--            <td th:text="${line.quantity}"></td>-->
+            <td>
+
+                <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"
+                   class="btn btn-sm btn-outline-danger">
+
+                    -
+
+                </a>
+
+                <span class="mx-2"
+                      th:text="${line.quantity}"></span>
+
+                <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"
+                   class="btn btn-sm btn-outline-success">
+
+                    +
+
+                </a>
+
+            </td>
 
             <td th:text="${line.product.price * line.quantity} + '€'"></td>
 
         </tr>
+        <h3>
+            Total:
+            <span th:text="${total} + '€'"></span>
+        </h3>
 
         </tbody>
 

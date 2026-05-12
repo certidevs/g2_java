@@ -9,7 +9,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +40,7 @@ public class CategoryController {
             model.addAttribute("category", category);
 
 
-//            model.addAttribute("products", productRepository.findByCategoryId(id));
+            model.addAttribute("products", productRepository.findByCategory_Id(id));
             // opcional:
             // cargar los platos (Dish) de este restaurant en el model
 
@@ -50,5 +52,32 @@ public class CategoryController {
             return "categories/categories-details";
         }
         return "redirect:/categoriesList";
+    }
+    @GetMapping("categories/new")
+    public String newCategory(Model model){
+        model.addAttribute("category", new Category());
+        return "categories/category-form";
+    }
+    @GetMapping("categories/edit/{id}")
+    public String editCategory(@PathVariable Long id, Model model){
+        model.addAttribute("category", categoryRepository.findById(id).orElseThrow());
+        return "categories/category-form";
+    }
+    @GetMapping("categories/deactivate/{id}")
+    public String deactivateCategory(@PathVariable Long id, Model model) {
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+
+        if(categoryOptional.isPresent()) {
+            Category down = categoryOptional.get();
+            down.setActivo(false);
+            categoryRepository.save(down);
+        }
+
+        return "redirect:/categories";
+    }
+    @PostMapping("categories")
+    public String saveCategory(@ModelAttribute Category category) {
+        categoryRepository.save(category);
+        return "redirect:/categories" + category.getId();
     }
 }

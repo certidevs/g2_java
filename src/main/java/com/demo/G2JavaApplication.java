@@ -95,72 +95,73 @@ public class G2JavaApplication {
         reviewRepository.save(re3);
 
 
-        Purchase p1 = new Purchase();
-        p1.setTotalPrice(129.98);
-        p1.setDiscountCode("David15%");
-        p1.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
-        purchaseRepository.save(p1);
+//        Purchase p1 = new Purchase();
+//        p1.setTotalPrice(129.98);
+//        p1.setDiscountCode("David15%");
+//        p1.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
+//        purchaseRepository.save(p1);
+//
+//        Purchase p2 = new Purchase();
+//        p2.setTotalPrice(64.99);
+//        p2.setDiscountCode("Dogo10%");
+//        p2.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
+//        purchaseRepository.save(p2);
+//
+//        Purchase p3 = new Purchase();
+//        p3.setTotalPrice(129.98);
+//        p3.setDiscountCode("Adri5%");
+//        p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
+//        purchaseRepository.save(p3);
+//
+//
+//        p1.setTotalPrice(119.98);
+//        p1.setStatus(PurchaseStatus.FINISHED);
+//        purchaseRepository.save(p1);
+//
+//        p2.setTotalPrice(59.99);
+//        p2.setStatus(PurchaseStatus.CANCEL);
+//        purchaseRepository.save(p2);
+//
+//        p3.setTotalPrice(119.98);
+//        p3.setStatus(PurchaseStatus.PENDING);
+//        purchaseRepository.save(p3);
+//
+//        // crear cuatro reviews de un restaurante usando Builder de lombok
+//
+//
+//        PurchaseLine pL1 = new PurchaseLine();
+//        pL1.setPurchase(p1);
+//        pL1.setProduct(producto);
+//        pL1.setQuantity(2);
+//        PurchaseLine pL2 = new PurchaseLine();
+//        pL2.setPurchase(p2);
+//        pL2.setProduct(producto);
+//        pL2.setQuantity(1);
+//        PurchaseLine pL3 = new PurchaseLine();
+//        pL3.setPurchase(p2);
+//        pL3.setProduct(producto);
+//        pL3.setQuantity(2);
+//
+//        List<PurchaseLine> purchaseLines = PurchaseLineRepository.saveAll(List.of(pL1,pL2,pL3));
+//
+//        //Calcular precio total en java
+//        double totalPrice = 0;
+//        for (PurchaseLine lineaPedido : purchaseLines) {
+//            // sacar el precio del plato
+//            if (lineaPedido.getProduct() != null) {
+//                double precioLinea = lineaPedido.getProduct().getPrice() * lineaPedido.getQuantity();
+//                totalPrice += precioLinea;
+//            }
+//        }
+//        // guardar el totalPrice en base de datos:
+//        p1.setTotalPrice(totalPrice);
+//        p1.setStatus(PurchaseStatus.FINISHED); // marcamos el pedido como completado
+//        purchaseRepository.save(p1); // actualizar el totalPrice del pedido para saber cuanto dinero hemos ganado
+//
+//
+//
+//    }
 
-        Purchase p2 = new Purchase();
-        p2.setTotalPrice(64.99);
-        p2.setDiscountCode("Dogo10%");
-        p2.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
-        purchaseRepository.save(p2);
 
-        Purchase p3 = new Purchase();
-        p3.setTotalPrice(129.98);
-        p3.setDiscountCode("Adri5%");
-        p3.setPurchaseDate(LocalDate.from(java.time.LocalDateTime.now()));
-        purchaseRepository.save(p3);
-
-
-        p1.setTotalPrice(119.98);
-        p1.setStatus(PurchaseStatus.FINISHED);
-        purchaseRepository.save(p1);
-
-        p2.setTotalPrice(59.99);
-        p2.setStatus(PurchaseStatus.CANCEL);
-        purchaseRepository.save(p2);
-
-        p3.setTotalPrice(119.98);
-        p3.setStatus(PurchaseStatus.PENDING);
-        purchaseRepository.save(p3);
-
-        // crear cuatro reviews de un restaurante usando Builder de lombok
-
-
-        PurchaseLine pL1 = new PurchaseLine();
-        pL1.setPurchase(p1);
-        pL1.setProduct(producto);
-        pL1.setQuantity(2);
-        PurchaseLine pL2 = new PurchaseLine();
-        pL2.setPurchase(p2);
-        pL2.setProduct(producto);
-        pL2.setQuantity(1);
-        PurchaseLine pL3 = new PurchaseLine();
-        pL3.setPurchase(p2);
-        pL3.setProduct(producto);
-        pL3.setQuantity(2);
-
-        List<PurchaseLine> purchaseLines = PurchaseLineRepository.saveAll(List.of(pL1,pL2,pL3));
-
-        //Calcular precio total en java
-        double totalPrice = 0;
-        for (PurchaseLine lineaPedido : purchaseLines) {
-            // sacar el precio del plato
-            if (lineaPedido.getProduct() != null) {
-                double precioLinea = lineaPedido.getProduct().getPrice() * lineaPedido.getQuantity();
-                totalPrice += precioLinea;
-            }
-        }
-        // guardar el totalPrice en base de datos:
-        p1.setTotalPrice(totalPrice);
-        p1.setStatus(PurchaseStatus.FINISHED); // marcamos el pedido como completado
-        purchaseRepository.save(p1); // actualizar el totalPrice del pedido para saber cuanto dinero hemos ganado
-
-
-
-    }
-
-
+}
 }

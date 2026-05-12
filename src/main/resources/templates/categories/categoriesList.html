@@ -7,6 +7,9 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="mb-0" >Categorías</h1>
     </div>
+
+    <!-- TODO  poder filtrar categoría por nombre-->
+
     <!--5. hacerlo mas bonito-->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         <div class="col" th:each="category : ${categories}">
@@ -20,6 +23,15 @@
                     <p class="card-body">
                         <span th:text="${category.description}">Descripcion</span>
                     </p>
+                    <!-- TODO enlace th:href que lleve a category detail -->
+                    <a th:href="@{/categories/{id}(id=${category.id})}">
+                        Ver
+                    </a>
+
+                    <a th:href="@{/categories/edit/{id}(id=${category.id})}">
+                        Editar
+                    </a>
+<!--                <a th:href="@{/categories/deactivate/{id}">Desactivar</a>-->
                 </div>
             </div>
         </div>

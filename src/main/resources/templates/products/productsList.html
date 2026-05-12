@@ -52,11 +52,25 @@
                                     <a th:href="@{/products/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;">
                                         <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     </a>
-                                    <a th:href="@{/purchase-lines}">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">
+<!--                                    <a th:href="@{/purchase-lines}">-->
+<!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">-->
+<!--                                            <i class="fa-solid fa-cart-shopping"></i>-->
+<!--                                        </button>-->
+<!--                                    </a>-->
+                                    <form th:action="@{/purchase-lines/create}" method="post">
+
+                                        <input type="hidden"
+                                               name="productId"
+                                               th:value="${product.id}">
+
+                                        <button type="submit"
+                                                class="btn btn-sm btn-outline-secondary">
+
                                             <i class="fa-solid fa-cart-shopping"></i>
+
                                         </button>
-                                    </a>
+
+                                    </form>
                                     <a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning visually-hidden">
                                         <i class="fa-solid fa-cart-shopping"></i>
                                     </a>
