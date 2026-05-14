@@ -23,4 +23,5 @@ public class Category {
     private String name;
     private String description;
     private Boolean activo;
+    // TODO private String imageUrl;
 }
