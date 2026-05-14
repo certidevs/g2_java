@@ -18,7 +18,7 @@
         <div class="col" th:each="category : ${categories}">
             <div class="card card-restaurant h-100 shadow-sm">
                 <div class="card-body">
-                    <img>
+                    <img th:src="@{${category.image}}" class="card-img-top" alt="Category Image">
                     <h5 class="card-title">
                         <i></i>
                         <span th:text="${category.name}">Nombre</span>
