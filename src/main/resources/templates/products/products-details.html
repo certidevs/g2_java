@@ -34,12 +34,21 @@
     </div>
     <div class="container text-lg-end">
         <!-- TODO ENLAZAR BIEN A COMPRAR -->
-        <a th:href="@{/purchase-lines}" style="text-decoration: none;color: inherit">
-        <button type="button" class="btn btn-sm btn-outline-secondary me-3">
-            <i class="fa-solid fa-cart-shopping"></i>
-            Comprar
-        </button>
-        </a>
+<!--        <a th:href="@{/purchase-lines/create(productId=${product.id})}"  class="btn btn-sm btn-outline-secondary me-3">-->
+<!--            <i class="fa-solid fa-cart-shopping"></i>-->
+<!--            Añadir al carrito-->
+<!--        </a>-->
+
+        <form th:action="@{/purchase-lines/create}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}">
+            <button class="btn btn-sm btn-success">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Añadir al carrito
+            </button>
+        </form>
+
+
+
         <a th:href="@{/products/edit/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;" class="visually-hidden">
             <button type="button" class="btn btn-sm btn-secondary me-3">
                 <i class="fa-solid fa-pencil me-1"></i>
@@ -72,6 +81,9 @@
                             </span>
                         </div>
                         <p th:text="${review.comment}"></p>
+                        <a th:href="@{/reviews/detail/{id}(id=${review.id})}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fa-solid fa-pen"></i> Ver
+                        </a>
                     </div>
                 </div>
                 </div>

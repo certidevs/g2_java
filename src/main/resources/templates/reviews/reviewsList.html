@@ -43,16 +43,24 @@
         <!-- Columna de Reviews (Derecha) -->
         <div class="flex-grow-1 d-flex flex-column">
             <!-- Bucle para iterar las reviews de la base de datos -->
-            <div class="review-card mb-3 bg-white p-3 border rounded shadow-sm w-100 position-relative" th:each="review : ${reviewsproductos}">
+            <div class="review-card mb-3 bg-white p-3 border rounded shadow-sm w-100 position-relative"
+                 th:each="review : ${reviewsproductos}">
                 <div class="accent-line" style="height: 4px; background-color: #007bff; width: 50px; margin-bottom: 10px;"></div>
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="review-title h5 mb-0" th:text="${review.title}">Título</div>
 
+                    <!-- Botón de ver específico para esta Review -->
+                    <div class="d-flex gap-2">
+                    <a th:href="@{/reviews/detail/{id}(id=${review.id})}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fa-solid fa-pen"></i> Ver
+                    </a>
+
                     <!-- Botón Editar específico para esta Review -->
                     <a th:href="@{/reviews/edit/{id}(id=${review.id})}" class="btn btn-sm btn-outline-secondary">
                         <i class="fa-solid fa-pen"></i> Editar
                     </a>
+                </div>
                 </div>
 
                 <div class="stars my-2" style="color: #ffc107;">

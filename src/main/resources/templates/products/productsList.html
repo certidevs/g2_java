@@ -59,18 +59,13 @@
 <!--                                        </button>-->
 <!--                                    </a>-->
                                     <form th:action="@{/purchase-lines/create}" method="post">
-
                                         <input type="hidden"
                                                name="productId"
                                                th:value="${product.id}">
-
                                         <button type="submit"
                                                 class="btn btn-sm btn-outline-secondary">
-
                                             <i class="fa-solid fa-cart-shopping"></i>
-
                                         </button>
-
                                     </form>
                                     <a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning visually-hidden">
                                         <i class="fa-solid fa-cart-shopping"></i>
