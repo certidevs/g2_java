@@ -23,7 +23,7 @@
                     <h2 th:text="${product.price} + '€'" class="align-items-start"></h2>
                 </div>
                 <h5 class="text-start ">Categoria: </h5>
-                <a th:if="${product.category != null}" th:href="@{/products/category/{id}(id=${product.category.id})}" class="row-cols-1 mt-5 mb-5 border-dark-subtle rounded-3 btn btn-sm flex-">
+                <a th:if="${product.category != null}" th:href="@{/categories/{id}(id=${product.category.id})}" class="row-cols-1 mt-5 mb-5 border-dark-subtle rounded-3 btn btn-sm flex-">
                     <h5 th:text="${product.category.name}" class="text-start "></h5>
                 </a>
                 <a th:unless="${product.category != null}" class="row-cols-1 mt-5 mb-5 border-dark-subtle rounded-3 p-4">
