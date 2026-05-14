@@ -24,19 +24,31 @@ public class G2JavaApplication {
         PurchaseLineRepository PurchaseLineRepository = context.getBean(PurchaseLineRepository.class);
 
         Category objects = new Category();
-        objects.setName("Fresa");
-        objects.setDescription("Proteins made of Fresa");
+        objects.setName("Creatina");
+        objects.setDescription("La creatina es un aminoácido que se sintetiza en el hígado y se almacena en los músculos. Cuando se combina con fosfato, es una fuente de energía fácilmente disponible en el organismo. Aquí puedes encontrar todos los tipos.");
+        objects.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
         categoryRepository.save(objects);
 
         Category objects2 = new Category();
-        objects2.setName("Chocolate");
-        objects2.setDescription("Proteins made of Chocolate");
+        objects2.setName("Crema de arroz");
+        objects2.setDescription("La crema de arroz en suplementación es un carbohidrato complejo de digestión rápida obtenido a partir de la harina de arroz. Aquí puedes encontrar todos los tipos.");
+        objects2.setImage("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA");
         categoryRepository.save(objects2);
 
         Category objects3 = new Category();
-        objects2.setName("Cremas");
-        objects2.setDescription("Crema de arroz");
+        objects3.setName("Proteínas");
+        objects3.setDescription("La proteína en polvo es un tipo de suplemento que aporta de forma rápida y sencilla proteínas de alta calidad a nuestro organismo. Aquí puedes encontrar todos los tipos.");
+        objects3.setImage("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn");
         categoryRepository.save(objects3);
+
+        Category objects4 = new Category();
+        objects4.setName("Ropa");
+        objects4.setDescription("Ropa deportiva");
+        objects4.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
+        categoryRepository.save(objects4);
+
+
+
 
         Product producto = Product.builder()
                 .name("Creatina Creapure, Sabor Fresa")
@@ -54,7 +66,7 @@ public class G2JavaApplication {
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
                 .price(8.99)
                 .stock(10)
-                .category(objects3)
+                .category(null)
                 .activo(true)
                 .image("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA")
                 .build();

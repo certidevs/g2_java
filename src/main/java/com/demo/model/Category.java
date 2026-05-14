@@ -25,4 +25,6 @@ public class Category {
     private String description;
     private Boolean activo;
     // TODO private String imageUrl;
+    @Column(length = 1000)
+    private String image;
 }
