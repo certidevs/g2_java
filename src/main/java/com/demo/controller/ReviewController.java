@@ -52,6 +52,13 @@ public class ReviewController {
         return "reviews/reviewForm";
     }
 
+    @GetMapping("reviews/detail/{id}")
+    public String reviewDetail(@PathVariable Long id, Model model) {
+        model.addAttribute("review", reviewRepository.findById(id).orElseThrow());
+        model.addAttribute("products", productRepository.findAll());
+        return "reviews/reviewDetail";
+    }
+
     //Recibir datos , Guardar DB
     @PostMapping("/reviews")
     public String createReviews(@ModelAttribute Review review){

@@ -81,7 +81,7 @@
                             </span>
                         </div>
                         <p th:text="${review.comment}"></p>
-                        <a th:href="@{/reviews/{id}(id=${review.id})}" class="btn btn-sm btn-outline-secondary">
+                        <a th:href="@{/reviews/detail/{id}(id=${review.id})}" class="btn btn-sm btn-outline-secondary">
                             <i class="fa-solid fa-pen"></i> Ver
                         </a>
                     </div>
