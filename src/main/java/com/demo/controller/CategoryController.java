@@ -78,6 +78,6 @@ public class CategoryController {
     @PostMapping("categories")
     public String saveCategory(@ModelAttribute Category category) {
         categoryRepository.save(category);
-        return "redirect:/categories" + category.getId();
+        return "redirect:/categories/" + category.getId();
     }
 }

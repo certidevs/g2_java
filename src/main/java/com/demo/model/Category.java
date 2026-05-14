@@ -21,6 +21,7 @@ public class Category {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
+    @Column(length = 1000)
     private String description;
     private Boolean activo;
     // TODO private String imageUrl;
