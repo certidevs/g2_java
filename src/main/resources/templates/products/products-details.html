@@ -33,22 +33,13 @@
         </div>
     </div>
     <div class="container text-lg-end">
-<!--        <a th:href="@{/purchase-lines}" style="text-decoration: none;color: inherit">-->
-<!--        <button type="button" class="btn btn-sm btn-outline-secondary me-3">-->
-<!--            <i class="fa-solid fa-cart-shopping"></i>-->
-<!--            Comprar-->
-<!--        </button>-->
-<!--        </a>-->
-        <form th:action="@{/purchase-lines/create}" method="post">
-            <input type="hidden"
-                   name="productId"
-                   th:value="${product.id}">
-            <button type="submit"
-                    class="btn btn-sm btn-outline-secondary">
-                <i class="fa-solid fa-cart-shopping"></i>
-                           Comprar
-            </button>
-        </form>
+        <!-- TODO ENLAZAR BIEN A COMPRAR -->
+        <a th:href="@{/purchase-lines}" style="text-decoration: none;color: inherit">
+        <button type="button" class="btn btn-sm btn-outline-secondary me-3">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Comprar
+        </button>
+        </a>
         <a th:href="@{/products/edit/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;" class="visually-hidden">
             <button type="button" class="btn btn-sm btn-secondary me-3">
                 <i class="fa-solid fa-pencil me-1"></i>

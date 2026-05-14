@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PurchaseLineRepository extends JpaRepository<PurchaseLine, Long> {
     List<PurchaseLine> findByPurchaseId(Long purchaseId);
@@ -16,4 +17,5 @@ public interface PurchaseLineRepository extends JpaRepository<PurchaseLine, Long
     Double calculateTotalPrice(Long purchaseId);
 
 
+    Optional<PurchaseLine> findByPurchaseIdAndProductId(Long purchaseId, Long productId);
 }

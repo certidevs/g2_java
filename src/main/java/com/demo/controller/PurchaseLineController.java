@@ -3,6 +3,7 @@ package com.demo.controller;
 import com.demo.model.Purchase;
 import com.demo.model.PurchaseLine;
 import com.demo.model.Product;
+import com.demo.model.enums.PurchaseStatus;
 import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.PurchaseRepository;
@@ -18,16 +19,12 @@ import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
-@Builder
 @Controller
 @RequestMapping("/purchase-lines")
 public class PurchaseLineController {
 
-    @Autowired
     private PurchaseLineRepository purchaseLineRepository;
-    @Autowired
     private ProductRepository productRepository;
-    @Autowired
     private PurchaseRepository purchaseRepository;
 
     @GetMapping
@@ -75,26 +72,46 @@ public class PurchaseLineController {
 //        purchaseLineRepository.save(purchaseLine);
 //        return "redirect:/purchase-lines";
 //    }
+    // TODO REVISAR STATUS
 @PostMapping("/create")
 public String createPurchaseLine(@RequestParam Long productId) {
 
     Product product = productRepository.findById(productId)
             .orElseThrow();
 
-    Purchase purchase = new Purchase();
+    Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING);
+    Purchase purchase;
+    if (purchaseOptional.isPresent()) {
+        purchase = purchaseOptional.get();
+    } else {
+        purchase = new Purchase();
+        purchase.setStatus(PurchaseStatus.PENDING);
+        purchase.setTotalPrice(0d);
+        purchaseRepository.save(purchase);
+    }
 
-    purchase.setPurchaseDate(LocalDate.now());
 
-    purchaseRepository.save(purchase);
+    Optional<PurchaseLine> purchaseLineOptional = purchaseLineRepository.findByPurchaseIdAndProductId(purchase.getId(), productId);
+    PurchaseLine line;
 
-    PurchaseLine line = new PurchaseLine();
-
-    line.setProduct(product);
-    line.setPurchase(purchase);
-    line.setQuantity(1);
-    line.setUnitPrice(product.getPrice());
-
+    if (purchaseLineOptional.isPresent()) {
+        line = purchaseLineOptional.get();
+        line.setQuantity(line.getQuantity() + 1);
+    } else {
+        line = new PurchaseLine();
+        line.setProduct(product);
+        line.setPurchase(purchase);
+        line.setQuantity(1);
+        line.setUnitPrice(product.getPrice());
+    }
     purchaseLineRepository.save(line);
+
+
+    // recalcular precio total purchase
+
+    Double totalPrice = purchaseLineRepository.calculateTotalPrice(purchase.getId());
+    purchase.setTotalPrice(totalPrice);
+    purchaseRepository.save(purchase);
 
     return "redirect:/purchase-lines";
 }
