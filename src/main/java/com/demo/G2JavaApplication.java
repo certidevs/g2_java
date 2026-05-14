@@ -96,6 +96,7 @@ public class G2JavaApplication {
         re3.setRating(4);
         re3.setComment("Muy Buen producto");
         re3.setUserVerified(true);
+        re2.setProduct(producto3);
         re3.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re3);
 

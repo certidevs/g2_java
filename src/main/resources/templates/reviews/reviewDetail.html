@@ -9,9 +9,14 @@
 
 <main class="container flex-grow-1 my-4">
 
-
-
-
+    <div class="review-detail-card bg-white p-4 border rounded shadow-sm">
+        <h1 style="color:black" th:text="${review.title}">Título de la Review</h1>
+        <p class="text-muted mb-2" th:text="'Calificación: ' + ${review.rating} + ' / 5'">Calificación: 4 / 5</p>
+        <p th:text="${review.comment}">Comentario de la review...</p>
+        <p th:if="${review.product != null}"
+              th:text="'Producto: ' + ${review.product.name}">">Producto: Nombre del producto</p>
+        <p th:text="'Fecha de la Review: ' + ${review.createdAt}">Fecha de la Review</p>
+    </div>
 
 </main>
 <footer th:replace="~{layout/footer :: footer}"></footer>
