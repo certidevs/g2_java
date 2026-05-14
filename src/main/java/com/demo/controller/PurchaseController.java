@@ -41,6 +41,7 @@ private final ProductRepository productRepository;
         return "purchases/purchaseDetails";
     }
 
+    // @GetMapping purchases/{id}/finish
     // TODO finish de compra
         // guardar comentario
         // guardar datos del pago
