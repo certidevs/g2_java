@@ -41,4 +41,10 @@ private final ProductRepository productRepository;
         return "purchases/purchaseDetails";
     }
 
+    // TODO finish de compra
+        // guardar comentario
+        // guardar datos del pago
+        // set status finished
+        // set purchase date time
+
 }

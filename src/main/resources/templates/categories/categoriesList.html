@@ -24,14 +24,14 @@
                         <span th:text="${category.description}">Descripcion</span>
                     </p>
                     <!-- TODO enlace th:href que lleve a category detail -->
-                    <a th:href="@{/categories/{id}(id=${category.id})}">
+                    <a th:href="@{/categories/{id}(id=${category.id})}" class="btn btn-sm btn-primary">
                         Ver
                     </a>
 
-                    <a th:href="@{/categories/edit/{id}(id=${category.id})}">
+                    <a th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn btn-sm btn-success">
                         Editar
                     </a>
-<!--                <a th:href="@{/categories/deactivate/{id}">Desactivar</a>-->
+                <a th:href="@{/categories/deactivate/{id}}" class="btn btn-sm btn-danger">Desactivar</a>
                 </div>
             </div>
         </div>
