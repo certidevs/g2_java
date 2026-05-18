@@ -177,6 +177,54 @@ public class G2JavaApplication {
         re3.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re3);
 
+        Review re4 = new Review();
+        re4.setTitle("Energy bar flapjack (choco,berrys,almond)");
+        re4.setRating(1);
+        re4.setComment("A penas se nota el sabor del almond");
+        re4.setUserVerified(true);
+        re4.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re4);
+
+        Review re5 = new Review();
+        re5.setTitle("Isotonica polvo de limón");
+        re5.setRating(3);
+        re5.setComment("No tiene más sabor pero le falta un poco más de dulzor");
+        re5.setUserVerified(true);
+        re5.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re5);
+
+        Review re6 = new Review();
+        re6.setTitle("Camiseta gimnasio,nike©");
+        re6.setRating(5);
+        re6.setComment("Buena calidad y muy comoda");
+        re6.setUserVerified(true);
+        re6.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re6);
+
+        Review re7 = new Review();
+        re7.setTitle("Pantalones cortos gimnasio, Puma©");
+        re7.setRating(4);
+        re7.setComment("Calidad buena y comodos, no le doy un 5 porque pienso que habrá alguno que me guste más");
+        re7.setUserVerified(true);
+        re7.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re7);
+
+        Review re8 = new Review();
+        re8.setTitle("Under Armour © Slipspeed, entrenamiento");
+        re8.setRating(3);
+        re8.setComment("Zapatillas decente, ideales para hacer cardio");
+        re8.setUserVerified(true);
+        re8.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re8);
+
+        Review re9 = new Review();
+        re9.setTitle("Camiseta futbol españa Mundial 2026, Adidas©");
+        re9.setRating(5);
+        re9.setComment("La mejor camiseta! , Arriba España papaa!!");
+        re9.setUserVerified(true);
+        re9.setCreatedAt(java.time.LocalDateTime.now());
+        reviewRepository.save(re9);
+
 
 //        Purchase p1 = new Purchase();
 //        p1.setTotalPrice(129.98);
