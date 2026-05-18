@@ -47,6 +47,12 @@ public class G2JavaApplication {
         objects4.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
         categoryRepository.save(objects4);
 
+        Category objects5 = new Category();
+        objects5.setName("Suplementos");
+        objects5.setDescription("Ayudas para rendir a tu 100%");
+        objects5.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
+        categoryRepository.save(objects5);
+
 
 
 
@@ -80,7 +86,67 @@ public class G2JavaApplication {
                 .activo(true)
                 .image("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn")
                 .build();
-        productRepository.saveAll(List.of(producto,producto2,producto3));
+        Product producto4 = Product.builder()
+                .name("Energy bar flapjack (choco,berrys,almond)")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(7.99)
+                .stock(20)
+                .category(objects2)
+                .activo(true)
+                .image("https://www.hsnstore.com/media/catalog/product/cache/5a15c5988afb4929a2501169a37460ec/f/l/flapjack-chocolate-almond-50g-front-hsn_1_1_1.webp")
+                .build();
+        Product producto5 = Product.builder()
+                .name("Isotonica en polvo (Limon)")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(29.99)
+                .stock(99)
+                .category(objects5)
+                .activo(true)
+                .image("https://imgs.search.brave.com/tsA2DIXjI-5Unu_ZaYGy3yEsf8hQU5U9YNOJhHp_KVU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb250/ZW50cy5tZWRpYWRl/Y2F0aGxvbi5jb20v/cDI2MzE4MTkvMWNy/MS9rJGQ0NDE2ZmU0/MzJmYWM5NjFjZTdi/NTkwODgwZGJhNTQ5/L3Byb2QuanBnP2Zv/cm1hdD1hdXRvJmY9/MTAyNHgw")
+                .build();
+        Product producto6 = Product.builder()
+                .name("Camiseta gimnasio, nike©")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(24.99)
+                .stock(50)
+                .category(objects4)
+                .activo(true)
+                .image("https://imgs.search.brave.com/Dm4DuWbr7R-g8sslWAC5J5Ulbd5QFHlb-bhivYKPi_0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFpWTkwdVl4VUwu/anBn")
+                .build();
+        Product producto7 = Product.builder()
+                .name("Pantalones cortos gimnasio, Puma©")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(22.99)
+                .stock(50)
+                .category(objects4)
+                .activo(true)
+                .image("https://imgs.search.brave.com/wbHmwexFEM4_u_k9maIMjFxeMhHca739EoRDNaC4D8k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5hdG1vc2ZlcmFz/cG9ydC5lcy81NTM1/NzctaG9tZV9kZWZh/dWx0L3BhbnRhbG9u/ZXMtZGUtZml0bmVz/cy1wdW1hLW0tZmxl/eC1zdHJldGNoLXdv/dmVuLWJsYWNrLWhv/bWJyZS5qcGc")
+                .build();
+        Product producto8 = Product.builder()
+                .name("Under Armour © Slipspeed, entrenamiento")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(162.95)
+                .stock(89)
+                .category(objects4)
+                .activo(true)
+                .image("https://imgs.search.brave.com/lh00FCYbM4Cjruqp_LKUgFBMIn2ZXpSmpAA9E-GZsfQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dW5kZXJhcm1vdXIu/Y2wvY2RuL3Nob3Av/ZmlsZXMvMzAyNzcy/Ni0wMDFfTjExXzYu/anBnP3Y9MTc2Mjk3/Mzc1OCZ3aWR0aD0x/MjAw")
+                .build();
+        Product producto9 = Product.builder()
+                .name("Camiseta futbol españa Mundial 2026, Adidas©")
+                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
+                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .price(100.00)
+                .stock(0)
+                .category(objects4)
+                .activo(true)
+                .image("https://imgs.search.brave.com/UN5mv1jJce42NA_yOW0WrB5A016K6HF9BDBCxpcn2q4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Zm9ydW1zcG9ydC5j/b20vaW1hZ2VzL2Fk/aWRhcy1jYW1pc2V0/YS1kZS1mdXRib2wt/b2ZpY2lhbGVzLXBy/aW1lcmEtZXF1aXBh/Y2lvbi1lc3BhbmEt/MjYtb2ZpY2lhbC0w/NC0xMDAxMTExMjA4/LTUwMHg1MDAtZg")
+                .build();
+        productRepository.saveAll(List.of(producto,producto2,producto3,producto4,producto5,producto6,producto7,producto8,producto9));
 
 
         Review re = new Review();
