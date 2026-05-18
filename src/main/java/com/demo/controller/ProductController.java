@@ -57,12 +57,11 @@ public class ProductController {
 
         Optional<Product> productOptional = productRepository.findById(id);
         if (productOptional.isPresent()) {
-
-            Product product = productOptional.get();
-            model.addAttribute("product", product);
+            Product products = productOptional.get();
+            model.addAttribute("product", products);
             // opcional:
             // cargar los platos (Dish) de este restaurant en el model
-            List<Review> reviews = reviewRepository.findByIdOrderByRatingAsc(id);
+            List<Review> reviews = reviewRepository.findByProduct_IdOrderByRatingDesc(id);
             model.addAttribute("reviews", reviews);
 
             // reviews
