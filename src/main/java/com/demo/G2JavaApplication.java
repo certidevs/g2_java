@@ -174,6 +174,7 @@ public class G2JavaApplication {
         re3.setRating(4);
         re3.setComment("Muy Buen producto");
         re3.setUserVerified(true);
+        re3.setProduct(producto3);
         re3.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re3);
 
@@ -182,6 +183,7 @@ public class G2JavaApplication {
         re4.setRating(1);
         re4.setComment("A penas se nota el sabor del almond");
         re4.setUserVerified(true);
+        re4.setProduct(producto4);
         re4.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re4);
 
@@ -190,6 +192,7 @@ public class G2JavaApplication {
         re5.setRating(3);
         re5.setComment("No tiene más sabor pero le falta un poco más de dulzor");
         re5.setUserVerified(true);
+        re5.setProduct(producto5);
         re5.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re5);
 
@@ -198,6 +201,7 @@ public class G2JavaApplication {
         re6.setRating(5);
         re6.setComment("Buena calidad y muy comoda");
         re6.setUserVerified(true);
+        re6.setProduct(producto6);
         re6.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re6);
 
@@ -206,6 +210,7 @@ public class G2JavaApplication {
         re7.setRating(4);
         re7.setComment("Calidad buena y comodos, no le doy un 5 porque pienso que habrá alguno que me guste más");
         re7.setUserVerified(true);
+        re7.setProduct(producto7);
         re7.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re7);
 
@@ -214,6 +219,7 @@ public class G2JavaApplication {
         re8.setRating(3);
         re8.setComment("Zapatillas decente, ideales para hacer cardio");
         re8.setUserVerified(true);
+        re8.setProduct(producto8);
         re8.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re8);
 
@@ -222,6 +228,7 @@ public class G2JavaApplication {
         re9.setRating(5);
         re9.setComment("La mejor camiseta! , Arriba España papaa!!");
         re9.setUserVerified(true);
+        re9.setProduct(producto9);
         re9.setCreatedAt(java.time.LocalDateTime.now());
         reviewRepository.save(re9);
 
