@@ -4,8 +4,8 @@
 <body class="d-flex flex-column min-vh-100">
 <link rel="stylesheet" th:href="@{/css/products.css}">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
-<main class="container flex-grow-1 ">
-    <section class="py-5  text-center container" style="background-color: rgb(0 0 0 / 0.84); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 100vh; margin: 0; padding: 0;position: relative ;z-index: 2">
+<main>
+    <section class="py-5  text-center" style="background-color: rgb(0 0 0 / 0.84); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 100vh; margin: 0; padding: 0;position: relative ;z-index: 2">
         <div class="row" style="background-image: url('https://imgs.search.brave.com/6jDsIZ8vmCbLG2ndt4FDR9VykWQN00SB_XJilnaPfMo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zYXJk/ZW55YS5mb3J1cy5l/cy9odWJmcy9jZW50/cm9zL2JhcmNlbG9u/YV9zYXJkZW55YS82/LWZvcnVzX2JhcmNl/bG9uYV9zYXJkZW55/YS5qcGc'); background-size: cover; background-repeat: no-repeat; background-position: center; border-image-source: linear-gradient(rgb(0 0 0 / 0.84)); border-image-slice: fill 1; min-height: 100vh; margin: 0; padding: 0;">
             <div class="col-lg-6 col-md-8 mx-auto align-self-center">
                 <h1 class="fw-light text-white">Productos</h1>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </section>
-    <div class="album py-5 bg-body-tertiary">
+    <div class="album py-5 bg-body-tertiary container flex-grow-1 ">
         <div class="container">
             <div class="row">
                 <div class="col-0">
@@ -40,7 +40,7 @@
                 <div id="sombra" th:each="product : ${products}" class="col mt-4 mb-4">
                     <div>
                         <a th:href="@{/products/{id}(id=${product.id})}">
-                            <img th:src="${product.image}" class="card-img-top"  alt="..." role="img" width="400" height="500">
+                            <img th:src="${product.image}" class="card-img-top"  alt="..." role="img" width="400" height="400">
                         </a>
                         <div class="card-body" >
                             <a th:href="@{/products/{id}(id=${product.id})}">
