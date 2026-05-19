@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="~{layout/head :: head('Lista de Reviews')}">
-    <meta charset="UTF-8">
-<link rel="stylesheet"  th:href="@{/css/reviews.css}">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
@@ -38,17 +36,21 @@
 
                     <!-- Botón de ver específico para esta Review -->
                     <div class="d-flex gap-2">
-                    <a th:href="@{/reviews/detail/{id}(id=${review.id})}" class="btn btn-sm btn-outline-secondary">
-                        <i class="fa-solid fa-pen"></i> Ver
-                    </a>
 
-                    <!-- Botón Editar específico para esta Review -->
-                    <a th:href="@{/reviews/edit/{id}(id=${review.id})}" class="btn btn-sm btn-outline-secondary">
-                        <i class="fa-solid fa-pen"></i> Editar
-                    </a>
-                </div>
-                </div>
+                        <a th:href="@{/reviews/detail/{id}(id=${review.id})}"
+                           class="btn btn-outline-primary btn-sm">
+                            <i class="fa-solid fa-eye"></i> Ver
+                        </a>
 
+                        <!-- Botón de editar específico para esta Review -->
+                        <a th:href="@{/reviews/edit/{id}(id=${review.id})}"
+                           class="btn btn-outline-secondary btn-sm">
+                            <i class="fa-solid fa-pen"></i> Editar
+                        </a>
+
+                    </div>
+
+                </div>
 
                 <div class="stars my-2" style="color: #ffc107;">
                     <!-- Genera estrellas rellenas según el rating -->
@@ -56,10 +58,10 @@
                           th:text="${review.rating >= i} ? '★' : '☆'"></span>
                 </div>
 
-                <div class="review-body text-muted" th:text="${review.comment}">Comentario</div>
+                <div class="review-body text-muted" th:text="${review.comment}">Comentario
+                </div>
             </div>
         </div>
-
     </div>
 </main>
 
