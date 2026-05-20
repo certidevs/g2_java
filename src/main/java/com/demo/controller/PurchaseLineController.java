@@ -45,6 +45,8 @@ public class PurchaseLineController {
         }
 
         model.addAttribute("total", total);
+        purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING)
+                .ifPresent( purchase -> model.addAttribute("purchase", purchase) );
         return "purchaseLines/purchaseLinesList";
     }
 

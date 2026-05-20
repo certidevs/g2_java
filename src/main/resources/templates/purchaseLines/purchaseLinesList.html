@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="~{layout/head :: head('Carrito')}"></head>
-
 <body>
-
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
-
 <div class="container mt-4">
-
     <h1>Carrito</h1>
-
     <table class="table">
-
         <thead>
         <tr>
             <th>Producto</th>
@@ -21,50 +14,34 @@
             <th>Total</th>
         </tr>
         </thead>
-
         <tbody>
-
         <tr th:each="line : ${purchaseLines}">
-
             <td th:text="${line.product.name}"></td>
-
             <td th:text="${line.product.price} + '€'"></td>
-
 <!--            <td th:text="${line.quantity}"></td>-->
             <td>
-
                 <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"
                    class="btn btn-sm btn-outline-danger">
-
                     -
-
                 </a>
-
                 <span class="mx-2"
                       th:text="${line.quantity}"></span>
-
                 <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"
                    class="btn btn-sm btn-outline-success">
-
                     +
-
                 </a>
-
             </td>
-
             <td th:text="${line.product.price * line.quantity} + '€'"></td>
-
         </tr>
         <h3>
             Total:
             <span th:text="${total} + '€'"></span>
         </h3>
-
         </tbody>
-
     </table>
-
+    <a th:if="${purchase}" th:href="@{/purchase/{id}/finish(id=${purchase.id})}" class="btn btn-success">
+        Finalizar compra
+    </a>
 </div>
-
 </body>
 </html>

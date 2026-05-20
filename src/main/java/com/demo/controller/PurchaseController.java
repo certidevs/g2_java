@@ -1,16 +1,14 @@
 package com.demo.controller;
 
 import com.demo.model.Purchase;
+import com.demo.model.enums.PurchaseStatus;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.PurchaseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +38,18 @@ private final ProductRepository productRepository;
         model.addAttribute("purchaseLines", purchaseLinesRepository.findByPurchaseId(id));
         return "purchases/purchaseDetails";
     }
+@GetMapping("purchase/{id}/finish")
+public String finish(@PathVariable Long id, @RequestParam(required = false) Double tip) {
+    Purchase purchase =  purchaseRepository.findById(id).orElseThrow();
+    purchase.setStatus(PurchaseStatus.FINISHED);
+    purchase.setTotalPrice(purchaseLinesRepository.calculateTotalPrice(purchase.getId()));
+    // iva, service charge, terrace
+
+
+    purchaseRepository.save(purchase);
+    return "redirect:/purchases/" + id;
+}
+
 
     // @GetMapping purchases/{id}/finish
     // TODO finish de compra
