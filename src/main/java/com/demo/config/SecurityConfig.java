@@ -51,6 +51,9 @@ public class SecurityConfig {
                         .requestMatchers( HttpMethod.GET, "/reviews/disable/*").hasRole("ADMIN")
                         .requestMatchers( HttpMethod.GET, "/reviews/*").permitAll()
 
+
+                        .anyRequest().permitAll()
+
         );
 
         http.formLogin(form -> form.loginPage("/login"));
