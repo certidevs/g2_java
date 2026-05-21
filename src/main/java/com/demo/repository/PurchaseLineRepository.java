@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PurchaseLineRepository extends JpaRepository<PurchaseLine, Long> {
+
+
     List<PurchaseLine> findByPurchaseId(Long purchaseId);
     @Query("""
             SELECT SUM(pl.quantity * pl.product.price)

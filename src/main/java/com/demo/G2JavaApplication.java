@@ -72,7 +72,7 @@ public class G2JavaApplication {
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
                 .price(8.99)
                 .stock(10)
-                .category(null)
+                .category(objects2)
                 .activo(true)
                 .image("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA")
                 .build();
@@ -82,7 +82,7 @@ public class G2JavaApplication {
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
                 .price(34.99)
                 .stock(0)
-                .category(objects2)
+                .category(objects3)
                 .activo(true)
                 .image("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn")
                 .build();
@@ -92,7 +92,7 @@ public class G2JavaApplication {
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
                 .price(7.99)
                 .stock(20)
-                .category(objects2)
+                .category(objects3)
                 .activo(true)
                 .image("https://www.hsnstore.com/media/catalog/product/cache/5a15c5988afb4929a2501169a37460ec/f/l/flapjack-chocolate-almond-50g-front-hsn_1_1_1.webp")
                 .build();

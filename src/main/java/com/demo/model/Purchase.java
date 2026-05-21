@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 //Crear purchaseLine para unir pedidos a uno solo
 //ManyToOne product
@@ -32,6 +33,8 @@ private Long id;
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
 
+    @OneToMany(mappedBy = "purchase")
+    private List<PurchaseLine> purchaseLines;
 
 
 //@ManyToOne User user

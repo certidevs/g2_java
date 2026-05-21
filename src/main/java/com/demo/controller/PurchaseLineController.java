@@ -27,6 +27,7 @@ public class PurchaseLineController {
     private ProductRepository productRepository;
     private PurchaseRepository purchaseRepository;
 
+
     @GetMapping
     public String findAll(Model model){
 
@@ -45,6 +46,10 @@ public class PurchaseLineController {
         }
 
         model.addAttribute("total", total);
+        purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING)
+                .ifPresent( purchase -> model.addAttribute("purchase", purchase) );
+
+        model.addAttribute("products", productRepository.findAll());
         return "purchaseLines/purchaseLinesList";
     }
 
