@@ -43,12 +43,11 @@ public class SecurityConfig {
 
                       // Rutas de Reviews(Opiniones)
 
-                        .requestMatchers( HttpMethod.GET, "/reviews").permitAll()
+                        .requestMatchers( HttpMethod.GET, "/reviews-productos").permitAll()
                         .requestMatchers( HttpMethod.POST, "/reviews").authenticated()
                         .requestMatchers( HttpMethod.GET, "/review/new").authenticated()
-                        .requestMatchers( HttpMethod.GET, "/reviews/edit/*").hasRole("ADMIN")
-                        .requestMatchers( HttpMethod.GET, "/reviews/delete/*").hasRole("ADMIN")
-                        .requestMatchers( HttpMethod.GET, "/reviews/disable/*").hasRole("ADMIN")
+                        .requestMatchers( HttpMethod.GET, "/reviews/edit/*").authenticated()
+                        .requestMatchers( HttpMethod.GET, "/reviews/disable/*").hasRole("ADMIN") //Falta crear disable
                         .requestMatchers( HttpMethod.GET, "/reviews/*").permitAll()
 
 
