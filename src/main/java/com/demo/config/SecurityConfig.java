@@ -50,6 +50,8 @@ public class SecurityConfig {
                         .requestMatchers( HttpMethod.GET, "/reviews/disable/*").hasRole("ADMIN") //Falta crear disable
                         .requestMatchers( HttpMethod.GET, "/reviews/*").permitAll()
 
+                        //Rutas Purchase(Compra)
+
 
                         .anyRequest().permitAll()
 
