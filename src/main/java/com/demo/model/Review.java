@@ -35,6 +35,4 @@ public class Review {
     @ManyToOne
     private Product product;
 
-    //@ManyToOne  , no lo ponemos hasta que tengamos el service y el AuthController
-    //private User user;
     }

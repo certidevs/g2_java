@@ -31,8 +31,8 @@ public class SecurityConfig {
                 auth -> auth.requestMatchers("/hola", "/adios", "/login", "/register", "/css/**"
                                 , "/images/**", "/webjars/**").permitAll()
 
-                        //Rutas de Productos
 
+                        //Rutas de Productos
 
                         // Rutas de Categorias
                         .requestMatchers(HttpMethod.GET, "/category").permitAll()
@@ -64,4 +64,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-

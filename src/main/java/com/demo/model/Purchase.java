@@ -33,10 +33,9 @@ private Long id;
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
 
-    @OneToMany(mappedBy = "purchase")
-    private List<PurchaseLine> purchaseLines;
 
 
-//@ManyToOne User user
+//    @ManyToOne
+//    private User user;
 
 }
