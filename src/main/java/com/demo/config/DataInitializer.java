@@ -7,14 +7,15 @@ import com.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class DataInitialize  implements ApplicationRunner {
+public class DataInitializer  implements ApplicationRunner {
 
      private final UserRepository userRepository;
-//    private final passwordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 //    private final userService userService;
 
     @Override
