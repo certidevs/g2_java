@@ -30,6 +30,16 @@ private final ProductRepository productRepository;
         model.addAttribute("purchases",  purchaseRepository.findAll());
         return "purchases/purchaseList";
     }
+    //Para guardar las compras en tu cuenta de usuario
+//    @GetMapping("purchases")
+//    public String orders(Model model, @AuthenticationPrincipal User user) {
+//        if(user.getRole() == Role.ROLE_ADMIN) {
+//            model.addAttribute("purchases",  purchaseRepository.findAll());
+//        } else {
+//            model.addAttribute("purchases",  purchaseRepository.findByUser_IdOrderByDateDesc(user.getId()));
+//        }
+//        return "purchase/purchaseList";
+//    }
 
     // @GetMapping orders/{id}
     @GetMapping("purchases/{id}")
@@ -45,7 +55,7 @@ public String finish(@PathVariable Long id, @RequestParam(required = false) Doub
     purchase.setTotalPrice(purchaseLinesRepository.calculateTotalPrice(purchase.getId()));
     // iva, service charge, terrace
 
-
+    purchaseLinesRepository.deleteAll(purchase.getPurchaseLines());
     purchaseRepository.save(purchase);
     return "redirect:/purchases/" + id;
 }

@@ -53,11 +53,7 @@
                                     <a th:href="@{/products/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;">
                                         <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     </a>
-<!--                                    <a th:href="@{/purchase-lines}">-->
-<!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">-->
-<!--                                            <i class="fa-solid fa-cart-shopping"></i>-->
-<!--                                        </button>-->
-<!--                                    </a>-->
+
                                     <form th:action="@{/purchase-lines/create}" method="post">
                                         <input type="hidden"
                                                name="productId"

@@ -5,10 +5,13 @@ import com.demo.model.enums.PurchaseStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PurchaseRepository  extends JpaRepository<Purchase, Long> {
     Optional<Purchase> findById(Long Id);
     Optional<Purchase> findFirstByStatus(PurchaseStatus status);
+//    List<Purchase> findByUser_IdOrderByPurchaseDateDesc(Long id);
+    //Filtra por usuarios los pedidos
 
 }

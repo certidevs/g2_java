@@ -41,7 +41,12 @@
                             <span class="badge fs-6 px-3 py-2"
                                   th:classappend="${purchase.status.name() == 'PENDING' ? 'bg-warning text-dark' : (purchase.status.name() == 'IN_PROGRESS' ? 'bg-info text-dark' : 'bg-success')}"
                                   th:text="${purchase.status.name() == 'PENDING' ? 'Pendiente' : (purchase.status.name() == 'IN_PROGRESS' ? 'En curso' : 'Finalizado')}"></span>
-                    <a th:href="@{/purchases}" class="btn btn-outline-secondary btn-sm">
+                    <a th:if="${purchase.status.name() == 'PENDING'}"
+                       th:href="@{/purchase/{id}/finish(id=${purchase.id})}"
+                       class="btn btn-success btn-sm ms-2">
+                        Finalizar compra
+                    </a>
+                    <a th:href="@{/purchase-lines}" class="btn btn-outline-secondary btn-sm">
                         <i class="fa-solid fa-arrow-left me-1"></i> Volver
                     </a>
                 </div>
