@@ -55,7 +55,7 @@ public String finish(@PathVariable Long id, @RequestParam(required = false) Doub
     purchase.setTotalPrice(purchaseLinesRepository.calculateTotalPrice(purchase.getId()));
     // iva, service charge, terrace
 
-    purchaseLinesRepository.deleteAll(purchase.getPurchaseLines());
+//    purchaseLinesRepository.deleteAll(purchase.getPurchaseLines());
     purchaseRepository.save(purchase);
     return "redirect:/purchases/" + id;
 }
