@@ -33,7 +33,12 @@ public class SecurityConfig {
 
 
                         //Rutas de Productos
-
+                        .requestMatchers(HttpMethod.GET, "/products").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/products/desactivate/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/products/new").hasRole("ADMIN") // solo admin puede acceder a formulario de nuevo restaurante
+                        .requestMatchers(HttpMethod.POST, "/products/edit/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/products/*").permitAll()
                         // Rutas de Categorias
                         .requestMatchers(HttpMethod.GET, "/category").permitAll()
                         .requestMatchers(HttpMethod.GET, "/category/").hasRole("ADMIN")
@@ -58,7 +63,10 @@ public class SecurityConfig {
 
         );
 
-        http.formLogin(form -> form.loginPage("/login"));
+        http.formLogin(form ->
+                form.loginPage("/login")
+                        .defaultSuccessUrl("/products", true)
+        );
         http.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout"));
 
         return http.build();
