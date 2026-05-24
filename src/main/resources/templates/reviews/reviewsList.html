@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="~{layout/head :: head('Lista de Reviews')}">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
@@ -10,7 +10,7 @@
 
     <!-- Botón para crear nueva (Solo uno, arriba de la lista) -->
     <div class="mb-3">
-        <a th:href="@{/reviews/new}" class="btn btn-primary">
+        <a sec:authorized="hasAnyRole('USER','ADMIN')" th:href="@{/reviews/new}" class="btn btn-primary">
             <i class="fa-solid fa-plus me-1"></i> Nueva Review
         </a>
     </div>
@@ -43,15 +43,15 @@
                         </a>
 
                         <!-- Botón de editar específico para esta Review -->
-                        <a th:href="@{/reviews/edit/{id}(id=${review.id})}"
+                        <a sec:authorized="hasAnyRole('USER','ADMIN')" th:href="@{/reviews/edit/{id}(id=${review.id})}"
                            class="btn btn-outline-secondary btn-sm">
                             <i class="fa-solid fa-pen"></i> Editar
                         </a>
 
                         <!-- Botón de desactivar específico para esta Review -->
-                        <a th:href="@{/reviews/desactivate/{id}(id=${review.id})}"
+                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/reviews/desactivate/{id}(id=${review.id})}"
                            class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-delete-left"></i>Desactivar
+                            <i class="fa-solid fa-delete-left"></i> Desactivar
                         </a>
 
                     </div>
