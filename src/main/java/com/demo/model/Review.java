@@ -30,6 +30,10 @@ public class Review {
     //Añadido campo adicional
     private String title;
 
+    //Añadido para el botón de desactivar
+
+    private Boolean active = true;
+
     //Asociaciones (ManyToOne) Muchas reseñas a 1 producto,usuario
     @ToString.Exclude
     @ManyToOne

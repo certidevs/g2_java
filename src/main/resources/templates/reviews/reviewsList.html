@@ -48,6 +48,12 @@
                             <i class="fa-solid fa-pen"></i> Editar
                         </a>
 
+                        <!-- Botón de desactivar específico para esta Review -->
+                        <a th:href="@{/reviews/desactivate/{id}(id=${review.id})}"
+                           class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-delete-left"></i>Desactivar
+                        </a>
+
                     </div>
 
                 </div>

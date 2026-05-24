@@ -30,7 +30,8 @@ public class ReviewController {
     @GetMapping("/reviews-productos")
     //Cargamos los datos
     public String reviewsList(Model model){
-        model.addAttribute("reviewsproductos", reviewRepository.findAll());
+       // model.addAttribute("reviewsproductos", reviewRepository.findAll()); para que no se sobreescriba con el filtro de que una review esté activa
+        model.addAttribute("reviewsproductos", reviewRepository.findByActiveTrue());
         return "reviews/reviewsList";
     }
 //Formulario de Reviews Vacio, para crear Review existente
@@ -69,6 +70,15 @@ public class ReviewController {
         model.addAttribute("review", reviewRepository.findById(id).orElseThrow());
         model.addAttribute("products", productRepository.findAll());
         return "reviews/reviewDetail";
+    }
+
+    @GetMapping("reviews/desactivate/{id}")
+    public String desactivateReviews(@PathVariable Long id){
+
+        Review review = reviewRepository.findById(id).orElseThrow();
+        review.setActive(false);
+        reviewRepository.save(review);
+        return "redirect:/reviews-productos";
     }
 
     //Recibir datos , Guardar DB
