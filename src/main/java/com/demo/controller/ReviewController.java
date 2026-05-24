@@ -40,6 +40,18 @@ public class ReviewController {
         model.addAttribute("products" , productRepository.findAll());
         return "reviews/reviewForm";
     }
+//Para que al escribir una opinion en "product" funcione ese boton para ese producto específico
+    @GetMapping("/reviews/new/{id}")
+    public String WritteReviewInProduct(@PathVariable Long id, Model model){
+
+        Review review = new Review();
+        review.setProduct(productRepository.findById(id).orElseThrow());
+
+        model.addAttribute("review", review);
+        model.addAttribute("products", productRepository.findAll());
+
+        return "reviews/reviewForm";
+    }
 
     //Formulario (Reviews) Con datos
 

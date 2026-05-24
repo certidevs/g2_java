@@ -35,7 +35,7 @@ public class SecurityConfig {
                         //Rutas de Productos
                         .requestMatchers(HttpMethod.GET, "/products").permitAll()
                         .requestMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/products/desactivate/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/products/deactivate/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/products/new").hasRole("ADMIN") // solo admin puede acceder a formulario de nuevo restaurante
                         .requestMatchers(HttpMethod.POST, "/products/edit/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/products/*").permitAll()
@@ -51,7 +51,9 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.GET, "/reviews-productos").permitAll()
                         .requestMatchers(HttpMethod.POST, "/reviews").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/review/new").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/reviews/new").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/reviews/new/*").authenticated()
+                        //requestMatchers("/reviews/new/**").authenticated() con esta , sería como poner los 2 news de arriba con * y sin él
                         .requestMatchers(HttpMethod.GET, "/reviews/edit/*").authenticated()
                         .requestMatchers(HttpMethod.GET, "/reviews/disable/*").hasRole("ADMIN") //Falta crear disable
                         .requestMatchers(HttpMethod.GET, "/reviews/*").permitAll()
