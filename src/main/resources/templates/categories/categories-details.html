@@ -13,6 +13,8 @@
                 </div>
                 <div class="row-cols-1">
                     <h5 th:text="${category.description}"></h5>
+                    <span th:if="${category.activo}" class="badge text-bg-success">Activada</span>
+                    <span th:unless="${category.activo}" class="badge text-bg-danger">Desactivada</span>
                 </div>
                 <div class="row mt-5">
                     <div class="row row-cols-1 row-cols-md-3 g-4" th:if="${products != null and products.size() > 0}">

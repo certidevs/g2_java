@@ -23,9 +23,9 @@ public class CategoryController {
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
 
-    @GetMapping("category")
+    @GetMapping("categories")
     public String categoriesList( Model model){
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAllByActivoTrue();
         model.addAttribute("categories", categories);
         return "categories/categoriesList";
     }
