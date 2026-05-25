@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -52,6 +53,7 @@ private final ProductRepository productRepository;
 public String finish(@PathVariable Long id, @RequestParam(required = false) Double tip) {
     Purchase purchase =  purchaseRepository.findById(id).orElseThrow();
     purchase.setStatus(PurchaseStatus.FINISHED);
+    purchase.setPurchaseDate(LocalDateTime.now());
     purchase.setTotalPrice(purchaseLinesRepository.calculateTotalPrice(purchase.getId()));
     // iva, service charge, terrace
 

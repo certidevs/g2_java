@@ -3,6 +3,7 @@ package com.demo.controller;
 import com.demo.model.Purchase;
 import com.demo.model.PurchaseLine;
 import com.demo.model.Product;
+import com.demo.model.User;
 import com.demo.model.enums.PurchaseStatus;
 import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.ProductRepository;
@@ -10,6 +11,7 @@ import com.demo.repository.PurchaseRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -79,7 +81,7 @@ public class PurchaseLineController {
 //    }
     // TODO REVISAR STATUS
 @PostMapping("/create")
-public String createPurchaseLine(@RequestParam Long productId) {
+public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPrincipal User user) {
 
     Product product = productRepository.findById(productId)
             .orElseThrow();
@@ -92,6 +94,9 @@ public String createPurchaseLine(@RequestParam Long productId) {
         purchase = new Purchase();
         purchase.setStatus(PurchaseStatus.PENDING);
         purchase.setTotalPrice(0d);
+        if (user != null) {
+            purchase.setUser(user);
+        }
         purchaseRepository.save(purchase);
     }
 
@@ -130,6 +135,11 @@ public String increaseQuantity(@PathVariable Long id) {
 
     purchaseLineRepository.save(line);
 
+    Purchase purchase = line.getPurchase();
+    Double totalPrice = purchaseLineRepository.calculateTotalPrice(purchase.getId());
+    purchase.setTotalPrice(totalPrice);
+    purchaseRepository.save(purchase);
+
     return "redirect:/purchase-lines";
 }
     @GetMapping("/decrease/{id}")
@@ -148,6 +158,11 @@ public String increaseQuantity(@PathVariable Long id) {
 
             purchaseLineRepository.delete(line);
         }
+
+        Purchase purchase = line.getPurchase();
+        Double totalPrice = purchaseLineRepository.calculateTotalPrice(purchase.getId());
+        purchase.setTotalPrice(totalPrice);
+        purchaseRepository.save(purchase);
 
         return "redirect:/purchase-lines";
     }

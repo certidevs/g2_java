@@ -4,9 +4,7 @@ import com.demo.model.enums.PurchaseStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 //Crear purchaseLine para unir pedidos a uno solo
 //ManyToOne product
@@ -26,7 +24,7 @@ private Long id;
 
     private Double totalPrice;
 
-    private LocalDate purchaseDate;
+    private LocalDateTime purchaseDate;
 
     private String discountCode;//Dogo10%
 
@@ -34,8 +32,7 @@ private Long id;
     private PurchaseStatus status;
 
 
-
-//    @ManyToOne
-//    private User user;
+    @ManyToOne
+    private User user;
 
 }

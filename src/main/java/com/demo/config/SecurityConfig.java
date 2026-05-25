@@ -62,6 +62,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/purchase-lines").authenticated()
                         .requestMatchers(HttpMethod.GET, "/purchases").authenticated()
 
+                        // TODO
+//                        .anyRequest().authenticated()
                         .anyRequest().permitAll()
 
         );
