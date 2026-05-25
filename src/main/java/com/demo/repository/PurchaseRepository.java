@@ -9,9 +9,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PurchaseRepository  extends JpaRepository<Purchase, Long> {
-    Optional<Purchase> findById(Long Id);
-    Optional<Purchase> findFirstByStatus(PurchaseStatus status);
-//    List<Purchase> findByUser_IdOrderByPurchaseDateDesc(Long id);
-    //Filtra por usuarios los pedidos
+    List<Purchase> findByUser_IdOrderByPurchaseDateDesc(Long id);
+    long countByUser_Id(Long id);
 
+    @Query("""
+SELECT SUM(p.totalPrice) from Purchase p where p.user.id = :userId
+""") // Traer la suma de purchase totalPrice solo de los pedidos del user que yo te diga
+
+
+    double calculateTotalMoneySpentByUserId(Long userId);
+
+    Optional<Purchase> findFirstByStatus(PurchaseStatus purchaseStatus);
 }
+
+// traer todos los pedidos de un restaurante
+// findByRestaurantId

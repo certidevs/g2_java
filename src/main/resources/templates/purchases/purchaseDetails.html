@@ -128,7 +128,7 @@
                          style="width: 64px; height: 64px;">
                         <i class="fa-solid fa-user fa-2x text-primary"></i>
                     </div>
-                    <h5 class="card-title mb-0">María García</h5>
+                    <h5 class="card-title mb-0" th:text="${purchase.user.username}"></h5>
                     <p class="text-muted small mb-0">
                         <i class="fa-solid fa-crown text-warning me-1"></i>Cliente VIP
                     </p>
@@ -136,7 +136,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between">
                         <span class="text-muted"><i class="fa-solid fa-envelope me-2"></i>Email</span>
-                        <span class="fw-semibold small">maria@example.com</span>
+                        <span class="fw-semibold small" th:text="${purchase.user.email}"></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span class="text-muted"><i class="fa-solid fa-phone me-2"></i>Teléfono</span>
@@ -144,12 +144,17 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span class="text-muted"><i class="fa-solid fa-receipt me-2"></i>Pedidos</span>
-                        <span class="fw-semibold">12</span>
+                        <span class="fw-semibold" th:text="${countUserPurchases}"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted"><i class="fa-solid fa-receipt me-2"></i>Dinero gastado</span>
+                        <span class="fw-semibold" th:text="${totalMoneyUserSpent}"></span>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
 
     <!-- Líneas del pedido -->
     <div class="card shadow-sm border-0 mb-4">

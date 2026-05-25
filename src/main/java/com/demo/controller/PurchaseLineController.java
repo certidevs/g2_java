@@ -8,10 +8,10 @@ import com.demo.model.enums.PurchaseStatus;
 import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.PurchaseRepository;
+import com.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class PurchaseLineController {
     private PurchaseLineRepository purchaseLineRepository;
     private ProductRepository productRepository;
     private PurchaseRepository purchaseRepository;
-
+private UserRepository userRepository;
 
     @GetMapping
     public String findAll(Model model){
@@ -81,7 +81,7 @@ public class PurchaseLineController {
 //    }
     // TODO REVISAR STATUS
 @PostMapping("/create")
-public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPrincipal User user) {
+public String createPurchaseLine(@RequestParam Long productId) {
 
     Product product = productRepository.findById(productId)
             .orElseThrow();
@@ -94,9 +94,12 @@ public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPr
         purchase = new Purchase();
         purchase.setStatus(PurchaseStatus.PENDING);
         purchase.setTotalPrice(0d);
-        if (user != null) {
-            purchase.setUser(user);
-        }
+
+        User user = userRepository.findById(1L) // TODO coger el usuario logueado
+                .orElseThrow();
+
+        purchase.setUser(user);
+
         purchaseRepository.save(purchase);
     }
 
@@ -135,11 +138,6 @@ public String increaseQuantity(@PathVariable Long id) {
 
     purchaseLineRepository.save(line);
 
-    Purchase purchase = line.getPurchase();
-    Double totalPrice = purchaseLineRepository.calculateTotalPrice(purchase.getId());
-    purchase.setTotalPrice(totalPrice);
-    purchaseRepository.save(purchase);
-
     return "redirect:/purchase-lines";
 }
     @GetMapping("/decrease/{id}")
@@ -158,11 +156,6 @@ public String increaseQuantity(@PathVariable Long id) {
 
             purchaseLineRepository.delete(line);
         }
-
-        Purchase purchase = line.getPurchase();
-        Double totalPrice = purchaseLineRepository.calculateTotalPrice(purchase.getId());
-        purchase.setTotalPrice(totalPrice);
-        purchaseRepository.save(purchase);
 
         return "redirect:/purchase-lines";
     }
