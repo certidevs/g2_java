@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{layout/head :: head('Lista de Reviews')}">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+
+<main class="container flex-grow-1 my-4">
+    <h1 style="color:black" class="mb-4">Lista de Reviews</h1>
+
+    <!-- Botón para crear nueva (Solo uno, arriba de la lista) -->
+    <div class="mb-3">
+        <a sec:authorized="hasAnyRole('USER','ADMIN')" th:href="@{/reviews/new}" class="btn btn-primary">
+            <i class="fa-solid fa-plus me-1"></i> Nueva Review
+        </a>
+    </div>
+
+    <!-- Contenedor Principal Flex -->
+    <div class="d-flex gap-4 align-items-start">
+
+        <!-- Columna de Reviews (Derecha) -->
+        <div class="flex-grow-1 d-flex flex-column">
+            <!-- Bucle para iterar las reviews de la base de datos -->
+            <div class="review-card mb-3 bg-white p-3 border rounded shadow-sm w-100 position-relative"
+                 th:each="review : ${reviewsproductos}">
+
+                <!-- Imagen de la review -->
+                <div class="flex-shrink-0">
+                    <img th:if="${review.product != null}" th:src="${review.product.image}"  alt="Producto" class="img-fluid rounded shadow-sm"
+                         style="width:120px;">
+                </div>
+
+                <div class="accent-line" style="height: 4px; background-color: #007bff; width: 50px; margin-bottom: 10px;"></div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="review-title h5 mb-0" th:text="${review.title}">Título</div>
+
+
+                    <!-- TODO mostrar review.user.username -->
+
+                    <div th:if="${review.user != null}" class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Usuario:</span>
+                        <span th:text="${review.user.username}"></span>
+                    </div>
+
+                    <!-- Botón de ver específico para esta Review -->
+                    <div class="d-flex gap-2">
+
+                        <a th:href="@{/reviews/detail/{id}(id=${review.id})}"
+                           class="btn btn-outline-primary btn-sm">
+                            <i class="fa-solid fa-eye"></i> Ver
+                        </a>
+
+                        <!-- Botón de editar específico para esta Review -->
+                        <a sec:authorized="hasAnyRole('USER','ADMIN')" th:href="@{/reviews/edit/{id}(id=${review.id})}"
+                           class="btn btn-outline-secondary btn-sm">
+                            <i class="fa-solid fa-pen"></i> Editar
+                        </a>
+
+                        <!-- Botón de desactivar específico para esta Review -->
+                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/reviews/desactivate/{id}(id=${review.id})}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Estás seguro de que deseas desactivar esta review?')">
+                            <i class="fa-solid fa-delete-left"> </i> Desactivar
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="stars my-2" style="color: #ffc107;">
+                    <!-- Genera estrellas rellenas según el rating -->
+                    <span th:each="i : ${#numbers.sequence(1, 5)}"
+                          th:text="${review.rating >= i} ? '★' : '☆'"></span>
+                </div>
+
+                <div class="review-body text-muted" th:text="${review.comment}">Comentario
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+    <footer th:replace="~{layout/footer :: footer}"></footer>
+    <script th:replace="~{layout/footer :: scripts}"></script>
+</body>
+</html>
+
