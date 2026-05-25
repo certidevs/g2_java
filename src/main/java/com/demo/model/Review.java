@@ -39,8 +39,8 @@ public class Review {
     @ManyToOne
     private Product product;
 
-//  @ToString.Exclude
-//   @ManyToOne
-//   private User user;
+  @ToString.Exclude
+   @ManyToOne
+   private User user;
 //
  }

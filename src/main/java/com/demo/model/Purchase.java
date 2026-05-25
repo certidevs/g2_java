@@ -31,7 +31,7 @@ private Long id;
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
 
-
+    @ToString.Exclude
     @ManyToOne
     private User user;
 

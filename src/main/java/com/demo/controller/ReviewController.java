@@ -1,15 +1,19 @@
 package com.demo.controller;
 
 import com.demo.model.Review;
+import com.demo.model.User;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Controller
@@ -31,7 +35,7 @@ public class ReviewController {
     //Cargamos los datos
     public String reviewsList(Model model){
        // model.addAttribute("reviewsproductos", reviewRepository.findAll()); para que no se sobreescriba con el filtro de que una review esté activa
-        model.addAttribute("reviewsproductos", reviewRepository.findByActiveTrue());
+        model.addAttribute("reviewsproductos", reviewRepository.findByActiveTrueOrderByCreatedAtDesc());
         return "reviews/reviewsList";
     }
 //Formulario de Reviews Vacio, para crear Review existente
@@ -83,8 +87,12 @@ public class ReviewController {
 
     //Recibir datos , Guardar DB
     @PostMapping("/reviews")
-    public String createReviews(@ModelAttribute Review review){
+    public String createReviews(@ModelAttribute Review review, @AuthenticationPrincipal User user){
         System.out.println("Review recibida" +review);
+        if(user != null) {
+            review.setUser(user);
+        }
+        review.setCreatedAt(LocalDateTime.now());
         reviewRepository.save(review);
         return "redirect:/reviews-productos";
     }
