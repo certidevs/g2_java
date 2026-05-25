@@ -57,7 +57,7 @@ public String finish(@PathVariable Long id, @RequestParam(required = false) Doub
 
 //    purchaseLinesRepository.deleteAll(purchase.getPurchaseLines());
     purchaseRepository.save(purchase);
-    return "redirect:/purchases/" + id;
+    return  "redirect:/purchases";
 }
 
 

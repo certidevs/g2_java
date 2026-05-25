@@ -43,7 +43,7 @@
                                   th:text="${purchase.status.name() == 'PENDING' ? 'Pendiente' : (purchase.status.name() == 'IN_PROGRESS' ? 'En curso' : 'Finalizado')}"></span>
                     <a th:if="${purchase.status.name() == 'PENDING'}"
                        th:href="@{/purchase/{id}/finish(id=${purchase.id})}"
-                       class="btn btn-success btn-sm ms-2">
+                       class="btn btn-success">
                         Finalizar compra
                     </a>
                     <a th:href="@{/purchase-lines}" class="btn btn-outline-secondary btn-sm">
