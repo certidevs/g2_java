@@ -29,43 +29,42 @@
                 <a th:unless="${product.category != null}" class="row-cols-1 mt-5 mb-5 border-dark-subtle rounded-3 p-4">
                     <h5 class="text-center ">Sin categoría</h5>>
                 </a>
+                <div class="col mt-5 mb-5 d-flex gap-3 align-items-center justify-content-center">
+                    <!-- Botón: Añadir al carrito (formulario) -->
+                    <form sec:authorize="isAuthenticated()"
+                          th:action="@{/purchase-lines/create}"
+                          method="post"
+                          class="d-inline">
+                        <input type="hidden" name="productId" th:value="${product.id}" />
+                        <button type="submit" class="btn btn-group-lg btn-success ">
+                            <i class="fa-solid fa-cart-shopping"></i> Añadir al carrito
+                        </button>
+                    </form>
+
+                    <!-- Botón: Editar (solo para ADMIN) -->
+                    <a sec:authorize="hasRole('ADMIN')"
+                       th:href="@{/products/edit/{id}(id=${product.id})}"
+                       class="btn-group-lg btn btn-secondary"
+                       style="text-decoration: none;">
+                        <i class="fa-solid fa-pencil me-1"></i>Editar
+                    </a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-group-lg btn-warning me-3 ">
+                        <i class="fa-solid fa-ban"></i>
+                        Baja
+                    </a>
+                    <!-- Botón: Volver -->
+                    <a th:href="@{/products}"
+                       class="btn btn-group-lg btn-outline-secondary"
+                       style="text-decoration: none;">
+                        <i class="fa-solid fa-arrow-left"></i> Volver
+                    </a>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container text-lg-end">
-        <!-- TODO ENLAZAR BIEN A COMPRAR -->
-<!--        <a th:href="@{/purchase-lines/create(productId=${product.id})}"  class="btn btn-sm btn-outline-secondary me-3">-->
-<!--            <i class="fa-solid fa-cart-shopping"></i>-->
-<!--            Añadir al carrito-->
-<!--        </a>-->
-        <!-- TODO En boton de compra que esten en fila. -->
-        <form sec:authorize="isAuthenticated()" th:action="@{/purchase-lines/create}" method="post">
-            <input type="hidden" name="productId" th:value="${product.id}">
-            <button class="btn btn-sm btn-success">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Añadir al carrito
-            </button>
-        </form>
 
-        <!-- TODO Crear un boton desactivar al usuario -->
-
-        <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/edit/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;" class="visually-hidden">
-            <button type="button" class="btn btn-sm btn-secondary me-3">
-                <i class="fa-solid fa-pencil me-1"></i>
-                Editar
-            </button>
-        </a>
-        <a  th:href="@{/products}" style="text-decoration: none; color: inherit;">
-        <button type="button" class="btn btn-sm btn-outline-secondary me-3">
-            <i class="fa-solid fa-arrow-left"></i>
-            Volver
-        </button>
-        </a>
-        <!--<a th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning me-3 ">
-            <i class="fa-solid fa-cart-shopping"></i>
-            Baja
-        </a>-->
-    </div>
     <div th:if="${reviews != null}">
         <h1><i class="fa-solid fa-comment "></i>
         Opiniones de este producto </h1>
