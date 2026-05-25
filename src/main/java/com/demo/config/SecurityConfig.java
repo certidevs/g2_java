@@ -59,7 +59,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/reviews/*").permitAll()
 
                         //Rutas Purchase(Compra)
-
+                        .requestMatchers(HttpMethod.GET, "/purchase-lines").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/purchases").authenticated()
 
                         .anyRequest().permitAll()
 
