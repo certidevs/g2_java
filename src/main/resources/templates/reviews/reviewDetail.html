@@ -17,19 +17,28 @@
     </div>
 
      <!-- Info producto -->
-    <div class="flex-grow-1">
-        <h2 class="mb-2" th:text="${review.product.name}">
-            Nombre producto
-        </h2>
+            <div class="flex-grow-1">
 
-        <h4 class="text-success mb-3"
-            th:text="${review.product.price + ' €'}">
-            Precio
-        </h4>
+                <div class="d-flex justify-content-between align-items-start">
 
-        <p class="text-muted"  th:text="${review.product.shortDescription}">
+                    <h2 class="mb-2" th:text="${review.product.name}">
+                        Nombre producto
+                    </h2>
+
+                    <div th:if="${review.user != null}"
+                         class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-user"></i>
+                        <span th:text="${review.user.username}">Usuario:</span>
+                    </div>
+
+                </div>
+
+         <h4 class="text-success mb-3" th:text="${review.product.price + ' €'}">
+            Precio </h4>
+
+         <p class="text-muted"  th:text="${review.product.shortDescription}">
             Descripción corta
-        </p>
+      </p>
 
     </div>
 </div>
@@ -39,8 +48,10 @@
     <!-- REVIEW -->
     <div>
         <h4 th:text="${review.title}">Título review</h4>
-        <div class="stars my-2 text-warning">
-                <span th:each="i : ${#numbers.sequence(1,5)}" th:text="${review.rating >= i} ? '★' : '☆'"></span>
+         <div class="stars my-2 text-warning">
+          <span th:each="i : ${#numbers.sequence(1,5)}" th:text="${review.rating >= i} ? '★' : '☆'">
+
+      </span>
     </div>
 
     <p th:text="${review.comment}">Comentario</p>
@@ -57,16 +68,12 @@
         <span>Volver</span>
     </a>
 
-
     <!-- Botón inicio -->
             <a th:href="@{/products}"  class="btn btn-primary d-inline-flex align-items-center px-3">
                 <i class="fa-solid fa-house me-2"></i>
                 <span>Inicio</span>
             </a>
-
-</div>
-
-
+    </div>
 </main>
 <footer th:replace="~{layout/footer :: footer}"></footer>
 <script th:replace="~{layout/footer :: scripts}"></script>

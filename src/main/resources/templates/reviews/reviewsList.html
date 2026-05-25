@@ -37,6 +37,11 @@
 
                     <!-- TODO mostrar review.user.username -->
 
+                    <div th:if="${review.user != null}" class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Usuario:</span>
+                        <span th:text="${review.user.username}"></span>
+                    </div>
 
                     <!-- Botón de ver específico para esta Review -->
                     <div class="d-flex gap-2">
@@ -54,8 +59,9 @@
 
                         <!-- Botón de desactivar específico para esta Review -->
                         <a sec:authorize="hasRole('ADMIN')" th:href="@{/reviews/desactivate/{id}(id=${review.id})}"
-                           class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-delete-left"></i> Desactivar
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Estás seguro de que deseas desactivar esta review?')">
+                            <i class="fa-solid fa-delete-left"> </i> Desactivar
                         </a>
 
                     </div>
