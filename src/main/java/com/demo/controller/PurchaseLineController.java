@@ -12,6 +12,7 @@ import com.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,25 +32,30 @@ public class PurchaseLineController {
 private UserRepository userRepository;
 
     @GetMapping
-    public String findAll(Model model){
+    public String findAll(Model model, @AuthenticationPrincipal User user){
 
-        List<PurchaseLine> purchaseLines =
-                purchaseLineRepository.findAll();
-
-        model.addAttribute("purchaseLines", purchaseLines);
-        double total = 0;
-
-        for (PurchaseLine line : purchaseLines) {
-
-            double subtotal =
-                    line.getProduct().getPrice() * line.getQuantity();
-
-            total += subtotal;
+        Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING);
+        Purchase purchase;
+        if (purchaseOptional.isPresent()) {
+            purchase = purchaseOptional.get();
+            List<PurchaseLine> purchaseLines = purchaseLineRepository.findByPurchaseId(purchase.getId());
+            model.addAttribute("purchaseLines", purchaseLines);
+            // precio total
+            double total = 0;
+            for (PurchaseLine line : purchaseLines) {
+                double subtotal = line.getProduct().getPrice() * line.getQuantity();
+                total += subtotal;
+            }
+            model.addAttribute("total", total);
+        } else {
+            purchase = new Purchase();
+            purchase.setStatus(PurchaseStatus.PENDING);
+            purchase.setTotalPrice(0d);
+            purchase.setUser(user);
+            model.addAttribute("total", 0.0);
         }
-
-        model.addAttribute("total", total);
-        purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING)
-                .ifPresent( purchase -> model.addAttribute("purchase", purchase) );
+        purchaseRepository.save(purchase);
+        model.addAttribute("purchase", purchase);
 
         model.addAttribute("products", productRepository.findAll());
         return "purchaseLines/purchaseLinesList";
@@ -81,10 +87,9 @@ private UserRepository userRepository;
 //    }
     // TODO REVISAR STATUS
 @PostMapping("/create")
-public String createPurchaseLine(@RequestParam Long productId) {
+public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPrincipal User user) {
 
-    Product product = productRepository.findById(productId)
-            .orElseThrow();
+    Product product = productRepository.findById(productId).orElseThrow();
 
     Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING);
     Purchase purchase;
@@ -94,12 +99,7 @@ public String createPurchaseLine(@RequestParam Long productId) {
         purchase = new Purchase();
         purchase.setStatus(PurchaseStatus.PENDING);
         purchase.setTotalPrice(0d);
-
-        User user = userRepository.findById(1L) // TODO coger el usuario logueado
-                .orElseThrow();
-
         purchase.setUser(user);
-
         purchaseRepository.save(purchase);
     }
 
@@ -134,6 +134,9 @@ public String increaseQuantity(@PathVariable Long id) {
     PurchaseLine line = purchaseLineRepository.findById(id)
             .orElseThrow();
 
+    if (line.getPurchase().getStatus() == PurchaseStatus.FINISHED)
+        return "redirect:/purchase-lines";
+
     line.setQuantity(line.getQuantity() + 1);
 
     purchaseLineRepository.save(line);
@@ -145,6 +148,9 @@ public String increaseQuantity(@PathVariable Long id) {
 
         PurchaseLine line = purchaseLineRepository.findById(id)
                 .orElseThrow();
+
+        if (line.getPurchase().getStatus() == PurchaseStatus.FINISHED)
+            return "redirect:/purchase-lines";
 
         if (line.getQuantity() > 1) {
 
