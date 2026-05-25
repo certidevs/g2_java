@@ -119,7 +119,7 @@ public class G2JavaApplication {
                 .stock(50)
                 .category(objects4)
                 .activo(true)
-                .image("https://imgs.search.brave.com/Dm4DuWbr7R-g8sslWAC5J5Ulbd5QFHlb-bhivYKPi_0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFpWTkwdVl4VUwu/anBn")
+                .image("https://imgs.search.brave.com/dOOXtflbe6vIZZVmAQByaCCuAuRW_e9wZo0YED0EPbM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb250/ZW50cy5tZWRpYWRl/Y2F0aGxvbi5jb20v/bTMzOTY5NjIvayQx/NzFjYTU4YjUxNjMx/MGMwYjE4YWRmODNi/YjAzYWQ0ZC9waWN0/dXJlLmpwZz9mb3Jt/YXQ9YXV0byZmPTMw/MDB4MA")
                 .build();
         Product producto7 = Product.builder()
                 .name("Pantalones cortos gimnasio, Puma©")
