@@ -1,11 +1,14 @@
 package com.demo.controller;
 
 import com.demo.model.Purchase;
+import com.demo.model.User;
 import com.demo.model.enums.PurchaseStatus;
+import com.demo.model.enums.Role;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.PurchaseRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,27 +29,28 @@ private final ProductRepository productRepository;
 
 //     @GetMapping orders
 //     filtrar por restaurante, filtrar por usuario
+
+    //Para guardar las compras en tu cuenta de usuario
     @GetMapping("purchases")
-    public String purchases(Model model) {
+    public String purchases(Model model,
+                            @AuthenticationPrincipal User user) {
         model.addAttribute("purchases",  purchaseRepository.findAll());
+
+        if (user.getRole().equals(Role.ROLE_ADMIN)) {
+            model.addAttribute("purchases",purchaseRepository.findAll());
+        } else {
+            model.addAttribute("purchases",purchaseRepository.findByUser_IdOrderByPurchaseDateDesc(user.getId())            );
+        }
+
         return "purchases/purchaseList";
     }
-    //Para guardar las compras en tu cuenta de usuario
-//    @GetMapping("purchases")
-//    public String orders(Model model, @AuthenticationPrincipal User user) {
-//        if(user.getRole() == Role.ROLE_ADMIN) {
-//            model.addAttribute("purchases",  purchaseRepository.findAll());
-//        } else {
-//            model.addAttribute("purchases",  purchaseRepository.findByUser_IdOrderByDateDesc(user.getId()));
-//        }
-//        return "purchase/purchaseList";
-//    }
 
     // @GetMapping orders/{id}
     @GetMapping("purchases/{id}")
     public String purchase(Model model, @PathVariable Long id){
         model.addAttribute("purchase", purchaseRepository.findById(id).orElseThrow());
         model.addAttribute("purchaseLines", purchaseLinesRepository.findByPurchaseId(id));
+
         return "purchases/purchaseDetails";
     }
 @GetMapping("purchase/{id}/finish")
