@@ -71,9 +71,10 @@ public class CategoryController {
             Category down = categoryOptional.get();
             down.setActivo(false);
             categoryRepository.save(down);
+            return "redirect:/categories";
         }
 
-        return "redirect:/categories";
+        return "redirect:/category";
     }
     @PostMapping("categories")
     public String saveCategory(@ModelAttribute Category category) {
