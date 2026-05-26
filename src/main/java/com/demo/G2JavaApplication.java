@@ -45,9 +45,9 @@ public class G2JavaApplication {
         categoryRepository.save(objects3);
 
         Category objects4 = new Category();
-        objects4.setName("Ropa");
-        objects4.setDescription("Ropa deportiva");
-        objects4.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
+        objects4.setName("Ropa y accesorios");
+        objects4.setDescription("Ropa y accesorios deportivos");
+        objects4.setImage("https://imgs.search.brave.com/dOOXtflbe6vIZZVmAQByaCCuAuRW_e9wZo0YED0EPbM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb250/ZW50cy5tZWRpYWRl/Y2F0aGxvbi5jb20v/bTMzOTY5NjIvayQx/NzFjYTU4YjUxNjMx/MGMwYjE4YWRmODNi/YjAzYWQ0ZC9waWN0/dXJlLmpwZz9mb3Jt/YXQ9YXV0byZmPTMw/MDB4MA");
         objects4.setActivo(true);
         categoryRepository.save(objects4);
 
