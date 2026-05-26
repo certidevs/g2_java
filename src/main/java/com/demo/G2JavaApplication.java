@@ -2,6 +2,7 @@ package com.demo;
 
 import com.demo.model.*;
 import com.demo.model.enums.PurchaseStatus;
+import com.demo.model.enums.Role;
 import com.demo.repository.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,12 +17,40 @@ public class G2JavaApplication {
     public static void main(String[] args) {
         var context = SpringApplication.run(G2JavaApplication.class, args);
         ProductRepository productRepository = context.getBean(ProductRepository.class);
-
-
         ReviewRepository reviewRepository = context.getBean(ReviewRepository.class);
         CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
         PurchaseRepository purchaseRepository = context.getBean(PurchaseRepository.class);
-        PurchaseLineRepository PurchaseLineRepository = context.getBean(PurchaseLineRepository.class);
+        PurchaseLineRepository purchaseLineRepository = context.getBean(PurchaseLineRepository.class);
+        UserRepository userRepository = context.getBean(UserRepository.class);
+
+        User us = new User();
+        us.setEmail("Andrea@gmail.com");
+        us.setUsername("Andrea");
+        us.setPassword("1234");
+        us.setRole(Role.ROLE_USER);
+        userRepository.save(us);
+
+        User us2 = new User();
+        us2.setEmail("Ivan@gmail.com");
+        us2.setUsername("Ivan");
+        us2.setPassword("1234");
+        us2.setRole(Role.ROLE_ADMIN);
+        userRepository.save(us2);
+
+        User us3 = new User();
+        us3.setEmail("Gema@gmail.com");
+        us3.setUsername("Gema");
+        us3.setPassword("1234");
+        us3.setRole(Role.ROLE_USER);
+        userRepository.save(us3);
+
+        User us4 = new User();
+        us4.setEmail("Joaquin@gmail.com");
+        us4.setUsername("Joaquin");
+        us4.setPassword("1234");
+        us4.setRole(Role.ROLE_ADMIN);
+        userRepository.save(us4);
+
 
         Category objects = new Category();
         objects.setName("Creatina");
@@ -161,6 +190,7 @@ public class G2JavaApplication {
         re.setUserVerified(true);
         re.setCreatedAt(java.time.LocalDateTime.now());
         re.setProduct(producto);
+        re.setUser(us4);
         reviewRepository.save(re);
 
 
@@ -172,6 +202,7 @@ public class G2JavaApplication {
         re2.setUserVerified(false);
         re2.setProduct(producto2);
         re2.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us2);
         reviewRepository.save(re2);
 
         Review re3 = new Review();
@@ -181,6 +212,7 @@ public class G2JavaApplication {
         re3.setUserVerified(true);
         re3.setProduct(producto3);
         re3.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us4);
         reviewRepository.save(re3);
 
         Review re4 = new Review();
@@ -190,6 +222,7 @@ public class G2JavaApplication {
         re4.setUserVerified(true);
         re4.setProduct(producto4);
         re4.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us2);
         reviewRepository.save(re4);
 
         Review re5 = new Review();
@@ -199,6 +232,7 @@ public class G2JavaApplication {
         re5.setUserVerified(true);
         re5.setProduct(producto5);
         re5.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us);
         reviewRepository.save(re5);
 
         Review re6 = new Review();
@@ -208,6 +242,7 @@ public class G2JavaApplication {
         re6.setUserVerified(true);
         re6.setProduct(producto6);
         re6.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us3);
         reviewRepository.save(re6);
 
         Review re7 = new Review();
@@ -217,6 +252,7 @@ public class G2JavaApplication {
         re7.setUserVerified(true);
         re7.setProduct(producto7);
         re7.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us);
         reviewRepository.save(re7);
 
         Review re8 = new Review();
@@ -226,6 +262,7 @@ public class G2JavaApplication {
         re8.setUserVerified(true);
         re8.setProduct(producto8);
         re8.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us3);
         reviewRepository.save(re8);
 
         Review re9 = new Review();
@@ -235,6 +272,7 @@ public class G2JavaApplication {
         re9.setUserVerified(true);
         re9.setProduct(producto9);
         re9.setCreatedAt(java.time.LocalDateTime.now());
+        re.setUser(us2);
         reviewRepository.save(re9);
 
 
