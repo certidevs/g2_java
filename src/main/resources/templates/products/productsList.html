@@ -5,7 +5,7 @@
 <link rel="stylesheet" th:href="@{/css/products.css}">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 <main>
-    <section class="py-5  text-center" style="background-color: rgb(0 0 0 / 0.84); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 100vh; margin: 0; padding: 0;position: relative ;z-index: 2">
+    <!--<section class="py-5  text-center" style="background-color: rgb(0 0 0 / 0.84); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 100vh; margin: 0; padding: 0;position: relative ;z-index: 2">
         <div class="row" style="background-image: url('https://imgs.search.brave.com/6jDsIZ8vmCbLG2ndt4FDR9VykWQN00SB_XJilnaPfMo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zYXJk/ZW55YS5mb3J1cy5l/cy9odWJmcy9jZW50/cm9zL2JhcmNlbG9u/YV9zYXJkZW55YS82/LWZvcnVzX2JhcmNl/bG9uYV9zYXJkZW55/YS5qcGc'); background-size: cover; background-repeat: no-repeat; background-position: center; border-image-source: linear-gradient(rgb(0 0 0 / 0.84)); border-image-slice: fill 1; min-height: 100vh; margin: 0; padding: 0;">
             <div class="col-lg-6 col-md-8 mx-auto align-self-center">
                 <h1 class="fw-light text-white">Productos</h1>
@@ -14,7 +14,7 @@
                 </p>
             </div>
         </div>
-    </section>
+    </section>-->
     <div class="album py-5 bg-body-tertiary container flex-grow-1 ">
         <div class="container">
             <div class="row">
@@ -40,7 +40,7 @@
             <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div id="sombra" th:each="product : ${products}" class="col mt-4 mb-4">
                     <div>
-                        <a th:href="@{/products/{id}(id=${product.id})}">
+                        <a th:href="@{/products/{id}(id=${product.id})}" autofocus >
                             <img th:src="${product.image}" class="card-img-top"  alt="..." role="img"  width="400">
                         </a>
                         <div class="card-body" >
@@ -65,7 +65,7 @@
                                         </button>
                                     </form>
                                     <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/deactivate/{id}(id=${product.id})}" class="btn btn-sm btn-warning ">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <i class="fa-solid fa-ban"></i>
                                     </a>
                                     <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary ">
                                         <i class="fa-solid fa-pencil me-1"></i>
