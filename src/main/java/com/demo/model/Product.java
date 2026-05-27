@@ -1,5 +1,6 @@
 package com.demo.model;
 
+import com.demo.model.enums.Medidas;
 import jakarta.persistence.*;
 import lombok.*;
 // /images/productos/creatina.jpg
@@ -29,6 +30,11 @@ public class Product {
     private Integer stock;
     @Lob
     private String image;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "medidas")
+    private Medidas medidas;
+
     private Boolean activo;
     @ToString.Exclude
     @ManyToOne
