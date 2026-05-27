@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review,Long> {
     List<Review> findByRatingGreaterThanEqual(Integer rating);
-    //List<Review> findByUserId(Long id);
+    List<Review> findByUserId(Long id);
     List<Review> findByProduct_IdOrderByCreatedAtDesc(Long id);
     List<Review> findByIdOrderByRatingAsc(Long id);
 
@@ -17,4 +17,5 @@ public interface ReviewRepository extends JpaRepository<Review,Long> {
     List<Review> findByActiveTrueOrderByCreatedAtDesc();
 
 
+    long countByUser_Id(Long id);
 }

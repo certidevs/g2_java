@@ -1,15 +1,23 @@
 package com.demo.service;
 
 import com.demo.dto.RegisterForm;
+import com.demo.dto.UserStatsDTO;
 import com.demo.model.User;
 import com.demo.model.enums.Role;
+import com.demo.repository.ProductRepository;
+import com.demo.repository.PurchaseRepository;
+import com.demo.repository.ReviewRepository;
 import com.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +26,9 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ReviewRepository reviewRepository;
+    private final ProductRepository productRepository;
+    private final PurchaseRepository purchaseRepository;
 
     // metodo para buscar el usuario en base de datos por su username
     @Override
@@ -61,5 +72,30 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user); // guarda el usuario en base de datos
     }
 
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+    }
+
+    public UserStatsDTO findStatsById(Long id){
+        return new UserStatsDTO(
+        reviewRepository.countByUser_Id(id),
+        reviewRepository.findByUserId(id)
+        );
+    }
+
+    public User create(User user){
+        if (userRepository.existsByUsername(user.getUsername()))
+            throw new IllegalArgumentException("El nombre de usuario ya existe");
+        if (userRepository.existsByEmail(user.getEmail()))
+            throw new IllegalArgumentException("El correo introducido ya existe");
+        if (!StringUtils.hasText(user.getPassword()))
+            throw new IllegalArgumentException("La contraseña no puede esta vacía");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
     // TODO metodo para crear usuario admin
 }
