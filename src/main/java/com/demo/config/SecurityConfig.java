@@ -28,8 +28,8 @@ public class SecurityConfig {
                 frame.sameOrigin())); // h2 usa iframes
 
         http.authorizeHttpRequests(
-                auth -> auth.requestMatchers("/hola", "/adios", "/login", "/register", "/css/**"
-                                , "/images/**", "/webjars/**").permitAll()
+                auth -> auth.requestMatchers("/hola", "/adios", "/login", "/register", "/css/**",
+                                "/uploads/**", "/images/**", "/webjars/**").permitAll()
 
 
                         //Rutas de Productos
@@ -66,7 +66,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         // TODO
                         .anyRequest().authenticated()
-//                        .anyRequest().permitAll()
+                      //.anyRequest().permitAll()
 
 
 
@@ -76,6 +76,7 @@ public class SecurityConfig {
         http.formLogin(form ->
                 form.loginPage("/login")
                         .defaultSuccessUrl("/products", true)
+                        .permitAll()
         );
         http.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout"));
 

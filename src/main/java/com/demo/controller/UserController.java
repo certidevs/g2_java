@@ -1,17 +1,23 @@
 package com.demo.controller;
 
+import com.demo.model.User;
+import com.demo.model.enums.Role;
 import com.demo.repository.UserRepository;
+import com.demo.service.FileService;
 import com.demo.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+@Slf4j
 @AllArgsConstructor
 @Controller
 public class UserController {
 
+    private final FileService fileService;
     private final UserService userService;
 
     @GetMapping("admin/users")
@@ -28,4 +34,55 @@ public class UserController {
         return "users/userDetail";
 
     }
+
+    @GetMapping("admin/users/edit/{id}")
+    public String editUser(Model model, @PathVariable Long id) {
+        User user = userService.findById(id);
+        user.setPassword(null); // no devolver esta password cifrada para evitar exponerla
+        model.addAttribute("user", user);
+        model.addAttribute("roles", Role.values());
+        model.addAttribute("edit", true);
+        return "users/userForm";
+    }
+
+    @GetMapping("admin/users/new")
+    public String newUser(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("roles", Role.values());
+        model.addAttribute("edit", false);
+        return "users/userForm";
+    }
+    // PostMapping admin/users
+    @PostMapping("admin/users")
+    public String save(
+            @ModelAttribute User user,
+            RedirectAttributes ra,
+            @RequestParam("imageFile") MultipartFile imageFile
+    ) {
+        log.info("Guardando user {}", user.getUsername());
+
+        String imageUrl = fileService.store(imageFile);
+        if (imageUrl != null)
+            user.setImageUrl(imageUrl);
+
+        try {
+            if (user.getId() == null) {
+                user = userService.create(user);
+                ra.addFlashAttribute("message", "usuario creado");
+                log.info("Usuario creado {}", user);
+            } else {
+                user = userService.update(user);
+                ra.addFlashAttribute("message", "usuario actualizado");
+                log.info("Usuario actualizado {}", user);
+            }
+            return "redirect:/admin/users";
+        } catch (Exception e) {
+            log.warn("Error al guardar user {}", user, e);
+
+            ra.addFlashAttribute("error", e.getMessage());
+            return user.getId() == null ?
+                    "redirect:/admin/users/new" : "redirect:/admin/users/edit/" + user.getId();
+        }
+    }
+
 }
