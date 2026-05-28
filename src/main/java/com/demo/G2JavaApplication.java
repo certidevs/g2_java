@@ -1,6 +1,7 @@
 package com.demo;
 
 import com.demo.model.*;
+import com.demo.model.enums.Medidas;
 import com.demo.model.enums.PurchaseStatus;
 import com.demo.model.enums.Role;
 import com.demo.repository.*;
@@ -149,6 +150,7 @@ public class G2JavaApplication {
                 .category(objects4)
                 .activo(true)
                 .image("https://imgs.search.brave.com/dOOXtflbe6vIZZVmAQByaCCuAuRW_e9wZo0YED0EPbM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb250/ZW50cy5tZWRpYWRl/Y2F0aGxvbi5jb20v/bTMzOTY5NjIvayQx/NzFjYTU4YjUxNjMx/MGMwYjE4YWRmODNi/YjAzYWQ0ZC9waWN0/dXJlLmpwZz9mb3Jt/YXQ9YXV0byZmPTMw/MDB4MA")
+                .medidas(Medidas.CLOTHING)
                 .build();
         Product producto7 = Product.builder()
                 .name("Pantalones cortos gimnasio, Puma©")
@@ -159,6 +161,7 @@ public class G2JavaApplication {
                 .category(objects4)
                 .activo(true)
                 .image("https://imgs.search.brave.com/wbHmwexFEM4_u_k9maIMjFxeMhHca739EoRDNaC4D8k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5hdG1vc2ZlcmFz/cG9ydC5lcy81NTM1/NzctaG9tZV9kZWZh/dWx0L3BhbnRhbG9u/ZXMtZGUtZml0bmVz/cy1wdW1hLW0tZmxl/eC1zdHJldGNoLXdv/dmVuLWJsYWNrLWhv/bWJyZS5qcGc")
+                .medidas(Medidas.CLOTHING)
                 .build();
         Product producto8 = Product.builder()
                 .name("Under Armour © Slipspeed, entrenamiento")
@@ -169,6 +172,7 @@ public class G2JavaApplication {
                 .category(objects4)
                 .activo(true)
                 .image("https://imgs.search.brave.com/lh00FCYbM4Cjruqp_LKUgFBMIn2ZXpSmpAA9E-GZsfQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dW5kZXJhcm1vdXIu/Y2wvY2RuL3Nob3Av/ZmlsZXMvMzAyNzcy/Ni0wMDFfTjExXzYu/anBnP3Y9MTc2Mjk3/Mzc1OCZ3aWR0aD0x/MjAw")
+                .medidas(Medidas.SHOES)
                 .build();
         Product producto9 = Product.builder()
                 .name("Camiseta futbol españa Mundial 2026, Adidas©")
@@ -179,6 +183,7 @@ public class G2JavaApplication {
                 .category(objects4)
                 .activo(true)
                 .image("https://imgs.search.brave.com/UN5mv1jJce42NA_yOW0WrB5A016K6HF9BDBCxpcn2q4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Zm9ydW1zcG9ydC5j/b20vaW1hZ2VzL2Fk/aWRhcy1jYW1pc2V0/YS1kZS1mdXRib2wt/b2ZpY2lhbGVzLXBy/aW1lcmEtZXF1aXBh/Y2lvbi1lc3BhbmEt/MjYtb2ZpY2lhbC0w/NC0xMDAxMTExMjA4/LTUwMHg1MDAtZg")
+                .medidas(Medidas.CLOTHING)
                 .build();
         productRepository.saveAll(List.of(producto,producto2,producto3,producto4,producto5,producto6,producto7,producto8,producto9));
 

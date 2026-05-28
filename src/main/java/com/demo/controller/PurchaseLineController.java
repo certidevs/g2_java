@@ -29,7 +29,7 @@ public class PurchaseLineController {
     private PurchaseLineRepository purchaseLineRepository;
     private ProductRepository productRepository;
     private PurchaseRepository purchaseRepository;
-private UserRepository userRepository;
+    private UserRepository userRepository;
 
     @GetMapping
     public String findAll(Model model, @AuthenticationPrincipal User user){
@@ -165,6 +165,20 @@ public String increaseQuantity(@PathVariable Long id) {
 
         return "redirect:/purchase-lines";
     }
+    @PostMapping("/update")
+    public String updateTalla(
+            @RequestParam Long lineId,
+            @RequestParam String talla
+    ) {
 
+        PurchaseLine line = purchaseLineRepository
+                .findById(lineId)
+                .orElseThrow();
 
+        line.setTalla(talla);
+
+        purchaseLineRepository.save(line);
+
+        return "redirect:/purchase-lines";
+    }
 }
