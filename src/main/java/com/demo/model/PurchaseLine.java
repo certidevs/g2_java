@@ -20,6 +20,8 @@ public class PurchaseLine {
 
    private Double unitPrice;
 
+    private String talla;
+
 @ManyToOne
     private Purchase purchase;
 @ManyToOne

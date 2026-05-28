@@ -11,8 +11,8 @@
             <th>Producto</th>
             <th>Precio</th>
             <th>Cantidad</th>
-            <!--<th>Talla</th>
-            <th>Seleccion</th>-->
+            <th>Talla</th>
+            <th>Seleccion</th>
             <th>Total</th>
         </tr>
         </thead>
@@ -22,18 +22,38 @@
             <td th:text="${#numbers.formatDecimal(line.product.price, 1, 2)} + '€'"></td>
             <td th:text="${#numbers.formatDecimal(line.product.price * line.quantity, 1, 2)} + '€'"></td>
             <td th:text="${line.talla}"></td>
-            <!--<td th:if="${line.product.medidas != null}">
-                <form th:action="@{/purchase-lines}" method="post">
+            <td th:if="${line.product.medidas != null}">
+                <form th:action="@{/purchase-lines/update}" method="post">
 
                     <input type="hidden"
                            name="lineId"
                            th:value="${line.id}">
 
-                    <input type="text"
-                           name="talla"
-                           th:value="${line.talla}"
-                           placeholder="Talla"
-                           required>
+                        <!-- SHOES -->
+                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).SHOES}"
+                                name="talla"
+                                class="form-select form-select-sm">
+
+                            <option th:each="num : ${#numbers.sequence(30,50)}"
+                                    th:value="${num}"
+                                    th:text="${num}">
+                            </option>
+
+                        </select>
+
+                        <!-- CLOTHING -->
+                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).CLOTHING}"
+                                name="talla"
+                                class="form-select form-select-sm">
+
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+
+                        </select>
 
                     <button type="submit"
                             class="btn btn-sm btn-outline-primary mt-2">
@@ -41,7 +61,7 @@
                     </button>
 
                 </form>
-            </td>-->
+            </td>
             <td th:unless="${line.product.medidas != null}">
                 -
             </td>
