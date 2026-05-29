@@ -34,6 +34,7 @@ public void run(ApplicationArguments args) throws Exception {
                 .email("user@gmail.com")
                 .password(passwordEncoder.encode("user"))
                 .role(Role.ROLE_USER)
+                .online(true)
                 .build());
 
         //Opción usando directamente el repository
@@ -42,6 +43,7 @@ public void run(ApplicationArguments args) throws Exception {
                 .email("admin@gmail.com")
                 .password(passwordEncoder.encode("admin"))
                 .role(Role.ROLE_ADMIN)
+                .online(true)
                 .build());
 
     }

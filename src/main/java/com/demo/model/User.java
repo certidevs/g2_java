@@ -32,11 +32,20 @@ public class User  implements UserDetails{
     @Column(nullable = false)
     private String password;
 
+
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of( new SimpleGrantedAuthority(role.name()));
+    }
+
+    private Boolean online;
+
+    @Override
+    public boolean isEnabled() {
+        return online != null && online; // true o false
     }
 }
