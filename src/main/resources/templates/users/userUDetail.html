@@ -13,16 +13,13 @@
         <i class="fa-solid fa-user text-primary me-2"></i>
         <span th:text="${'Usuario: ' + user.id}"></span>
     </h1>
-
-    <div class="card shadow-sm mb-4">
-
+    <div style="background-image: url('/images/AWPRAN_0882_03_500x500px.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+    <div class="card shadow-sm mb-4 align-items-center justify-content-center">
         <div class="card-body">
-            <dl class="row mb-0">
-                <dt class="col-sm-3">ID</dt>
-                <dd class="col-sm-9" th:text="${user.id}"></dd>
+            <dl class="row mb-0 d-flex">
                 <dt class="col-sm-3">Username</dt>
                 <dd class="col-sm-9" th:text="${user.username}"></dd>
-                <dt class="col-sm-3">Email</dt>
+                <dt class="col-sm-3 mt-2">Email</dt>
                 <dd class="col-sm-9" th:text="${user.email}"></dd>
             </dl>
         </div>
@@ -34,7 +31,7 @@
                 <i class="fa-solid fa-user-pen me-1"></i> Editar
             </a>
         </div>
-
+    </div>
     </div>
     <div class="row g-3 mb-4">
         <div class="col-md-4">

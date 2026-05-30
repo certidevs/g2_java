@@ -37,6 +37,6 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("userStats", userService.findStatsById(user.getId()));
 
-        return "users/userDetail";
+        return "users/userUDetail";
     }
 }
