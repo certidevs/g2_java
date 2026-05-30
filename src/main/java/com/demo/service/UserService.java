@@ -121,7 +121,7 @@ public class UserService implements UserDetailsService {
         userDB.setRole(userForm.getRole());
         userDB.setImageUrl(userForm.getImageUrl());
         // TODO un admin podría desactivarse a sí mismo, hay que impedirlo lanzando Illegal....
-        userDB.setActive(userForm.getActive());
+        userDB.setOnline(userForm.getOnline());
 
         // si se ha introducido una nueva contraseña, la ciframos y actualizamos,
         // sino dejamos la contraseña actual sin cambios
@@ -130,4 +130,5 @@ public class UserService implements UserDetailsService {
 
         return userRepository.save(userDB); // guardamos el usuario actualizado en base de datos
     }
+
 }

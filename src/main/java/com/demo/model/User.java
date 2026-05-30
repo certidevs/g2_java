@@ -21,7 +21,7 @@ public class User  implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(unique = true , nullable = false)
     private String username;
@@ -33,7 +33,10 @@ public class User  implements UserDetails{
     private String password;
 
 
+    private String passwordConfirm;
 
+
+    private String imageUrl;
     @Enumerated(EnumType.STRING)
     private Role role;
 
