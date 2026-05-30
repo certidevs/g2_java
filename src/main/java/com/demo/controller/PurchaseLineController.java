@@ -9,6 +9,7 @@ import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.PurchaseRepository;
 import com.demo.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,8 +142,17 @@ public String increaseQuantity(@PathVariable Long id) {
 
     purchaseLineRepository.save(line);
 
+    Purchase purchase = line.getPurchase();
+
+    Double totalPrice =
+            purchaseLineRepository.calculateTotalPrice(purchase.getId());
+
+    purchase.setTotalPrice(totalPrice);
+
+    purchaseRepository.save(purchase);
     return "redirect:/purchase-lines";
 }
+@Transactional
     @GetMapping("/decrease/{id}")
     public String decreaseQuantity(@PathVariable Long id) {
 
@@ -161,7 +171,16 @@ public String increaseQuantity(@PathVariable Long id) {
         } else {
 
             purchaseLineRepository.delete(line);
-        }
+            purchaseLineRepository.flush();        }
+
+        Purchase purchase = line.getPurchase();
+
+        Double totalPrice =
+                purchaseLineRepository.calculateTotalPrice(purchase.getId());
+
+        purchase.setTotalPrice(totalPrice);
+
+        purchaseRepository.save(purchase);
 
         return "redirect:/purchase-lines";
     }
@@ -178,6 +197,15 @@ public String increaseQuantity(@PathVariable Long id) {
         line.setTalla(talla);
 
         purchaseLineRepository.save(line);
+
+        Purchase purchase = line.getPurchase();
+
+        Double totalPrice =
+                purchaseLineRepository.calculateTotalPrice(purchase.getId());
+
+        purchase.setTotalPrice(totalPrice);
+
+        purchaseRepository.save(purchase);
 
         return "redirect:/purchase-lines";
     }
