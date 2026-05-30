@@ -21,7 +21,7 @@ public class User  implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(unique = true , nullable = false)
     private String username;
@@ -32,24 +32,20 @@ public class User  implements UserDetails{
     @Column(nullable = false)
     private String password;
 
+
+
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    private Boolean active;
-
-    private String imageUrl;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of( new SimpleGrantedAuthority(role.name()));
     }
 
+    private Boolean online;
 
-    // Spring Security llama a este metodo, si active es false no le deja hacer login
     @Override
     public boolean isEnabled() {
-        return active != null && active; // true o false
+        return online != null && online; // true o false
     }
-
-
 }

@@ -20,7 +20,7 @@
         <tr th:each="line : ${purchaseLines}">
             <td th:text="${line.product.name}"></td>
             <td th:text="${#numbers.formatDecimal(line.product.price, 1, 2)} + '€'"></td>
-            <td th:text="${#numbers.formatDecimal(line.product.price * line.quantity, 1, 2)} + '€'"></td>
+            <td th:text="${line.quantity}"></td>
             <td th:text="${line.talla}"></td>
             <td th:if="${line.product.medidas != null}">
                 <form th:action="@{/purchase-lines/update}" method="post">
