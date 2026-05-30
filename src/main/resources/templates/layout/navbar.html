@@ -54,10 +54,11 @@
                 </a>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <span class="text-secondary me-3">
+                <a th:href="@{/profile}" class="nav-link">
                     <i class="fa-solid fa-user me-1"></i>
                     Bienvenido <span sec:authentication="name"></span>
                 </span>
+                </a>
                 <form th:action="@{/logout}" method="post" class="d-inline">
                     <button class="btn btn-outline-secondary btn-sm ms-2">
                         <i class="fa-solid fa-sign-out"></i> Salir
