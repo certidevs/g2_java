@@ -4,9 +4,11 @@ import com.demo.model.Review;
 
 import java.util.List;
 
-//Aquí se pone la información del usuario que no está en la tabla usuario
-//Porque está en sus asociaciones
+// Información del usuario que no está en la tabla usuario porque
+// está en sus asociaciones
+// a futuro se puede añadir aquí más info del usuario:
+// por ejemplo: favoritos, puntos de fidelización, ...
 public record UserStatsDTO(
-        long countReview,
+        long countReviews,
         List<Review> reviews
 ) { }

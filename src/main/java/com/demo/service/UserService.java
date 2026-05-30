@@ -80,10 +80,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
     }
 
-    public UserStatsDTO findStatsById(Long id){
+    public UserStatsDTO findStatsById(Long id) {
         return new UserStatsDTO(
-        reviewRepository.countByUser_Id(id),
-        reviewRepository.findByUserId(id)
+                reviewRepository.countByUser_Id(id),
+                reviewRepository.findByUser_Id(id)
         );
     }
 
