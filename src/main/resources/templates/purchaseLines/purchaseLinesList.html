@@ -1,91 +1,209 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/head :: head('Carrito')}"></head>
+<link rel="stylesheet" th:href="@{/css/purchases.css}">
 <body>
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 <div class="container mt-4">
-    <h1>Carrito</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Talla</th>
-            <th>Seleccion</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="line : ${purchaseLines}">
-            <td th:text="${line.product.name}"></td>
-            <td th:text="${#numbers.formatDecimal(line.product.price, 1, 2)} + '€'"></td>
-            <td th:text="${line.quantity}"></td>
-            <td th:text="${line.talla}"></td>
-            <td th:if="${line.product.medidas != null}">
-                <form th:action="@{/purchase-lines/update}" method="post">
+    <div class="purchase-header mb-4">
+        <h1 class="mb-2">
+            <i class="fa-solid fa-cart-shopping me-2"></i>
+            Carrito
+        </h1>
 
-                    <input type="hidden"
-                           name="lineId"
-                           th:value="${line.id}">
+        <p class="purchase-muted mb-0">
+            Revisa tus productos antes de finalizar el pedido.
+        </p>
+    </div>
+<!--    <table class="table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Producto</th>-->
+<!--            <th>Precio</th>-->
+<!--            <th>Cantidad</th>-->
+<!--            <th>Talla</th>-->
+<!--            <th>Seleccion</th>-->
+<!--            <th>Mas/Menos</th>-->
+<!--            <th>Total</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="line : ${purchaseLines}">-->
+<!--            <td th:text="${line.product.name}"></td>-->
+<!--            <td th:text="${#numbers.formatDecimal(line.product.price, 1, 2)} + '€'"></td>-->
+<!--            <td th:text="${line.quantity}"></td>-->
+<!--            <td th:text="${line.talla}"></td>-->
+<!--            <td th:if="${line.product.medidas != null}">-->
+<!--&lt;!&ndash;                <form th:action="@{/purchase-lines/update}" method="post">&ndash;&gt;-->
 
-                        <!-- SHOES -->
-                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).SHOES}"
-                                name="talla"
-                                class="form-select form-select-sm">
+<!--&lt;!&ndash;                    <input type="hidden"&ndash;&gt;-->
+<!--&lt;!&ndash;                           name="lineId"&ndash;&gt;-->
+<!--&lt;!&ndash;                           th:value="${line.id}">&ndash;&gt;-->
 
-                            <option th:each="num : ${#numbers.sequence(30,50)}"
-                                    th:value="${num}"
-                                    th:text="${num}">
-                            </option>
+<!--&lt;!&ndash;                        &lt;!&ndash; SHOES &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).SHOES}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                name="talla"&ndash;&gt;-->
+<!--&lt;!&ndash;                                class="form-select form-select-sm">&ndash;&gt;-->
 
-                        </select>
+<!--&lt;!&ndash;                            <option th:each="num : ${#numbers.sequence(30,50)}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:value="${num}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:text="${num}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
 
-                        <!-- CLOTHING -->
-                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).CLOTHING}"
-                                name="talla"
-                                class="form-select form-select-sm">
+<!--&lt;!&ndash;                        </select>&ndash;&gt;-->
 
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
+<!--&lt;!&ndash;                        &lt;!&ndash; CLOTHING &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).CLOTHING}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                name="talla"&ndash;&gt;-->
+<!--&lt;!&ndash;                                class="form-select form-select-sm">&ndash;&gt;-->
 
-                        </select>
+<!--&lt;!&ndash;                            <option value="XS">XS</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="S">S</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="M">M</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="L">L</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="XL">XL</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="XXL">XXL</option>&ndash;&gt;-->
 
-                    <button type="submit"
-                            class="btn btn-sm btn-outline-primary mt-2">
-                        Actualizar talla
-                    </button>
+<!--&lt;!&ndash;                        </select>&ndash;&gt;-->
 
-                </form>
-            </td>
-            <td th:unless="${line.product.medidas != null}">
-                -
-            </td>
-            <td>
-                <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"
-                   class="btn btn-sm btn-outline-danger">
-                    -
-                </a>
-                <span class="mx-2"
-                      th:text="${line.quantity}"></span>
-                <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"
-                   class="btn btn-sm btn-outline-success">
-                    +
-                </a>
-            </td>
-            <td th:text="${line.product.price * line.quantity} + '€'"></td>
-        </tr>
-        </tbody>
-    </table>
-    <h3>
-        Total:
-        <span th:text="${#numbers.formatDecimal(total, 1, 2)} + '€'"></span>
-    </h3>
-    <a th:if="${purchase}" th:href="@{/purchases/{id}(id=${purchase.id})}" class="btn btn-success">
+<!--&lt;!&ndash;                    <button type="submit"&ndash;&gt;-->
+<!--&lt;!&ndash;                            class="btn btn-sm btn-outline-primary mt-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        Actualizar talla&ndash;&gt;-->
+<!--&lt;!&ndash;                    </button>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--                <form th:action="@{/purchase-lines/update-talla}" method="post" class="mt-2">-->
+
+<!--                    <input type="hidden" name="lineId" th:value="${line.id}"/>-->
+
+<!--                    &lt;!&ndash; SHOES &ndash;&gt;-->
+<!--                    <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).SHOES}"-->
+<!--                            name="talla"-->
+<!--                            class="form-select form-select-sm w-auto d-inline">-->
+
+<!--                        <option th:each="num : ${#numbers.sequence(30,50)}"-->
+<!--                                th:value="${num}"-->
+<!--                                th:text="${num}">-->
+<!--                        </option>-->
+
+<!--                    </select>-->
+
+<!--                    &lt;!&ndash; CLOTHING &ndash;&gt;-->
+<!--                    <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).CLOTHING}"-->
+<!--                            name="talla"-->
+<!--                            class="form-select form-select-sm w-auto d-inline">-->
+
+<!--                        <option value="XS">XS</option>-->
+<!--                        <option value="S">S</option>-->
+<!--                        <option value="M">M</option>-->
+<!--                        <option value="L">L</option>-->
+<!--                        <option value="XL">XL</option>-->
+<!--                        <option value="XXL">XXL</option>-->
+
+<!--                    </select>-->
+
+<!--                    <button type="submit"-->
+<!--                            class="btn btn-sm btn-black ms-2">-->
+<!--                        Guardar-->
+<!--                    </button>-->
+
+<!--                </form>-->
+<!--            </td>-->
+<!--            <td th:unless="${line.product.medidas != null}">-->
+<!--                - -->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"-->
+<!--                   class="btn btn-sm btn-outline-danger">-->
+<!--                    - -->
+<!--                </a>-->
+<!--                <span class="mx-2"-->
+<!--                      th:text="${line.quantity}"></span>-->
+<!--                <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"-->
+<!--                   class="btn btn-sm btn-outline-success">-->
+<!--                    +-->
+<!--                </a>-->
+<!--            </td>-->
+<!--            <td th:text="${line.product.price * line.quantity} + '€'"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+    <div class="row g-3 mt-4">
+
+        <div class="col-12" th:each="line : ${purchaseLines}">
+
+            <div class="purchase-card p-2 d-flex align-items-center gap-3">
+
+                <!-- IMAGEN -->
+                <img th:src="${line.product.image}"
+                     alt="producto"
+                     style="width: 100px; height: 100px; object-fit: cover; border-radius: 15px;">
+
+                <!-- INFO -->
+                <div class="flex-grow-1">
+
+                    <h5 class="mb-1" th:text="${line.product.name}"></h5>
+
+                    <p class="text-muted small mb-1"
+                       th:text="${line.product.shortDescription}">
+                    </p>
+
+                    <span th:if="${line.talla != null}"
+                          class="badge bg-dark"
+                          th:text="'Talla: ' + ${line.talla}">
+                    </span>
+
+                </div>
+
+                <!-- CANTIDAD -->
+                <div class="text-center">
+
+                    <div class="d-flex align-items-center gap-2">
+
+                        <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"
+                           class="btn btn-sm btn-outline-danger rounded-pill">-</a>
+
+                        <span class="fw-bold"
+                              th:text="${line.quantity}"></span>
+
+                        <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"
+                           class="btn btn-sm btn-outline-success rounded-pill">+</a>
+
+                    </div>
+
+                </div>
+
+                <!-- PRECIO -->
+                <div class="text-end">
+
+                    <div class="purchase-price">
+                        <span th:text="${#numbers.formatDecimal(line.product.price * line.quantity,1,2)}"></span> €
+                    </div>
+
+                    <a th:href="@{/products/{id}(id=${line.product.id})}"
+                       class="btn btn-sm btn-black mt-2">
+                        Ver
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="purchase-header mt-1">
+
+        <h3 class="mb-1">
+            Total del carrito
+        </h3>
+
+        <div class="purchase-total">
+            <span th:text="${#numbers.formatDecimal(total,1,2)}"></span> €
+        </div>
+
+    </div>
+    <a th:if="${purchase}" th:href="@{/purchases/{id}(id=${purchase.id})}" class="btn-black">
         Ver Pedido
     </a>
     <hr>
