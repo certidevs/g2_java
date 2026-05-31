@@ -36,7 +36,9 @@ public class UserController {
     @GetMapping("/profile")
     public String profile(Authentication authentication, Model model) {
 
-        User user = (User) authentication.getPrincipal();
+        User principal = (User) authentication.getPrincipal();
+
+        User user = userService.findById(principal.getId());
 
         model.addAttribute("user", user);
         model.addAttribute("userStats", userService.findStatsById(user.getId()));
@@ -93,6 +95,36 @@ public class UserController {
                     : "redirect:/admin/users/edit/" + user.getId();
         }
     }
+    @GetMapping("profile/edit/{id}")
+    public String editLimitedUser(Model model, @PathVariable Long id) {
+        User user = userService.findById(id);
+        user.setPassword(null); // no devolver esta password cifrada para evitar exponerla
+        model.addAttribute("user", user);
+        model.addAttribute("roles", Role.values());
+        model.addAttribute("edit", true);
+        return "users/userLimitedForm";
+    }
+    @PostMapping("profile")
+    public String saveUser(@ModelAttribute User user, RedirectAttributes ra) {
 
+        try {
+            if (user.getId() == null) {
+                userService.create(user);
+                ra.addFlashAttribute("message", "Usuario creado");
+            } else {
+                userService.update(user);
+                ra.addFlashAttribute("message", "Usuario actualizado");
+            }
+
+            return "redirect:/profile";
+
+        } catch (Exception e) {
+            ra.addFlashAttribute("error", e.getMessage());
+
+            return (user.getId() == null)
+                    ? "redirect:/products"
+                    : "redirect:/profile/edit/" + user.getId();
+        }
+    }
 
 }//

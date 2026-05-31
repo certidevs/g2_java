@@ -1,5 +1,6 @@
 package com.demo.dto;
 
+import com.demo.model.Purchase;
 import com.demo.model.Review;
 
 import java.util.List;
@@ -10,5 +11,7 @@ import java.util.List;
 // por ejemplo: favoritos, puntos de fidelización, ...
 public record UserStatsDTO(
         long countReviews,
-        List<Review> reviews
+        List<Review> reviews,
+        long countPurchase,
+        List<Purchase> purchases
 ) { }

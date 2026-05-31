@@ -64,6 +64,7 @@ public class SecurityConfig {
 
                         // panel de usuarios para admins
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        //.requestMatchers("/profile/**").hasRole("USER")
                         // TODO
                         .anyRequest().authenticated()
                       //.anyRequest().permitAll()

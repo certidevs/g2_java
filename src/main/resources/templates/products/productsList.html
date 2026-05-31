@@ -40,7 +40,7 @@
             <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div id="sombra" th:each="product : ${products}" class="col mt-4 mb-4">
                     <div>
-                        <a th:href="@{/products/{id}(id=${product.id})}" autofocus >
+                        <a th:href="@{/products/{id}(id=${product.id})}" autofocus style="outline: none" >
                             <img th:src="${product.image}" class="card-img-top"  alt="..." role="img"  width="400">
                         </a>
                         <div class="card-body" >

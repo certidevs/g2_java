@@ -83,7 +83,9 @@ public class UserService implements UserDetailsService {
     public UserStatsDTO findStatsById(Long id) {
         return new UserStatsDTO(
                 reviewRepository.countByUser_Id(id),
-                reviewRepository.findByUser_Id(id)
+                reviewRepository.findByUser_Id(id),
+                purchaseRepository.countByUser_Id(id),
+                purchaseRepository.findByUser_IdOrderByPurchaseDateDesc(id)
         );
     }
 
@@ -131,4 +133,35 @@ public class UserService implements UserDetailsService {
         return userRepository.save(userDB); // guardamos el usuario actualizado en base de datos
     }
 
+
+    /*public User updateLimited(User userForm) {
+        User userDB = findById(userForm.getId()); // primero sacamos el usuario de base de datos
+
+        // Ver si username ocupado por otro usuario distinto a ese usuario userDB.getId()
+        // si username ocupado por otro usuario entonces throw new IllegalArgumentException
+        Optional<User> userOpt = userRepository.findByUsername(userForm.getUsername());
+        if (userOpt.isPresent() && !userOpt.get().getId().equals(userForm.getId()))
+            throw new IllegalArgumentException("El nombre de usuario ya existe");
+
+        // lo mismo para el email pero en estilo programación funcional
+        userRepository.findByEmail(userForm.getEmail())
+                .filter(user -> !user.getId().equals(userForm.getId()))
+                .ifPresent(user -> {
+                    throw new IllegalArgumentException("El email de usuario ya existe");
+                });
+
+        userDB.setUsername(userForm.getUsername());
+        userDB.setEmail(userForm.getEmail());
+        userDB.setRole(userForm.getRole());
+        userDB.setImageUrl(userForm.getImageUrl());
+        // TODO un admin podría desactivarse a sí mismo, hay que impedirlo lanzando Illegal....
+        userDB.setOnline(userForm.getOnline());
+
+        // si se ha introducido una nueva contraseña, la ciframos y actualizamos,
+        // sino dejamos la contraseña actual sin cambios
+        if(StringUtils.hasText(userForm.getPassword()))
+            userDB.setPassword(passwordEncoder.encode(userForm.getPassword()));
+
+        return userRepository.save(userDB); // guardamos el usuario actualizado en base de datos
+    }*/
 }
