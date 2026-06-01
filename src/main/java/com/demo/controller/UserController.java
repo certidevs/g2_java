@@ -116,7 +116,7 @@ public class UserController {
                 ra.addFlashAttribute("message", "Usuario actualizado");
             }
 
-            return "redirect:/profile";
+            return "redirect:/login?logout";
 
         } catch (Exception e) {
             ra.addFlashAttribute("error", e.getMessage());

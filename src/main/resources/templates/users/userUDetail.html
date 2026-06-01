@@ -7,13 +7,13 @@
 
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
-<main class="container flex-grow-1 my-4">
+<main class="flex-grow-1 my-4">
 
 
     <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center rounded-3" style="background: linear-gradient(to bottom,#ffffff 25%, #ffffff 50%, grey 75%, grey 100%);">
         <div class="card shadow-lg" style="max-width: 1280px; width: 100%; max-height: 720px; height: 100%">
             <h1 class="mb-3 align-self-start card-header">
-                <span th:text="${'Usuario: ' + user.id}"></span>
+                <span>Perfil:</span>
             </h1>
             <div class="card-body">
                 <div class="text-center mb-3">

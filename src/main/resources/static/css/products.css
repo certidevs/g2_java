@@ -1,9 +1,9 @@
-#sombra:hover{
+#sombras:hover{
     border: 5px #0f0f0f;
     color: darkgray;
 
 }
-a{
+#sombras a{
     text-decoration: none;
     color: inherit;
 }

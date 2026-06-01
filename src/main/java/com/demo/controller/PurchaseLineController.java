@@ -11,11 +11,14 @@ import com.demo.repository.PurchaseRepository;
 import com.demo.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -149,7 +152,6 @@ public String increaseQuantity(@PathVariable Long id) {
     purchaseRepository.save(purchase);
     return "redirect:/purchase-lines";
 }
-@Transactional
     @GetMapping("/decrease/{id}")
     public String decreaseQuantity(@PathVariable Long id) {
 
@@ -206,4 +208,6 @@ public String increaseQuantity(@PathVariable Long id) {
 
         return "redirect:/purchase-lines";
     }
+
+
 }
