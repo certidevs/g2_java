@@ -7,10 +7,13 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="mb-0" >Categorías</h1>
     </div>
-    <a th:href="@{/categories/new}" class="btn btn-sm btn-primary">
-        Crear
-    </a>
-
+    <div class="d-flex justify-content-end mb-3">
+        <a th:href="@{/categories/new}"
+           class="btn btn-primary btn-sm px-3 rounded-pill shadow-sm">
+            <i class="fa-solid fa-plus me-1"></i>
+            Crear
+        </a>
+    </div>
     <!-- TODO  poder filtrar categoría por nombre-->
 
     <!--5. hacerlo mas bonito-->
@@ -18,7 +21,7 @@
         <div class="col" th:each="category : ${categories}">
             <div class="card card-restaurant h-100 shadow-sm">
                 <div class="card-body">
-                    <img th:src="@{${category.image}}" class="card-img-top" alt="Category Image">
+                    <img th:src="${category.image}" class="card-img-top" alt="Category Image">
                     <h5 class="card-title">
                         <i></i>
                         <span th:text="${category.name}">Nombre</span>

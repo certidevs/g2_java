@@ -8,12 +8,18 @@
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="flex-grow-1 my-4">
+    <div class="container-fluid position-relative min-vh-100 d-flex justify-content-center align-items-center overflow-hidden">
 
+    <img src="/images/img.png"
+         class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+         alt="background">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
-    <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center rounded-3" style="background: linear-gradient(to bottom,#ffffff 25%, #ffffff 50%, grey 75%, grey 100%);">
+        <!--<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center rounded-3" style="background: linear-gradient(to bottom,#ffffff 25%, #ffffff 50%, grey 75%, grey 100%);"> -->
         <div class="card shadow-lg" style="max-width: 1280px; width: 100%; max-height: 720px; height: 100%">
             <h1 class="mb-3 align-self-start card-header">
-                <span>Perfil:</span>
+                <span>Perfil: </span>
+                <span th:text="${user.username}">username</span>
             </h1>
             <div class="card-body">
                 <div class="text-center mb-3">
@@ -86,7 +92,10 @@
             </div>
         </div>
     </div>
-    <h2>Favoritos</h2>
+    <h2 class="mt-5 mb-4">
+        <i class="fa-solid fa-star text-warning me-2"></i>
+        Favoritos
+    </h2>
     <div th:if="${userStats.favoriteProduct().isEmpty()}" class="alert alert-light border">
         <i class="fa-regular fa-heart me-1"></i>
         Este usuario aún no ha marcado productos favoritos.
@@ -104,8 +113,15 @@
                         Marcado el
                         <span th:text="${#temporals.format(fav.createdAt, 'dd/MM/yyyy')}"></span>
                     </small>
+
+                    <div class="col-4">
+                        <img th:src="${fav.product.image}"
+                             class="img-fluid h-100 w-100 object-fit-cover rounded-end"
+                             alt="Producto">
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </main>
