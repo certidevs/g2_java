@@ -43,7 +43,7 @@
                 <script>
                     document.getElementById('editImageToggle').addEventListener('change', function() {
                         const imageInput = document.getElementById('image');
-                        imageInput.disabled = !this.checked;
+                        imageInput.readOnly = !this.checked;
                         if (this.checked) {
                             imageInput.focus();
                         }
