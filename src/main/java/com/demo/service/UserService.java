@@ -26,6 +26,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ReviewRepository reviewRepository;
+    private final LikeService likeService;
     private final ProductRepository productRepository;
     private final PurchaseRepository purchaseRepository;
 
@@ -85,7 +86,8 @@ public class UserService implements UserDetailsService {
                 reviewRepository.countByUser_Id(id),
                 reviewRepository.findByUser_Id(id),
                 purchaseRepository.countByUser_Id(id),
-                purchaseRepository.findByUser_IdOrderByPurchaseDateDesc(id)
+                purchaseRepository.findByUser_IdOrderByPurchaseDateDesc(id),
+                likeService.findFavoriteProduct(id)
         );
     }
 

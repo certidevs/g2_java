@@ -1,9 +1,14 @@
 package com.demo.config;
 
 
+import com.demo.model.Like;
+import com.demo.model.Product;
 import com.demo.model.User;
 import com.demo.model.enums.Role;
+import com.demo.repository.LikeRepository;
+import com.demo.repository.ProductRepository;
 import com.demo.repository.UserRepository;
+import com.demo.service.LikeService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -17,6 +22,8 @@ public class DataInitializer  implements ApplicationRunner {
      private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 //    private final UserService userService;
+    private final LikeRepository likeRepository;
+    private final ProductRepository productRepository;
 
     @Override
 public void run(ApplicationArguments args) throws Exception {
@@ -45,6 +52,5 @@ public void run(ApplicationArguments args) throws Exception {
                 .role(Role.ROLE_ADMIN)
                 .online(true)
                 .build());
-
     }
 }

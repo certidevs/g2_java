@@ -41,7 +41,7 @@
 
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link" th:href="@{/admin/users}">
-                        <i class="fa-solid fa-users me-1"></i> Usuarios
+                        <i class="fa-solid fa-users me-1"></i> Panel Usuarios
                     </a>
 
                 </li>
@@ -64,7 +64,7 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" th:href="@{/profile}">Perfil <i class="fa-solid fa-user"></i></a></li>
                     <li><a class="dropdown-item" th:href="@{/products}">Inicio <i class="fa-solid fa-home"></i></a></li>
-                    <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/admin/users}">Panel de Administración <i class="fa-solid fa-user-shield"></i></a></li>
+                    <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/admin/users}">Panel Usuarios<i class="fa-solid fa-users ms-2"></i></i></a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><form th:action="@{/logout}" method="post" class="align-items-start">
                         <button class="dropdown-item ">

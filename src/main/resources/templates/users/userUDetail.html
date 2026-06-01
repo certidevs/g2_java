@@ -86,6 +86,28 @@
             </div>
         </div>
     </div>
+    <h2>Favoritos</h2>
+    <div th:if="${userStats.favoriteProduct().isEmpty()}" class="alert alert-light border">
+        <i class="fa-regular fa-heart me-1"></i>
+        Este usuario aún no ha marcado productos favoritos.
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-3" th:unless="${userStats.favoriteProduct().isEmpty()}">
+        <div class="col" th:each="fav : ${userStats.favoriteProduct()}">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fa-solid fa-store text-primary me-2"></i>
+                        <a th:href="@{/products/{id}(id=${fav.product.id})}"
+                           th:text="${fav.product.name}">Producto</a>
+                    </h5>
+                    <small class="text-muted">
+                        Marcado el
+                        <span th:text="${#temporals.format(fav.createdAt, 'dd/MM/yyyy')}"></span>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>
