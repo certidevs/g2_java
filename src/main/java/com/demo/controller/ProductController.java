@@ -1,14 +1,17 @@
 package com.demo.controller;
 import com.demo.model.Product;
 import com.demo.model.Review;
+import com.demo.model.User;
 import com.demo.repository.CategoryRepository;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.ReviewRepository;
+import com.demo.service.FileService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +23,7 @@ public class ProductController {
     private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;
     private final CategoryRepository categoryRepository;
+    private final FileService fileService;
 
     @GetMapping("/products")
     public String productList(Model model, @RequestParam(required = false)String name) {
@@ -95,8 +99,11 @@ public class ProductController {
 
 
     @PostMapping("products")
-    public String createProduct(@ModelAttribute Product product) {
-
+    public String createProduct(@ModelAttribute Product product, @RequestParam("imageFile")MultipartFile imageFile) {
+        String photo = fileService.store(imageFile);
+        if (photo != null) {
+            product.setImage(photo);
+        }
         System.out.println("ACCION COMPLETADA CON EXITO: " + product);
         product.setActivo(true);
         productRepository.save(product);

@@ -97,7 +97,7 @@ public class G2JavaApplication {
                 .stock(99)
                 .category(c1)
                 .activo(true)
-                .image("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946")
+                .image("/images/products/sophbSJk.webp")
                 .build();
         Product producto2 = Product.builder()
                 .name("Crema de arroz proteica")
@@ -107,7 +107,7 @@ public class G2JavaApplication {
                 .stock(10)
                 .category(objects2)
                 .activo(true)
-                .image("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA")
+                .image("/images/products/high-protein-rice-cream-neutral-500g-front-hsn_1_1-removebg-preview.webp")
                 .build();
         Product producto3 = Product.builder()
                 .name("Proteina whey Isolate, Chocolate")
@@ -117,7 +117,7 @@ public class G2JavaApplication {
                 .stock(0)
                 .category(objects3)
                 .activo(true)
-                .image("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn")
+                .image("/images/products/1481702ef5c003d220c6d5d0611a88c4-removebg-preview.webp")
                 .build();
         Product producto4 = Product.builder()
                 .name("Energy bar flapjack (choco,berrys,almond)")
@@ -127,7 +127,7 @@ public class G2JavaApplication {
                 .stock(20)
                 .category(objects3)
                 .activo(true)
-                .image("https://www.hsnstore.com/media/catalog/product/cache/5a15c5988afb4929a2501169a37460ec/f/l/flapjack-chocolate-almond-50g-front-hsn_1_1_1.webp")
+                .image("/images/products/flapjack-chocolate-almond-50g-front-hsn_1_1_1-removebg-preview.png")
                 .build();
         Product producto5 = Product.builder()
                 .name("Isotonica en polvo (Limon)")
@@ -137,7 +137,7 @@ public class G2JavaApplication {
                 .stock(99)
                 .category(objects5)
                 .activo(true)
-                .image("https://imgs.search.brave.com/tsA2DIXjI-5Unu_ZaYGy3yEsf8hQU5U9YNOJhHp_KVU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb250/ZW50cy5tZWRpYWRl/Y2F0aGxvbi5jb20v/cDI2MzE4MTkvMWNy/MS9rJGQ0NDE2ZmU0/MzJmYWM5NjFjZTdi/NTkwODgwZGJhNTQ5/L3Byb2QuanBnP2Zv/cm1hdD1hdXRvJmY9/MTAyNHgw")
+                .image("/images/products/prod-removebg-preview.png")
                 .build();
         Product producto6 = Product.builder()
                 .name("Camiseta gimnasio, nike©")
@@ -147,7 +147,7 @@ public class G2JavaApplication {
                 .stock(50)
                 .category(objects4)
                 .activo(true)
-                .image("https://imgs.search.brave.com/dOOXtflbe6vIZZVmAQByaCCuAuRW_e9wZo0YED0EPbM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb250/ZW50cy5tZWRpYWRl/Y2F0aGxvbi5jb20v/bTMzOTY5NjIvayQx/NzFjYTU4YjUxNjMx/MGMwYjE4YWRmODNi/YjAzYWQ0ZC9waWN0/dXJlLmpwZz9mb3Jt/YXQ9YXV0byZmPTMw/MDB4MA")
+                .image("/images/products/camisa_nike-removebg-preview.png")
                 .medidas(Medidas.CLOTHING)
                 .build();
         Product producto7 = Product.builder()
@@ -158,7 +158,7 @@ public class G2JavaApplication {
                 .stock(50)
                 .category(objects4)
                 .activo(true)
-                .image("https://imgs.search.brave.com/wbHmwexFEM4_u_k9maIMjFxeMhHca739EoRDNaC4D8k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5hdG1vc2ZlcmFz/cG9ydC5lcy81NTM1/NzctaG9tZV9kZWZh/dWx0L3BhbnRhbG9u/ZXMtZGUtZml0bmVz/cy1wdW1hLW0tZmxl/eC1zdHJldGNoLXdv/dmVuLWJsYWNrLWhv/bWJyZS5qcGc")
+                .image("/images/products/pantalones-de-fitness-puma-m-flex-stretch-woven-black-hombre-removebg-preview.png")
                 .medidas(Medidas.CLOTHING)
                 .build();
         Product producto8 = Product.builder()
@@ -169,7 +169,7 @@ public class G2JavaApplication {
                 .stock(89)
                 .category(objects4)
                 .activo(true)
-                .image("https://imgs.search.brave.com/lh00FCYbM4Cjruqp_LKUgFBMIn2ZXpSmpAA9E-GZsfQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dW5kZXJhcm1vdXIu/Y2wvY2RuL3Nob3Av/ZmlsZXMvMzAyNzcy/Ni0wMDFfTjExXzYu/anBnP3Y9MTc2Mjk3/Mzc1OCZ3aWR0aD0x/MjAw")
+                .image("/images/products/3027726-001_N11_6-removebg-preview.png")
                 .medidas(Medidas.SHOES)
                 .build();
         Product producto9 = Product.builder()
@@ -180,7 +180,7 @@ public class G2JavaApplication {
                 .stock(0)
                 .category(objects4)
                 .activo(true)
-                .image("https://imgs.search.brave.com/UN5mv1jJce42NA_yOW0WrB5A016K6HF9BDBCxpcn2q4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Zm9ydW1zcG9ydC5j/b20vaW1hZ2VzL2Fk/aWRhcy1jYW1pc2V0/YS1kZS1mdXRib2wt/b2ZpY2lhbGVzLXBy/aW1lcmEtZXF1aXBh/Y2lvbi1lc3BhbmEt/MjYtb2ZpY2lhbC0w/NC0xMDAxMTExMjA4/LTUwMHg1MDAtZg")
+                .image("/images/products/Camiseta_primera_equipacion_Espana_26_Oficial_Rojo_JN4366_HM5.webp")
                 .medidas(Medidas.CLOTHING)
                 .build();
         Product producto10 = Product.builder()

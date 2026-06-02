@@ -56,7 +56,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="createdAt">Fecha de Opinión</label>
-            <input type="datetime-local" class="form-control" id="createdAt" th:field="*{createdAt}">
+            <input type="hidden" class="form-control" id="createdAt" th:field="*{createdAt}" th:value="${#temporals.format(review.createdAt, 'yyyy-MM-dd''T''HH:mm')}" required readonly>
 
         </div>
 

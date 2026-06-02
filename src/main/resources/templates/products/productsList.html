@@ -42,7 +42,7 @@
                 <div id="sombras" th:each="product : ${products}" class="col mt-4 mb-4">
                     <div>
                         <a th:href="@{/products/{id}(id=${product.id})}" autofocus style="outline: none;" >
-                            <img th:src="${product.image}" class="card-img-top"  alt="..." role="img"  width="400">
+                            <img th:src="${product.image}" class="card-img-top"  alt="..." role="img"  height="400">
                         </a>
                         <div class="card-body" >
                             <a th:href="@{/products/{id}(id=${product.id})}">
@@ -50,20 +50,11 @@
                                 <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
                             </a>
                             <div class="d-flex justify-content-between align-items-center">
-                                <form  sec:authorize="isAuthenticated()"
-                                       th:action="@{/like/toggle}"
-                                       method="post">
-                                    <input type="hidden" name="type" th:value="PRODUCT">
-                                    <input type="hidden" name="markId" th:value="${product.id}">
-                                    <input type="hidden" name="redirectUrl" th:value="@{/products}">
-                                    <button class="btn btn-sm btn-outline-warning align-self-start" type="submit">
-                                        <i class="fa-regular fa-star"></i>
-                                    </button>
-                                </form>
+
                                 <h2 class="align-items-start card-title" th:text="${product.price} + '€'">€</h2>
                                 <div class="btn-group">
                                     <a th:href="@{/products/{id}(id=${product.id})}">
-                                        <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
                                     </a>
 
                                     <form sec:authorize="isAuthenticated()" th:action="@{/purchase-lines/create}" method="post" >
@@ -80,10 +71,19 @@
                                     </a>
                                     <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary ">
                                         <i class="fa-solid fa-pencil me-1"></i>
-
                                     </a>
                                 </div>
                             </div>
+                            <form  sec:authorize="isAuthenticated()"
+                                   th:action="@{/like/toggle}"
+                                   method="post">
+                                <input type="hidden" name="type" th:value="PRODUCT">
+                                <input type="hidden" name="markId" th:value="${product.id}">
+                                <input type="hidden" name="redirectUrl" th:value="@{/products}">
+                                <button class="btn btn-sm btn-outline-warning align-self-start" type="submit">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+                            </form>
                             <small th:if="${product.stock != 0}" class="text-body-secondary align-items-start">Disponibe</small>
                             <small th:unless="${product.stock != 0}" class="text-body-secondary align-items-start">No Disponibe</small>
                         </div>
