@@ -12,7 +12,7 @@
 
     <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-    <form th:action="@{/profile}" th:object="${user}" method="post">
+    <form th:action="@{/profile}" th:object="${user}" method="post" enctype="multipart/form-data">
 
         <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{role}">
@@ -51,15 +51,20 @@
             <label class="form-check-label" for="online">Activo</label>
             <input class="form-check-input" type="checkbox" id="online" th:field="*{online}">
         </div>
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Imagen</label>
+            <input type="hidden" th:field="*{imageUrl}">
+            <input type="file" class="form-control" id="imageFile" name="imageFile">
 
+            <!-- EDITAR: muestra la guardada. ELEGIR archivo: el JS la sustituye -->
+            <img id="preview" alt="Previsualización" class="mt-2 rounded"
+                 style="max-height:150px; display:none"
+                 th:src="${user != null and user.imageUrl != null ? user.imageUrl : null}">
+        </div>
         <button type="submit" class="btn btn-primary">
             <i class="fa-solid fa-floppy-disk me-1"></i>
             Guardar
         </button>
-
-        <a th:href="@{/admin/users}" class="btn btn-secondary" sec:authorize="hasRole('ADMIN')">
-            Cancelar
-        </a>
         <a th:href="@{/profile}" class="btn btn-secondary" sec:authorize="hasRole('USER')">
             Cancelar
         </a>

@@ -37,17 +37,8 @@
                     <!-- EDITAR: muestra la guardada. ELEGIR archivo: el JS la sustituye -->
                     <img id="preview" alt="Previsualización" class="mt-2 rounded"
                          style="max-height:150px; display:none"
-                         th:src="${user != null and user.imageUrl != null ? user.imageUrl : null}">
+                         th:src="${product != null and product.image != null ? product.image : null}">
                 </div>
-                <script>
-                    document.getElementById('editImageToggle').addEventListener('change', function() {
-                        const imageInput = document.getElementById('imageFile');
-                        imageInput.readOnly = !this.checked;
-                        if (this.checked) {
-                            imageInput.focus();
-                        }
-                    });
-                </script>
                 <div class="mb-3">
                     <label class="form-label" for="dishTypes">Categoria</label>
                     <select class="form-select" id="dishTypes" th:field="*{category.id}">
@@ -66,12 +57,18 @@
                 </button>
 
                 <a th:href="@{/products}" class="btn btn-secondary">Cancelar</a>
-
-
             </form>
         </div>
     </div>
 </main>
-
+<script>
+    document.getElementById('editImageToggle').addEventListener('change', function() {
+        const imageInput = document.getElementById('imageUrl');
+        imageInput.readOnly = !this.checked;
+        if (this.checked) {
+            imageInput.focus();
+        }
+    });
+</script>
 </body>
 </html>

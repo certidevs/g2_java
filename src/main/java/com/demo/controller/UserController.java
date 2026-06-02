@@ -2,15 +2,14 @@ package com.demo.controller;
 
 import com.demo.model.User;
 import com.demo.model.enums.Role;
+import com.demo.service.FileService;
 import com.demo.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @AllArgsConstructor
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
 
     private final UserService userService;
+    private final FileService fileService;
 
     @GetMapping("admin/users")
     public String list(Model model) {
@@ -40,7 +40,7 @@ public class UserController {
 
         User user = userService.findById(principal.getId());
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", userService.findById(user.getId())); // User
         model.addAttribute("userStats", userService.findStatsById(user.getId()));
 
         return "users/userUDetail";
@@ -74,8 +74,10 @@ public class UserController {
     }
 
     @PostMapping("/admin/users")
-    public String save(@ModelAttribute User user, RedirectAttributes ra) {
-
+    public String save(@ModelAttribute User user, RedirectAttributes ra,@RequestParam("imageFile") MultipartFile imageFile) {
+        String gympcic = fileService.store(imageFile);
+        if (gympcic != null)
+            user.setImageUrl(gympcic);
         try {
             if (user.getId() == null) {
                 userService.create(user);
@@ -105,8 +107,11 @@ public class UserController {
         return "users/userLimitedForm";
     }
     @PostMapping("profile")
-    public String saveUser(@ModelAttribute User user, RedirectAttributes ra) {
+    public String saveUser(@ModelAttribute User user, RedirectAttributes ra, @RequestParam("imageFile") MultipartFile imageFile) {
 
+        String gympcic = fileService.store(imageFile);
+        if (gympcic != null)
+            user.setImageUrl(gympcic);
         try {
             if (user.getId() == null) {
                 userService.create(user);

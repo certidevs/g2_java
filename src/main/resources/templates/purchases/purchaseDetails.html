@@ -60,13 +60,14 @@
                                 <div class="card shadow-sm border-0 ">
                                     <div class="card-header bg-primary text-white">
                                         <h5 class="mb-0">
-                                            <i class="fa-solid fa-user me-2"></i>Cliente
+                                            <i  class="fa-solid fa-user me-2"></i>Cliente
                                         </h5>
                                     </div>
                                     <div class="card-body text-center pb-2">
                                         <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-2"
                                              style="width: 64px; height: 64px;">
-                                            <i class="fa-solid fa-user fa-2x text-primary"></i>
+                                            <i th:unless="${purchase.user.imageUrl}" class="fa-solid fa-user fa-2x text-primary"></i>
+                                            <img th:if="${purchase.user.imageUrl}" th:src="${purchase.user.imageUrl}" alt="Foto de perfil" class="rounded-circle" style="width: 64px; height: 64px; object-fit: cover;">
                                         </div>
                                         <h5 class="card-title mb-0" th:text="${purchase.user.username}"></h5>
                                         <p class="text-muted small mb-0">
