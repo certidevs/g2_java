@@ -15,10 +15,11 @@ public interface PurchaseRepository  extends JpaRepository<Purchase, Long> {
     @Query("""
 SELECT SUM(p.totalPrice) from Purchase p where p.user.id = :userId
 """) // Traer la suma de purchase totalPrice solo de los pedidos del user que yo te diga
+
+
     double calculateTotalMoneySpentByUserId(Long userId);
 
     Optional<Purchase> findFirstByStatus(PurchaseStatus purchaseStatus);
-
     Optional<Purchase> findFirstByStatusAndUserId(PurchaseStatus purchaseStatus, Long userId);
 }
 

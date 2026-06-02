@@ -46,32 +46,32 @@
     </div>
 
 
-<!--    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">-->
-<!--        <div class="col" th:each="category : ${categories}">-->
-<!--            <div class="card card-restaurant h-100 shadow-sm">-->
-<!--                <div class="card-body">-->
-<!--                    <img th:src="${category.image}" class="card-img-top" alt="Category Image">-->
-<!--                    <h5 class="card-title">-->
-<!--                        <i></i>-->
-<!--                        <span th:text="${category.name}">Nombre</span>-->
-<!--                    </h5>-->
-<!--                    <p class="card-body">-->
-<!--                        <span th:text="${category.description}">Descripcion</span>-->
-<!--                    </p>-->
-<!--                    <a th:href="@{/categories/{id}(id=${category.id})}" class="btn btn-sm btn-primary">-->
-<!--                        Ver-->
-<!--                    </a>-->
-<!--                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn btn-sm btn-success">-->
-<!--                        Editar-->
-<!--                    </a>-->
-<!--                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/deactivate/{id}(id=${category.id})}" class="btn btn-sm btn-danger">-->
-<!--                        <i class="fa-solid fa-ban"></i>-->
-<!--                        Desactivar-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">-->
+    <!--        <div class="col" th:each="category : ${categories}">-->
+    <!--            <div class="card card-restaurant h-100 shadow-sm">-->
+    <!--                <div class="card-body">-->
+    <!--                    <img th:src="${category.image}" class="card-img-top" alt="Category Image">-->
+    <!--                    <h5 class="card-title">-->
+    <!--                        <i></i>-->
+    <!--                        <span th:text="${category.name}">Nombre</span>-->
+    <!--                    </h5>-->
+    <!--                    <p class="card-body">-->
+    <!--                        <span th:text="${category.description}">Descripcion</span>-->
+    <!--                    </p>-->
+    <!--                    <a th:href="@{/categories/{id}(id=${category.id})}" class="btn btn-sm btn-primary">-->
+    <!--                        Ver-->
+    <!--                    </a>-->
+    <!--                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn btn-sm btn-success">-->
+    <!--                        Editar-->
+    <!--                    </a>-->
+    <!--                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/deactivate/{id}(id=${category.id})}" class="btn btn-sm btn-danger">-->
+    <!--                        <i class="fa-solid fa-ban"></i>-->
+    <!--                        Desactivar-->
+    <!--                    </a>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>

@@ -7,48 +7,48 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
-    <!-- PRODUCTO -->
-        <div class="d-flex gap-4 align-items-start">
+<!-- PRODUCTO -->
+<div class="d-flex gap-4 align-items-start">
 
-       <!-- Imagen producto -->
+    <!-- Imagen producto -->
     <div>
         <img th:if="${review.product != null}" th:src="${review.product.image}" alt="Producto" class="img-fluid rounded shadow-sm"
              style="width: 250px; height: auto; ">
     </div>
 
-     <!-- Info producto -->
-            <div class="flex-grow-1">
+    <!-- Info producto -->
+    <div class="flex-grow-1">
 
-                <div class="d-flex justify-content-between align-items-start">
+        <div class="d-flex justify-content-between align-items-start">
 
-                    <h2 class="mb-2" th:text="${review.product.name}">
-                        Nombre producto
-                    </h2>
+            <h2 class="mb-2" th:text="${review.product.name}">
+                Nombre producto
+            </h2>
 
-                    <div th:if="${review.user != null}"
-                         class="d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-user"></i>
-                        <span th:text="${review.user.username}">Usuario:</span>
-                    </div>
+            <div th:if="${review.user != null}"
+                 class="d-flex align-items-center gap-2">
+                <i class="fa-solid fa-user"></i>
+                <span th:text="${review.user.username}">Usuario:</span>
+            </div>
 
-                </div>
+        </div>
 
-         <h4 class="text-success mb-3" th:text="${review.product.price + ' €'}">
+        <h4 class="text-success mb-3" th:text="${review.product.price + ' €'}">
             Precio </h4>
 
-         <p class="text-muted"  th:text="${review.product.shortDescription}">
+        <p class="text-muted"  th:text="${review.product.shortDescription}">
             Descripción corta
-      </p>
+        </p>
 
     </div>
 </div>
 
-    <hr class="my-4">
+<hr class="my-4">
 
-    <!-- REVIEW -->
-    <div>
-        <h4 th:text="${review.title}">Título review</h4>
-         <div class="stars my-2 text-warning">
+<!-- REVIEW -->
+<div>
+    <h4 th:text="${review.title}">Título review</h4>
+    <div class="stars my-2 text-warning">
           <span th:each="i : ${#numbers.sequence(1,5)}" th:text="${review.rating >= i} ? '★' : '☆'">
 
       </span>
@@ -58,8 +58,8 @@
 
 </div>
 
-    <!--Botón de volver -->
-    <div class="d-flex justify-content-center gap-3 mt-4">
+<!--Botón de volver -->
+<div class="d-flex justify-content-center gap-3 mt-4">
 
     <a th:href="@{/reviews-productos}"
        class="btn btn-outline-secondary d-inline-flex align-items-center px-3">
@@ -69,11 +69,11 @@
     </a>
 
     <!-- Botón inicio -->
-            <a th:href="@{/products}"  class="btn btn-primary d-inline-flex align-items-center px-3">
-                <i class="fa-solid fa-house me-2"></i>
-                <span>Inicio</span>
-            </a>
-    </div>
+    <a th:href="@{/products}"  class="btn btn-primary d-inline-flex align-items-center px-3">
+        <i class="fa-solid fa-house me-2"></i>
+        <span>Inicio</span>
+    </a>
+</div>
 </main>
 <footer th:replace="~{layout/footer :: footer}"></footer>
 <script th:replace="~{layout/footer :: scripts}"></script>

@@ -92,7 +92,7 @@ public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPr
 
     Product product = productRepository.findById(productId).orElseThrow();
 
-    Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatusAndUserId(PurchaseStatus.PENDING, user.getId());
+    Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING);
     Purchase purchase;
     if (purchaseOptional.isPresent()) {
         purchase = purchaseOptional.get();

@@ -101,101 +101,101 @@
 
                     </div>
 
-    <!-- Líneas del pedido -->
+                    <!-- Líneas del pedido -->
                     <div class="card shadow-sm border-0 mb-4 w-100">
                         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">
-                <i class="fa-solid fa-dumbbell"></i>Líneas del pedido
-            </h5>
-            <span class="badge bg-light text-dark"
-                  th:text="|${#lists.size(purchaseLines)} líneas|"></span>
-        </div>
-
-        <div th:if="${#lists.isEmpty(purchaseLines)}" class="card-body text-center text-muted py-5">
-            <i class="fa-regular fa-folder-open fa-2x mb-2 d-block"></i>
-            <p class="mb-0">Este pedido no tiene líneas todavía</p>
-        </div>
-
-        <div th:unless="${#lists.isEmpty(purchaseLines)}" class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                <tr>
-                    <th class="ps-3">#</th>
-                    <th>Producto</th>
-                    <th>Categoria</th>
-                    <th class="text-center">Cantidad</th>
-                    <th class="text-end">Precio</th>
-                    <th class="text-end">Subtotal</th>
-                    <th class="text-end pe-3"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="line, iter : ${purchaseLines}">
-                    <td class="ps-3 text-muted"
-                        th:text="${iter.count}">
-                    </td>
-                    <!-- PRODUCTO -->
-                    <td>
-                        <div class="fw-semibold">
-                            <a th:href="@{/products/{id}(id=${line.product.id})}"
-                               class="text-decoration-none link-dark"
-                               th:text="${line.product.name}">
-                            </a>
+                            <h5 class="mb-0">
+                                <i class="fa-solid fa-dumbbell"></i>Líneas del pedido
+                            </h5>
+                            <span class="badge bg-light text-dark"
+                                  th:text="|${#lists.size(purchaseLines)} líneas|"></span>
                         </div>
-                        <div class="small text-muted text-truncate"
-                             style="max-width: 320px;"
-                             th:text="${line.product.shortDescription}">
+
+                        <div th:if="${#lists.isEmpty(purchaseLines)}" class="card-body text-center text-muted py-5">
+                            <i class="fa-regular fa-folder-open fa-2x mb-2 d-block"></i>
+                            <p class="mb-0">Este pedido no tiene líneas todavía</p>
                         </div>
-                    </td>
-                    <!-- CATEGORIA -->
-                    <td>
+
+                        <div th:unless="${#lists.isEmpty(purchaseLines)}" class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                <tr>
+                                    <th class="ps-3">#</th>
+                                    <th>Producto</th>
+                                    <th>Categoria</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-end">Precio</th>
+                                    <th class="text-end">Subtotal</th>
+                                    <th class="text-end pe-3"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="line, iter : ${purchaseLines}">
+                                    <td class="ps-3 text-muted"
+                                        th:text="${iter.count}">
+                                    </td>
+                                    <!-- PRODUCTO -->
+                                    <td>
+                                        <div class="fw-semibold">
+                                            <a th:href="@{/products/{id}(id=${line.product.id})}"
+                                               class="text-decoration-none link-dark"
+                                               th:text="${line.product.name}">
+                                            </a>
+                                        </div>
+                                        <div class="small text-muted text-truncate"
+                                             style="max-width: 320px;"
+                                             th:text="${line.product.shortDescription}">
+                                        </div>
+                                    </td>
+                                    <!-- CATEGORIA -->
+                                    <td>
         <span th:if="${line.product.category != null}"
               th:text="${line.product.category.name}">
 </span>
-                    </td>
-                    <!-- CANTIDAD -->
-                    <td class="text-center">
+                                    </td>
+                                    <!-- CANTIDAD -->
+                                    <td class="text-center">
         <span class="badge bg-dark rounded-pill"
               th:text="${line.quantity}">
         </span>
-                    </td>
-                    <!-- PRECIO -->
-                    <td class="text-end">
+                                    </td>
+                                    <!-- PRECIO -->
+                                    <td class="text-end">
         <span th:text="${#numbers.formatDecimal(line.product.price,1,2)}">
         </span> €
-                    </td>
-                    <!-- SUBTOTAL -->
-                    <td class="text-end fw-semibold">
+                                    </td>
+                                    <!-- SUBTOTAL -->
+                                    <td class="text-end fw-semibold">
         <span th:text="${#numbers.formatDecimal(line.quantity * line.product.price,1,2)}">
         </span> €
-                    </td>
-                    <!-- BOTON -->
-                    <td class="text-end pe-3">
-                        <a th:href="@{/products/{id}(id=${line.product.id})}"
-                           class="btn btn-sm btn-outline-primary">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                                    </td>
+                                    <!-- BOTON -->
+                                    <td class="text-end pe-3">
+                                        <a th:href="@{/products/{id}(id=${line.product.id})}"
+                                           class="btn btn-sm btn-outline-primary">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-        <!-- Totales -->
-        <div class="text-muted small">
-            <i class="fa-regular fa-calendar me-1"></i>
-            <span th:text="${#temporals.format(purchase.purchaseDate, 'dd/MM/yyyy HH:mm')}"></span>
-        </div>
-    </div>
+                        <!-- Totales -->
+                        <div class="text-muted small">
+                            <i class="fa-regular fa-calendar me-1"></i>
+                            <span th:text="${#temporals.format(purchase.purchaseDate, 'dd/MM/yyyy HH:mm')}"></span>
+                        </div>
+                    </div>
                     <div class="d-flex gap-2 align-items-center">
                             <span class="badge fs-6 px-3 py-2"
                                   th:classappend="${purchase.status.name() == 'PENDING' ? 'bg-warning text-dark' : (purchase.status.name() == 'IN_PROGRESS' ? 'bg-info text-dark' : 'bg-success')}"
                                   th:text="${purchase.status.name() == 'PENDING' ? 'Pendiente' : (purchase.status.name() == 'IN_PROGRESS' ? 'En curso' : 'Finalizado')}"></span>
                         <a th:if="${purchase.status.name() == 'PENDING'}"
                            th:href="@{/purchase/{id}/finish(id=${purchase.id})}">
-                        <button class="btn btn-dark rounded-pill px-4 py-2 shadow-sm btn-glass">
-                            Finalizar compra
-                        </button>
+                            <button class="btn btn-dark rounded-pill px-4 py-2 shadow-sm btn-glass">
+                                Finalizar compra
+                            </button>
                         </a>
                         <a th:href="@{/purchase-lines}" class="btn btn-outline-secondary btn-sm">
                             <i class="fa-solid fa-arrow-left me-1"></i> Volver
