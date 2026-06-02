@@ -63,7 +63,7 @@ public class G2JavaApplication {
         Category objects2 = new Category();
         objects2.setName("Crema de arroz");
         objects2.setDescription("La crema de arroz en suplementación es un carbohidrato complejo de digestión rápida obtenido a partir de la harina de arroz. Aquí puedes encontrar todos los tipos.");
-        objects2.setImage("https://imgs.search.brave.com/QxyiZt2DWpX8N-go0NCSbAlUxDJKVNMk_9-6GcBQVSU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aHNuc3RvcmUuY29t/L21lZGlhL2NhdGFs/b2cvcHJvZHVjdC9j/YWNoZS81YTE1YzU5/ODhhZmI0OTI5YTI1/MDExNjlhMzc0NjBl/Yy9oL2kvaGlnaC1w/cm90ZWluLXJpY2Ut/Y3JlYW0tbmV1dHJh/bC01MDBnLWZyb250/LWhzbl8xXzEud2Vi/cA");
+        objects2.setImage("/images/categories/prueba.png");
         objects2.setActivo(true);
         categoryRepository.save(objects2);
 
@@ -77,7 +77,7 @@ public class G2JavaApplication {
         Category objects4 = new Category();
         objects4.setName("Ropa y accesorios");
         objects4.setDescription("Ropa y accesorios deportivos");
-        objects4.setImage("https://imgs.search.brave.com/dOOXtflbe6vIZZVmAQByaCCuAuRW_e9wZo0YED0EPbM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jb250/ZW50cy5tZWRpYWRl/Y2F0aGxvbi5jb20v/bTMzOTY5NjIvayQx/NzFjYTU4YjUxNjMx/MGMwYjE4YWRmODNi/YjAzYWQ0ZC9waWN0/dXJlLmpwZz9mb3Jt/YXQ9YXV0byZmPTMw/MDB4MA");
+        objects4.setImage("/images/categories/RopaYAccesorios.png");
         objects4.setActivo(true);
         categoryRepository.save(objects4);
 
@@ -89,13 +89,11 @@ public class G2JavaApplication {
         categoryRepository.save(objects5);
 
 
-
-
         Product producto = Product.builder()
                 .name("Creatina Creapure, Sabor Fresa")
                 .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
-                .price(26.50)
+                .price(44.99)
                 .stock(99)
                 .category(c1)
                 .activo(true)
@@ -185,7 +183,29 @@ public class G2JavaApplication {
                 .image("https://imgs.search.brave.com/UN5mv1jJce42NA_yOW0WrB5A016K6HF9BDBCxpcn2q4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Zm9ydW1zcG9ydC5j/b20vaW1hZ2VzL2Fk/aWRhcy1jYW1pc2V0/YS1kZS1mdXRib2wt/b2ZpY2lhbGVzLXBy/aW1lcmEtZXF1aXBh/Y2lvbi1lc3BhbmEt/MjYtb2ZpY2lhbC0w/NC0xMDAxMTExMjA4/LTUwMHg1MDAtZg")
                 .medidas(Medidas.CLOTHING)
                 .build();
-        productRepository.saveAll(List.of(producto,producto2,producto3,producto4,producto5,producto6,producto7,producto8,producto9));
+        Product producto10 = Product.builder()
+                .name("Creatina Creapure Vegana©")
+                .shortDescription("Te ayuda a rendir mejor en los entrenos")
+                .longDescription("Creatina Vegana con certificado 'Creapure' para asegurar su máxima calidad")
+                .price(50.00)
+                .stock(0)
+                .category(c1)
+                .activo(true)
+                .image("/images/categories/creatina2.png")
+                .medidas(Medidas.CLOTHING)
+                .build();
+        Product producto11 = Product.builder()
+                .name("Quema Grasas 120Caps")
+                .shortDescription("Te ayuda a definir")
+                .longDescription("QuemaGrasas con ingredientes naturales para ayudarte a definir el cuerpo")
+                .price(20.00)
+                .stock(2)
+                .category(objects5)
+                .activo(true)
+                .image("/images/categories/QuemaGrasas.png")
+                .medidas(Medidas.CLOTHING)
+                .build();
+        productRepository.saveAll(List.of(producto, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11));
 
 
         Review re = new Review();
@@ -197,7 +217,6 @@ public class G2JavaApplication {
         re.setProduct(producto);
         re.setUser(us4);
         reviewRepository.save(re);
-
 
 
         Review re2 = new Review();
@@ -349,5 +368,5 @@ public class G2JavaApplication {
 //    }
 
 
-}
+    }
 }
