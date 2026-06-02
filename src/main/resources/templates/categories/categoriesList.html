@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
+<html lang="es-ES" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/head :: head('Five Chill GYM')}"></head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-body-tertiary">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
-<main class="container flex-grow-1">
+<main class="container flex-grow-1 ">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="mb-0" >Categorías</h1>
     </div>
-    <div class="d-flex justify-content-end mb-3">
+    <div sec:authorize="hasRole('ADMIN')" class="d-flex justify-content-end mb-3">
         <a th:href="@{/categories/new}"
            class="btn btn-primary btn-sm px-3 rounded-pill shadow-sm">
             <i class="fa-solid fa-plus me-1"></i>
@@ -17,33 +17,64 @@
     <!-- TODO  poder filtrar categoría por nombre-->
 
     <!--5. hacerlo mas bonito-->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-        <div class="col" th:each="category : ${categories}">
-            <div class="card card-restaurant h-100 shadow-sm">
-                <div class="card-body">
-                    <img th:src="${category.image}" class="card-img-top" alt="Category Image">
-                    <h5 class="card-title">
-                        <i></i>
-                        <span th:text="${category.name}">Nombre</span>
-                    </h5>
-                    <p class="card-body">
-                        <span th:text="${category.description}">Descripcion</span>
-                    </p>
-                    <!-- TODO enlace th:href que lleve a category detail -->
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            <div class="col-lg-4 text-center" th:each="category : ${categories}">
+                <img th:src="${category.image}" class="bd-placeholder-img rounded-circle"
+                     height="140"
+                     role="img" width="140" alt="category img">
+
+                <h2 class="fw-normal" th:text="${category.name}">Heading</h2>
+
+                <p th:text="${category.description}">Some representative placeholder content for the three columns of text below the carousel. This is the
+                    first column.</p>
+                <p>
                     <a th:href="@{/categories/{id}(id=${category.id})}" class="btn btn-sm btn-primary">
                         Ver
                     </a>
-                    <a th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn btn-sm btn-success">
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn btn-sm btn-success">
                         Editar
                     </a>
-                    <a th:href="@{/categories/deactivate/{id}(id=${category.id})}" class="btn btn-sm btn-danger">
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/deactivate/{id}(id=${category.id})}" class="btn btn-sm btn-danger">
                         <i class="fa-solid fa-ban"></i>
                         Desactivar
                     </a>
-                </div>
+                </p>
             </div>
         </div>
     </div>
+
+
+<!--    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">-->
+<!--        <div class="col" th:each="category : ${categories}">-->
+<!--            <div class="card card-restaurant h-100 shadow-sm">-->
+<!--                <div class="card-body">-->
+<!--                    <img th:src="${category.image}" class="card-img-top" alt="Category Image">-->
+<!--                    <h5 class="card-title">-->
+<!--                        <i></i>-->
+<!--                        <span th:text="${category.name}">Nombre</span>-->
+<!--                    </h5>-->
+<!--                    <p class="card-body">-->
+<!--                        <span th:text="${category.description}">Descripcion</span>-->
+<!--                    </p>-->
+<!--                    <a th:href="@{/categories/{id}(id=${category.id})}" class="btn btn-sm btn-primary">-->
+<!--                        Ver-->
+<!--                    </a>-->
+<!--                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn btn-sm btn-success">-->
+<!--                        Editar-->
+<!--                    </a>-->
+<!--                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/categories/deactivate/{id}(id=${category.id})}" class="btn btn-sm btn-danger">-->
+<!--                        <i class="fa-solid fa-ban"></i>-->
+<!--                        Desactivar-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
 </body>
 </html>

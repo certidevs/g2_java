@@ -48,8 +48,11 @@ private final ProductRepository productRepository;
     // @GetMapping orders/{id}
     @GetMapping("purchases/{id}")
     public String purchase(Model model, @PathVariable Long id){
-        model.addAttribute("purchase", purchaseRepository.findById(id).orElseThrow());
+        Purchase purchase = purchaseRepository.findById(id).orElseThrow();
+        model.addAttribute("purchase", purchase);
         model.addAttribute("purchaseLines", purchaseLinesRepository.findByPurchaseId(id));
+        model.addAttribute("countUserPurchases", purchaseRepository.countByUser_Id(purchase.getUser().getId()));
+        model.addAttribute("totalMoneyUserSpent", purchaseRepository.calculateTotalMoneySpentByUserId(purchase.getUser().getId()));
 
         return "purchases/purchaseDetails";
     }

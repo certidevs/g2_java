@@ -32,10 +32,6 @@ public class User  implements UserDetails{
     @Column(nullable = false)
     private String password;
 
-
-    private String passwordConfirm;
-
-
     private String imageUrl;
     @Enumerated(EnumType.STRING)
     private Role role;

@@ -53,12 +53,12 @@ public class G2JavaApplication {
         userRepository.save(us4);
 
 
-        Category objects = new Category();
-        objects.setName("Creatina");
-        objects.setDescription("La creatina es un aminoácido que se sintetiza en el hígado y se almacena en los músculos. Cuando se combina con fosfato, es una fuente de energía fácilmente disponible en el organismo. Aquí puedes encontrar todos los tipos.");
-        objects.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
-        objects.setActivo(true);
-        categoryRepository.save(objects);
+        Category c1 = new Category();
+        c1.setName("Creatina");
+        c1.setDescription("La creatina es un aminoácido que se sintetiza en el hígado y se almacena en los músculos. Cuando se combina con fosfato, es una fuente de energía fácilmente disponible en el organismo. Aquí puedes encontrar todos los tipos.");
+        c1.setImage("/images/categories/creatina.png");
+        c1.setActivo(true);
+        categoryRepository.save(c1);
 
         Category objects2 = new Category();
         objects2.setName("Crema de arroz");
@@ -70,7 +70,7 @@ public class G2JavaApplication {
         Category objects3 = new Category();
         objects3.setName("Proteínas");
         objects3.setDescription("La proteína en polvo es un tipo de suplemento que aporta de forma rápida y sencilla proteínas de alta calidad a nuestro organismo. Aquí puedes encontrar todos los tipos.");
-        objects3.setImage("https://imgs.search.brave.com/8Su7Icxn-hx0Zf_KmjqBkN79zTXlsdMfDZra0T99qBU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ub2ds/dXRlbnRlYW0uZXMv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDUvMTQ4MTcwMmVm/NWMwMDNkMjIwYzZk/NWQwNjExYTg4YzQu/anBn");
+        objects3.setImage("/images/categories/proteinas.png");
         objects3.setActivo(true);
         categoryRepository.save(objects3);
 
@@ -84,7 +84,7 @@ public class G2JavaApplication {
         Category objects5 = new Category();
         objects5.setName("Suplementos");
         objects5.setDescription("Ayudas para rendir a tu 100%");
-        objects5.setImage("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946");
+        objects5.setImage("/images/categories/vitaminas.png");
         objects5.setActivo(true);
         categoryRepository.save(objects5);
 
@@ -97,7 +97,7 @@ public class G2JavaApplication {
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
                 .price(26.50)
                 .stock(99)
-                .category(objects)
+                .category(c1)
                 .activo(true)
                 .image("https://bodymania.com/cdn/shop/files/sophbSJk.png?v=1730919445&width=1946")
                 .build();

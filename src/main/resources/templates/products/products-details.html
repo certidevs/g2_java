@@ -24,6 +24,9 @@
                 </div>
                 <h5 class="text-start ">Categoria: </h5>
                 <a th:if="${product.category != null}" th:href="@{/categories/{id}(id=${product.category.id})}" class="row-cols-1 mt-5 mb-5 border-dark-subtle rounded-3 btn btn-sm flex-">
+                    <img th:src="${product.category.image}" class="bd-placeholder-img rounded-circle"
+                         height="140"
+                         role="img" width="140" alt="category img">
                     <h5 th:text="${product.category.name}" class="text-start "></h5>
                 </a>
                 <a th:unless="${product.category != null}" class="row-cols-1 mt-5 mb-5 border-dark-subtle rounded-3 p-4">

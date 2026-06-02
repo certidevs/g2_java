@@ -35,7 +35,7 @@ public class PurchaseLineController {
     @GetMapping
     public String findAll(Model model, @AuthenticationPrincipal User user){
 
-        Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING);
+        Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatusAndUserId(PurchaseStatus.PENDING, user.getId());
         Purchase purchase;
         if (purchaseOptional.isPresent()) {
             purchase = purchaseOptional.get();
@@ -92,7 +92,7 @@ public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPr
 
     Product product = productRepository.findById(productId).orElseThrow();
 
-    Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatus(PurchaseStatus.PENDING);
+    Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatusAndUserId(PurchaseStatus.PENDING, user.getId());
     Purchase purchase;
     if (purchaseOptional.isPresent()) {
         purchase = purchaseOptional.get();
