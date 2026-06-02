@@ -129,9 +129,7 @@
 <!--        </tbody>-->
 <!--    </table>-->
     <div class="row g-3 mt-4">
-
         <div class="col-12" th:each="line : ${purchaseLines}">
-
             <div class="purchase-card p-2 d-flex align-items-center gap-3">
 
                 <!-- IMAGEN -->
@@ -141,69 +139,50 @@
 
                 <!-- INFO -->
                 <div class="flex-grow-1">
-
                     <h5 class="mb-1" th:text="${line.product.name}"></h5>
-
                     <p class="text-muted small mb-1"
                        th:text="${line.product.shortDescription}">
                     </p>
-
                     <span th:if="${line.talla != null}"
                           class="badge bg-dark"
                           th:text="'Talla: ' + ${line.talla}">
                     </span>
-
                 </div>
 
                 <!-- CANTIDAD -->
                 <div class="text-center">
-
                     <div class="d-flex align-items-center gap-2">
-
                         <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"
                            class="btn btn-sm btn-outline-danger rounded-pill">-</a>
-
                         <span class="fw-bold"
                               th:text="${line.quantity}"></span>
-
                         <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"
                            class="btn btn-sm btn-outline-success rounded-pill">+</a>
-
                     </div>
-
                 </div>
-
                 <!-- PRECIO -->
                 <div class="text-end">
-
                     <div class="purchase-price">
                         <span th:text="${#numbers.formatDecimal(line.product.price * line.quantity,1,2)}"></span> €
                     </div>
-
                     <a th:href="@{/products/{id}(id=${line.product.id})}"
                        class="btn btn-sm btn-black mt-2">
                         Ver
                     </a>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
     <div class="purchase-header mt-1">
-
         <h3 class="mb-1">
             Total del carrito
         </h3>
-
         <div class="purchase-total">
             <span th:text="${#numbers.formatDecimal(total,1,2)}"></span> €
         </div>
-
     </div>
-    <a th:if="${purchase}" th:href="@{/purchases/{id}(id=${purchase.id})}" class="btn-black">
+
+    <a th:if="${purchase}" th:href="@{/purchases/{id}(id=${purchase.id})}" class="btn btn-outline-dark btn-black mb-4 mt-3 ">
         Ver Pedido
     </a>
     <hr>
@@ -254,16 +233,16 @@
                 </div>
             </div>
                 </div>
-<!--                <form th:action="@{/products}" method="get" class="col">-->
-<!--                    <label class="form-label form-label-sm">Buscar:</label>-->
-<!--                    <input type="text" name="name" class=" form-control-sm col-3"-->
-<!--                           placeholder="Busca por título..." th:value="${param.name}">-->
-<!--                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-magnifying-glass"></i>Buscar</button>-->
-<!--                    <a th:href="@{products/create}" class="btn btn-secondary btn-sm col-1 visually-hidden">-->
-<!--                        <i class="fa-solid fa-plus"></i>-->
-<!--                    </a>-->
-<!--                </form>-->
-<!--            </div>-->
+                <form th:action="@{/products}" method="get" class="col">
+                    <label class="form-label form-label-sm">Buscar:</label>
+                    <input type="text" name="name" class=" form-control-sm col-3"
+                           placeholder="Busca por título..." th:value="${param.name}">
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-magnifying-glass"></i>Buscar</button>
+                    <a th:href="@{products/create}" class="btn btn-secondary btn-sm col-1 visually-hidden">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                </form>
+            </div>
 
 </body>
 </html>
