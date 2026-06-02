@@ -62,8 +62,8 @@ public class G2JavaApplication {
 
         Category objects2 = new Category();
         objects2.setName("Crema de arroz");
-        objects2.setDescription("La crema de arroz en suplementación es un carbohidrato complejo de digestión rápida obtenido a partir de la harina de arroz. Aquí puedes encontrar todos los tipos.");
-        objects2.setImage("/images/categories/prueba.png");
+        objects2.setDescription("La crema de arroz  es un carbohidrato complejo de digestión rápida obtenido a partir de la harina de arroz. Lo que la convierte en una excelente opicón para proporcionar energía antes , durante o después del ejercicio.");
+        objects2.setImage("/images/categories/CremaArroz.png");
         objects2.setActivo(true);
         categoryRepository.save(objects2);
 
@@ -176,7 +176,7 @@ public class G2JavaApplication {
                 .name("Camiseta futbol españa Mundial 2026, Adidas©")
                 .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
                 .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
-                .price(100.00)
+                .price(99.99)
                 .stock(0)
                 .category(objects4)
                 .activo(true)
@@ -187,7 +187,7 @@ public class G2JavaApplication {
                 .name("Creatina Creapure Vegana©")
                 .shortDescription("Te ayuda a rendir mejor en los entrenos")
                 .longDescription("Creatina Vegana con certificado 'Creapure' para asegurar su máxima calidad")
-                .price(50.00)
+                .price(49.99)
                 .stock(0)
                 .category(c1)
                 .activo(true)
@@ -198,14 +198,49 @@ public class G2JavaApplication {
                 .name("Quema Grasas 120Caps")
                 .shortDescription("Te ayuda a definir")
                 .longDescription("QuemaGrasas con ingredientes naturales para ayudarte a definir el cuerpo")
-                .price(20.00)
+                .price(19.99)
                 .stock(2)
                 .category(objects5)
                 .activo(true)
                 .image("/images/categories/QuemaGrasas.png")
                 .medidas(Medidas.CLOTHING)
                 .build();
-        productRepository.saveAll(List.of(producto, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11));
+        Product producto12 = Product.builder()
+                .name("Glutanima")
+                .shortDescription("Te ayuda a recuperarte de los entrenos")
+                .longDescription("La glutamina es un aminoácido clave para la recuperación muscular después de un entreno, la salud intestinal y el fortalecimiento del sistema inmunológico.")
+                .price(24.49)
+                .stock(2)
+                .category(objects5)
+                .activo(true)
+                .image("/images/categories/Glutamina.png")
+                .medidas(Medidas.CLOTHING)
+                .build();
+        Product producto13 = Product.builder()
+                .name("Crema de Arroz 1000g , Vegana y sin Lactosa - Neutro")
+                .shortDescription("Crema de Arroz 1000g , Sabor Neutro")
+                .longDescription("La textura suave de esta crema de arroz es lo que la distingue. Se disuelve rapidamente en agua, leche o bebida vegetal, facilitando su preparacion en cualquier momento del dia. Puede combinarse con frutas, frutos secos, miel o cualquier complemento de tu eleccion, haciendo de cada porcion una experiencia personalizada. " +
+                                 "No importa si la prefieres como parte de un desayuno energetico o como una opcion ligera antes de dormir, " +"esta crema se adapta a tus necesidades.")
+                .price(15.49)
+                .stock(5)
+                .category(objects2)
+                .activo(true)
+                .image("/images/categories/CremaArroz2.png")
+                .medidas(Medidas.CLOTHING)
+                .build();
+        Product producto14 = Product.builder()
+                .name("Crema De Arroz (1 Kg) - Sin gluten, sin azúcar - Chocolate Avellana")
+                .shortDescription("Crema De Arroz (1KG) , sin azucar - Sabor Avellana")
+                .longDescription(" Como fuente de hidratos de carbono, ayuda a reponer las reservas de glucógeno en los músculos y a evitar la fatiga. Una fórmula sencilla sin ingredientes de origen animal, por lo que es ideal para veganos y vegetarianos." +
+                                 " La ausencia de gluten en la harina de arroz significa que puede ser utilizado con seguridad por personas con alergias o intolerancias.Disponible en los sabores Chocolate, Chocolate Avellana y Galletas.")
+                .price(17.45)
+                .stock(3)
+                .category(objects2)
+                .activo(true)
+                .image("/images/categories/CremaArroz3.png")
+                .medidas(Medidas.CLOTHING)
+                .build();
+        productRepository.saveAll(List.of(producto, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11 , producto12, producto13,producto14));
 
 
         Review re = new Review();
