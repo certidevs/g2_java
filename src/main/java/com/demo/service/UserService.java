@@ -4,10 +4,7 @@ import com.demo.dto.RegisterForm;
 import com.demo.dto.UserStatsDTO;
 import com.demo.model.User;
 import com.demo.model.enums.Role;
-import com.demo.repository.ProductRepository;
-import com.demo.repository.PurchaseRepository;
-import com.demo.repository.ReviewRepository;
-import com.demo.repository.UserRepository;
+import com.demo.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,6 +26,7 @@ public class UserService implements UserDetailsService {
     private final LikeService likeService;
     private final ProductRepository productRepository;
     private final PurchaseRepository purchaseRepository;
+    private final LikeRepository likeRepository;
 
     // metodo para buscar el usuario en base de datos por su username
     @Override
@@ -87,6 +85,8 @@ public class UserService implements UserDetailsService {
                 reviewRepository.findByUser_Id(id),
                 purchaseRepository.countByUser_Id(id),
                 purchaseRepository.findByUser_IdOrderByPurchaseDateDesc(id),
+                likeRepository.countByUser_Id(id),
+                likeRepository.findByUser_Id(id),
                 likeService.findFavoriteProduct(id)
         );
     }

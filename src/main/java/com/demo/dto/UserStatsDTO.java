@@ -15,5 +15,7 @@ public record UserStatsDTO(
         List<Review> reviews,
         long countPurchase,
         List<Purchase> purchases,
+        long countFavorites,
+        List<Like> favorites,
         List<Like> favoriteProduct
 ) { }
