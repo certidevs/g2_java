@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white mb-4 p-4 shadow-sm">
+<nav th:fragment="navbar" class="app-navbar navbar navbar-expand-lg sticky-top mb-4 py-2 shadow-sm">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" th:href="@{/products}">
-            <img th:src="@{/images/fivechillingA.png}" alt="Five chill guys GYM"
-                 height="64" class="me-2 rounded-3">
-<!--            <span>Restaurantes</span>-->
+        <a class="navbar-brand d-flex align-items-center gap-2" th:href="@{/products}">
+            <img th:src="@{/images/fivechillingA.png}" alt="Five Chill Guys Gym"
+                 height="48" class="rounded-3">
+            <span class="fw-bold d-none d-sm-inline">Five Chill Guys <span class="text-primary">Gym</span></span>
         </a>
-        <button class="navbar-toggler" type="button"
+        <button class="navbar-toggler border-0" type="button"
                 data-bs-toggle="collapse" data-bs-target="#mainNav"
                 aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse pt-sm-4" id="mainNav">
-            <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/products}">
                         <i class="fa-solid fa-store me-1"></i> Productos
@@ -24,65 +22,67 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/categories}">
-                        <i class="fa-solid fa-layer-group"></i> Categorias
+                        <i class="fa-solid fa-layer-group me-1"></i> Categorías
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/reviews-productos}">
-                        <i class="fa-regular fa-comment"></i> Opiniones
+                        <i class="fa-regular fa-comment me-1"></i> Opiniones
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link" th:href="@{/purchase-lines}">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        Carrito
+                        <i class="fa-solid fa-cart-shopping me-1"></i> Carrito
                     </a>
                 </li>
-
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link" th:href="@{/admin/users}">
-                        <i class="fa-solid fa-users me-1"></i> Panel Usuarios
+                        <i class="fa-solid fa-users me-1"></i> Usuarios
                     </a>
-
                 </li>
-
             </ul>
-            <div sec:authorize="!isAuthenticated()">
-                <a class="btn btn-outline-secondary ms-2" th:href="@{/login}">
-                    <i class="fa-solid fa-right-to-bracket"></i> Acceso Socio
+
+            <div class="d-flex align-items-center gap-2" sec:authorize="!isAuthenticated()">
+                <a class="btn btn-outline-secondary btn-sm" th:href="@{/login}">
+                    <i class="fa-solid fa-right-to-bracket me-1"></i> Acceso
                 </a>
-                <a class="btn btn-outline-secondary ms-2" th:href="@{/register}">
-                    <i class="fa-solid fa-user-plus"></i> Registrarse
+                <a class="btn btn-primary btn-sm" th:href="@{/register}">
+                    <i class="fa-solid fa-user-plus me-1"></i> Registrarse
                 </a>
             </div>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-            <div sec:authorize="isAuthenticated()" class="dropdown">
-                <span role="button" data-bs-toggle="dropdown" aria-expanded="false" class="dropdown-toggle d-flex align-items-center justify-content-center gap-2" style="cursor:pointer;font-size: 16px">
-                    <span th:unless="${#authentication.principal != null and #authentication.principal.imageUrl != null}" class="rounded-circle d-inline-flex justify-content-center align-items-center overflow-hidden" style="width: 32px; height: 32px;">
-                        <i
-                       class="fa-solid fa-user"
-                       style="font-size: 32px; color: orange; background: #F0F2F5; background-size: cover; border: 2px #F0F2F5"></i>
-                    </span>
-                    <img th:if="${#authentication.principal != null and #authentication.principal.imageUrl != null}" th:src="${#authentication.principal.imageUrl != null ? #authentication.principal.imageUrl : '/images/avatar.svg'}"
-                            alt="avatar" width="32" height="32"
-                            class="rounded-circle object-fit-cover me-2 border border-2 border-light bg-white"><span th:text="'Bienvenido: ' + ${#authentication.principal.username}"></span>
-                </span>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" th:href="@{/profile}">Perfil <i class="fa-solid fa-user"></i></a></li>
-                    <li><a class="dropdown-item" th:href="@{/products}">Inicio <i class="fa-solid fa-home"></i></a></li>
-                    <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/admin/users}">Panel Usuarios<i class="fa-solid fa-users ms-2"></i></i></a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><form th:action="@{/logout}" method="post" class="align-items-start">
-                        <button class="dropdown-item ">
-                            Salir <i class="fa-solid fa-sign-out"></i>
-                        </button>
-                    </form></li>
 
+            <div sec:authorize="isAuthenticated()" class="dropdown">
+                <a role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                   class="d-flex align-items-center gap-2 text-decoration-none link-dark">
+                    <span th:if="${#authentication.principal != null and #authentication.principal.imageUrl != null}">
+                        <img th:src="${#authentication.principal.imageUrl}"
+                             alt="avatar" width="36" height="36"
+                             class="rounded-circle object-fit-cover border border-2 border-light shadow-sm">
+                    </span>
+                    <span th:unless="${#authentication.principal != null and #authentication.principal.imageUrl != null}"
+                          class="icon-circle" style="width:36px;height:36px;">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <span class="d-none d-sm-inline fw-semibold"
+                          th:text="${#authentication.principal.username}">Usuario</span>
+                    <i class="fa-solid fa-chevron-down small text-muted"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+                    <li><a class="dropdown-item" th:href="@{/profile}"><i class="fa-solid fa-user me-2 text-muted"></i> Mi perfil</a></li>
+                    <li><a class="dropdown-item" th:href="@{/products}"><i class="fa-solid fa-house me-2 text-muted"></i> Inicio</a></li>
+                    <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/admin/users}"><i class="fa-solid fa-users me-2 text-muted"></i> Panel usuarios</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form th:action="@{/logout}" method="post">
+                            <button class="dropdown-item text-danger"><i class="fa-solid fa-right-from-bracket me-2"></i> Salir</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
+    <!-- Bootstrap bundle loaded once here so every page with a navbar has JS -->
+    <script th:src="@{/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js}"></script>
 </nav>
 </body>
 </html>

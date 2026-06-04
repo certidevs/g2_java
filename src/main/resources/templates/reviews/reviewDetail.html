@@ -1,82 +1,64 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{layout/head :: head('Detalle de Review')}">
-    <meta charset="UTF-8">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/head :: head('Detalle de opinión')}">
     <link rel="stylesheet" th:href="@{/css/reviews.css}">
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="d-flex flex-column min-vh-100">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
-<!-- PRODUCTO -->
-<div class="d-flex gap-4 align-items-start">
+<main class="container flex-grow-1">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a th:href="@{/reviews-productos}">Opiniones</a></li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="${review.title}">Opinión</li>
+        </ol>
+    </nav>
 
-    <!-- Imagen producto -->
-    <div>
-        <img th:if="${review.product != null}" th:src="${review.product.image}" alt="Producto" class="img-fluid rounded shadow-sm"
-             style="width: 250px; height: auto; ">
-    </div>
-
-    <!-- Info producto -->
-    <div class="flex-grow-1">
-
-        <div class="d-flex justify-content-between align-items-start">
-
-            <h2 class="mb-2" th:text="${review.product.name}">
-                Nombre producto
-            </h2>
-
-            <div th:if="${review.user != null}"
-                 class="d-flex align-items-center gap-2">
-                <i class="fa-solid fa-user"></i>
-                <span th:text="${review.user.username}">Usuario:</span>
+    <div class="card mb-4">
+        <!-- Product header -->
+        <div class="card-body border-bottom" th:if="${review.product != null}">
+            <div class="d-flex flex-column flex-sm-row gap-4 align-items-center align-items-sm-start">
+                <img th:src="${review.product.image}" alt="Producto"
+                     class="rounded border object-fit-contain bg-white p-2 flex-shrink-0" style="width:160px;height:160px;">
+                <div class="flex-grow-1 text-center text-sm-start">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <h1 class="h3 mb-1" th:text="${review.product.name}">Producto</h1>
+                        <span th:if="${review.user != null}" class="badge text-bg-light border">
+                            <i class="fa-solid fa-user me-1"></i><span th:text="${review.user.username}"></span>
+                        </span>
+                    </div>
+                    <div class="product-price fs-4 text-success mb-2" th:text="${review.product.price} + ' €'"></div>
+                    <p class="text-muted mb-0" th:text="${review.product.shortDescription}">Descripción</p>
+                    <a th:href="@{/products/{id}(id=${review.product.id})}" class="btn btn-sm btn-outline-secondary mt-3">
+                        <i class="fa-solid fa-box me-1"></i> Ver producto
+                    </a>
+                </div>
             </div>
-
         </div>
 
-        <h4 class="text-success mb-3" th:text="${review.product.price + ' €'}">
-            Precio </h4>
-
-        <p class="text-muted"  th:text="${review.product.shortDescription}">
-            Descripción corta
-        </p>
-
-    </div>
-</div>
-
-<hr class="my-4">
-
-<!-- REVIEW -->
-<div>
-    <h4 th:text="${review.title}">Título review</h4>
-    <div class="stars my-2 text-warning">
-          <span th:each="i : ${#numbers.sequence(1,5)}" th:text="${review.rating >= i} ? '★' : '☆'">
-
-      </span>
+        <!-- Review body -->
+        <div class="card-body">
+            <h2 class="h4 mb-2" th:text="${review.title}">Título</h2>
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="rating-stars fs-4">
+                    <span th:each="i : ${#numbers.sequence(1,5)}" th:utext="${review.rating >= i} ? '&#9733;' : '&#9734;'"></span>
+                </span>
+                <span class="badge text-bg-warning text-dark"><span th:text="${review.rating} + ' / 5'"></span></span>
+            </div>
+            <p class="fs-5 mb-0" th:text="${review.comment}">Comentario</p>
+        </div>
     </div>
 
-    <p th:text="${review.comment}">Comentario</p>
-
-</div>
-
-<!--Botón de volver -->
-<div class="d-flex justify-content-center gap-3 mt-4">
-
-    <a th:href="@{/reviews-productos}"
-       class="btn btn-outline-secondary d-inline-flex align-items-center px-3">
-
-        <i class="fa-solid fa-arrow-left me-2"></i>
-        <span>Volver</span>
-    </a>
-
-    <!-- Botón inicio -->
-    <a th:href="@{/products}"  class="btn btn-primary d-inline-flex align-items-center px-3">
-        <i class="fa-solid fa-house me-2"></i>
-        <span>Inicio</span>
-    </a>
-</div>
+    <div class="d-flex justify-content-center gap-2 mb-5">
+        <a th:href="@{/reviews-productos}" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-arrow-left me-1"></i> Volver
+        </a>
+        <a th:href="@{/products}" class="btn btn-primary">
+            <i class="fa-solid fa-house me-1"></i> Inicio
+        </a>
+    </div>
 </main>
+
 <footer th:replace="~{layout/footer :: footer}"></footer>
-<script th:replace="~{layout/footer :: scripts}"></script>
 </body>
 </html>
-

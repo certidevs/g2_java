@@ -1,9 +1,3 @@
-#sombras:hover{
-    border: 5px #0f0f0f;
-    color: darkgray;
-
-}
-#sombras a{
-    text-decoration: none;
-    color: inherit;
-}
+/* Product-specific styles now live in the shared design system (app.css):
+   see .product-card, .product-thumb, .product-price, .hover-lift.
+   This file is kept so existing <link> references keep working. */

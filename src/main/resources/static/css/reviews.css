@@ -1,60 +1,22 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-    background: #848181;
-    color: #f0f0f0;
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    padding: 60px 40px;
-}
+/* Reviews styling — aligned with the shared design system (app.css).
+   NOTE: the previous version reset margins globally and forced a dark
+   <body> background, which broke the Bootstrap layout on this page.
+   That has been removed. */
 
 .review-card {
-
-    border: 1px solid #222;
-    border-radius: 4px;
-    padding: 28px;
-    position: relative;
-    transition: border-color 0.3s, transform 0.3s;
-    animation: fadeUp 0.5s ease both;
+    border: 1px solid rgba(17, 24, 39, .08);
+    border-radius: var(--radius, 1rem);
+    transition: border-color .25s, transform .25s, box-shadow .25s;
 }
-
 .review-card:hover {
-    border-color: #c8ff00;
-    border-bottom-width: 4px;
-    transform: translateY(-4px);
+    border-color: var(--brand, #ff6a00);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow, 0 10px 30px rgba(17, 24, 39, .08));
 }
 
-.review-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    color: #fff;
-    margin-bottom: 12px;
-}
-
+.rating-stars,
 .stars {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 14px;
+    color: #f5a623;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
 }
-
-.star {
-    width: 16px;
-    height: 16px;
-    background: #7a7a7a;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-}
-
-.star.filled { background: #c8ff00; }
-
-
-.accent-line {
-    position: absolute;
-    top: 0; left: 0;
-    width: 0; height: 3px;
-    background: #c8ff00;
-    border-radius: 4px 4px 0 0;
-    transition: width 0.4s ease;
-}
-
-.review-card:hover .accent-line { width: 100%; }

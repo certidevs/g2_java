@@ -1,74 +1,67 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="~{layout/head :: head('ReviewsFormulario')}">
-
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body class="d-flex flex-column min-vh-100 bg-light">
-
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/head :: head('Opinión')}"></head>
+<body class="d-flex flex-column min-vh-100">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
-<main class ="container flex-grow-1 my-4">
 
-    <h1 class="mb-4">
-        <i class="fa-solid fa-pen-to-square"></i>
-        <span th:text="${review.id != null} ? 'Editar Reseña' : 'Nueva Reseña'">Reseña</span>
-    </h1>
-    <!-- Todo Formulario para crear o editar una Review -->
-    <form th:action="@{/reviews}" method="post" th:object="${review}">
-        <!-- Aparece id invisible  gracias al "hidden-->
-        <input type="hidden" th:field="*{id}">
+<main class="container flex-grow-1">
+    <div class="form-card">
+        <h1 class="h3 mb-4">
+            <i class="fa-solid fa-pen-to-square text-primary me-2"></i>
+            <span th:text="${review.id != null} ? 'Editar opinión' : 'Nueva opinión'">Opinión</span>
+        </h1>
 
-        <!-- Ponemos un campo que se tenga que escribir el titulo de una Review-->
-        <div class="mb-3">
-            <label  class="form-label" for="title">Titulo</label>
-            <input type="text" class="form-control" id="title" th:field="*{title}"
-                   placeholder="Escribe un Titulo de la Review" required>
+        <div class="card">
+            <div class="card-body p-4">
+                <form th:action="@{/reviews}" method="post" th:object="${review}">
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Título</label>
+                        <input type="text" class="form-control" id="title" th:field="*{title}"
+                               placeholder="Resume tu experiencia" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="comment">Comentario</label>
+                        <textarea class="form-control" id="comment" th:field="*{comment}" rows="4"
+                                  placeholder="Cuéntanos qué te ha parecido el producto…" required></textarea>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-sm-4 mb-3">
+                            <label class="form-label" for="rating">Puntuación</label>
+                            <select class="form-select" id="rating" th:field="*{rating}" required>
+                                <option value="5">★★★★★ (5)</option>
+                                <option value="4">★★★★ (4)</option>
+                                <option value="3">★★★ (3)</option>
+                                <option value="2">★★ (2)</option>
+                                <option value="1">★ (1)</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-8 mb-3">
+                            <label for="products" class="form-label">Producto</label>
+                            <select class="form-select" id="products" th:field="*{product}" required>
+                                <option value="">Selecciona un producto</option>
+                                <option th:each="producto : ${products}"
+                                        th:value="${producto.id}"
+                                        th:text="${producto.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Guardar opinión
+                        </button>
+                        <a th:href="@{/reviews-productos}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <!-- Ponemos un campo que se tenga que escribir el Comentario de una Review-->
-        <div class="mb-3">
-            <label  class="form-label" for="comment">Comentario</label>
-            <textarea type="text" class="form-control" id="comment" th:field="*{comment}" required>
-
-            </textarea>
-        </div>
-
-        <!-- Ponemos las estrellas de una Review -->
-        <div class="mb-3">
-            <label class="form-label" for="rating">Puntuación (1 a 5 )</label>
-            <input type="number" class="form-control" id="rating" th:field="*{rating}"
-                   min="1" max="5" required>
-        </div>
-
-        <!-- Selector de Producto -->
-        <div class="mb-3">
-            <label for="products" class="form-label">Producto</label>
-            <select  class="form-select" id="products" th:field="*{product}" required>
-                <option value="">Selecciona un producto</option>
-                <option th:each="producto : ${products}"
-                        th:value="${producto.id}"
-                        th:text="${producto.name}"></option>
-            </select>
-
-        </div>
-        <!-- Ponemos un campo que se tenga que salga la fecha que se hizo una  Review-->
-
-        <div class="mb-3">
-            <label class="form-label" for="createdAt">Fecha de Opinión</label>
-            <input type="hidden" class="form-control" id="createdAt" th:field="*{createdAt}" th:value="${#temporals.format(review.createdAt, 'yyyy-MM-dd''T''HH:mm')}" required readonly>
-
-        </div>
-
-        <!-- Ponemos 2 botones, 1 de guardar y otro de cancelar -->
-        <button type="submit" class="btn btn-primary">Guardar Reseña</button>
-        <a th:href="@{/reviews-productos}" class="btn btn-outline-danger">Cancelar</a>
-
-
-
-    </form>
+    </div>
 </main>
-    <footer th:replace="~{layout/footer :: footer}"></footer>
-    <script th:replace="~{layout/footer :: scripts}"></script>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
 </body>
 </html>
