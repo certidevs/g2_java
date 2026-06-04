@@ -10,4 +10,8 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
     List<Like> findByUser_IdAndProductIsNotNull(Long id);
     Optional<Like> findByUser_IdAndProductIsNotNull(Long userId, Long productId);
 
+    // Usados por UserService para las estadísticas del perfil
+    long countByUser_Id(Long id);
+    List<Like> findByUser_Id(Long id);
+
 }

@@ -1,108 +1,58 @@
-/* ===== ESTILO GENERAL PURCHASES ===== */
+/* ===== Cart / Purchases styling — aligned with app.css ===== */
 
 .purchase-section {
-    background: white;
-    border-radius: 20px;
+    background: var(--surface, #fff);
+    border-radius: var(--radius, 1rem);
     padding: 1.5rem;
-    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    box-shadow: var(--shadow-sm, 0 2px 10px rgba(17, 24, 39, .06));
     margin-bottom: 1.5rem;
 }
 
 .purchase-header {
-    background: white;
-    border-radius: 24px;
-    padding: .75rem 1rem;
-    box-shadow: 0 6px 25px rgba(0,0,0,.08);
+    background: var(--surface, #fff);
+    border: 1px solid rgba(17, 24, 39, .06);
+    border-radius: var(--radius, 1rem);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-sm, 0 2px 10px rgba(17, 24, 39, .06));
 }
 
 .purchase-total {
+    font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     font-weight: 700;
+    color: var(--brand, #ff6a00);
 }
 
-.purchase-muted {
-    color: #6c757d;
-}
-
-.btn-black {
-    background: rgba(0,0,0,.9);
-    color: white;
-    border: none;
-    border-radius: 999px;
-    padding: .7rem 1.5rem;
-    transition: all .2s ease;
-}
-
-.btn-black:hover {
-    transform: translateY(-2px);
-    color: white;
-}
-
-.btn-black-outline {
-    background: transparent;
-    color: black;
-    border: 1px solid #ddd;
-    border-radius: 999px;
-    padding: .7rem 1.5rem;
-    transition: all .2s ease;
-}
-
-.btn-black-outline:hover {
-    background: black;
-    color: white;
-}
+.purchase-muted { color: var(--muted, #6b7280); }
 
 .purchase-card {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
-    overflow: hidden;
+    background: var(--surface, #fff);
+    border: 1px solid rgba(17, 24, 39, .06);
+    border-radius: var(--radius, 1rem);
+    box-shadow: var(--shadow-sm, 0 2px 10px rgba(17, 24, 39, .06));
+    transition: transform .18s ease, box-shadow .18s ease;
 }
-.table {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.table thead {
-    background: #111;
-    color: white;
-}
-
-.table th {
-    border: none;
-    font-weight: 600;
-}
-
-.table td {
-    vertical-align: middle;
-}
-
-.table tbody tr:hover {
-    background: rgba(0,0,0,.03);
-}
-.purchase-card {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.06);
-    transition: all .2s ease;
-}
-
 .purchase-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,.10);
+    box-shadow: var(--shadow-lg, 0 18px 50px rgba(17, 24, 39, .16));
 }
 .purchase-card h5 {
-    font-weight: 700;
-    margin-bottom: .5rem;
+    font-weight: 600;
+    margin-bottom: .35rem;
 }
+
 .purchase-price {
+    font-family: 'Poppins', sans-serif;
     font-size: 1.3rem;
     font-weight: 700;
+    color: var(--ink, #1d1d1f);
 }
-.purchase-summary {
-    background: white;
-    border-radius: 24px;
-    padding: 1rem;
-    box-shadow: 0 6px 25px rgba(0,0,0,.08);
+
+.purchase-thumb {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    background: #fafafa;
+    border-radius: .75rem;
+    padding: .35rem;
 }

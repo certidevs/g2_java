@@ -1,248 +1,123 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/head :: head('Carrito')}"></head>
+<body class="d-flex flex-column min-vh-100">
 <link rel="stylesheet" th:href="@{/css/purchases.css}">
-<body>
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
-<div class="container mt-4">
+
+<main class="container flex-grow-1">
+
     <div class="purchase-header mb-4">
-        <h1 class="mb-2">
-            <i class="fa-solid fa-cart-shopping me-2"></i>
-            Carrito
+        <h1 class="h3 mb-1">
+            <i class="fa-solid fa-cart-shopping text-primary me-2"></i> Tu carrito
         </h1>
-
-        <p class="purchase-muted mb-0">
-            Revisa tus productos antes de finalizar el pedido.
-        </p>
+        <p class="purchase-muted mb-0">Revisa tus productos antes de finalizar el pedido.</p>
     </div>
-<!--    <table class="table">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Producto</th>-->
-<!--            <th>Precio</th>-->
-<!--            <th>Cantidad</th>-->
-<!--            <th>Talla</th>-->
-<!--            <th>Seleccion</th>-->
-<!--            <th>Mas/Menos</th>-->
-<!--            <th>Total</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:each="line : ${purchaseLines}">-->
-<!--            <td th:text="${line.product.name}"></td>-->
-<!--            <td th:text="${#numbers.formatDecimal(line.product.price, 1, 2)} + '€'"></td>-->
-<!--            <td th:text="${line.quantity}"></td>-->
-<!--            <td th:text="${line.talla}"></td>-->
-<!--            <td th:if="${line.product.medidas != null}">-->
-<!--&lt;!&ndash;                <form th:action="@{/purchase-lines/update}" method="post">&ndash;&gt;-->
 
-<!--&lt;!&ndash;                    <input type="hidden"&ndash;&gt;-->
-<!--&lt;!&ndash;                           name="lineId"&ndash;&gt;-->
-<!--&lt;!&ndash;                           th:value="${line.id}">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        &lt;!&ndash; SHOES &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).SHOES}"&ndash;&gt;-->
-<!--&lt;!&ndash;                                name="talla"&ndash;&gt;-->
-<!--&lt;!&ndash;                                class="form-select form-select-sm">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                            <option th:each="num : ${#numbers.sequence(30,50)}"&ndash;&gt;-->
-<!--&lt;!&ndash;                                    th:value="${num}"&ndash;&gt;-->
-<!--&lt;!&ndash;                                    th:text="${num}">&ndash;&gt;-->
-<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        </select>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        &lt;!&ndash; CLOTHING &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                        <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).CLOTHING}"&ndash;&gt;-->
-<!--&lt;!&ndash;                                name="talla"&ndash;&gt;-->
-<!--&lt;!&ndash;                                class="form-select form-select-sm">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                            <option value="XS">XS</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <option value="S">S</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <option value="M">M</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <option value="L">L</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <option value="XL">XL</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <option value="XXL">XXL</option>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        </select>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    <button type="submit"&ndash;&gt;-->
-<!--&lt;!&ndash;                            class="btn btn-sm btn-outline-primary mt-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                        Actualizar talla&ndash;&gt;-->
-<!--&lt;!&ndash;                    </button>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                </form>&ndash;&gt;-->
-<!--                <form th:action="@{/purchase-lines/update-talla}" method="post" class="mt-2">-->
-
-<!--                    <input type="hidden" name="lineId" th:value="${line.id}"/>-->
-
-<!--                    &lt;!&ndash; SHOES &ndash;&gt;-->
-<!--                    <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).SHOES}"-->
-<!--                            name="talla"-->
-<!--                            class="form-select form-select-sm w-auto d-inline">-->
-
-<!--                        <option th:each="num : ${#numbers.sequence(30,50)}"-->
-<!--                                th:value="${num}"-->
-<!--                                th:text="${num}">-->
-<!--                        </option>-->
-
-<!--                    </select>-->
-
-<!--                    &lt;!&ndash; CLOTHING &ndash;&gt;-->
-<!--                    <select th:if="${line.product.medidas == T(com.demo.model.enums.Medidas).CLOTHING}"-->
-<!--                            name="talla"-->
-<!--                            class="form-select form-select-sm w-auto d-inline">-->
-
-<!--                        <option value="XS">XS</option>-->
-<!--                        <option value="S">S</option>-->
-<!--                        <option value="M">M</option>-->
-<!--                        <option value="L">L</option>-->
-<!--                        <option value="XL">XL</option>-->
-<!--                        <option value="XXL">XXL</option>-->
-
-<!--                    </select>-->
-
-<!--                    <button type="submit"-->
-<!--                            class="btn btn-sm btn-black ms-2">-->
-<!--                        Guardar-->
-<!--                    </button>-->
-
-<!--                </form>-->
-<!--            </td>-->
-<!--            <td th:unless="${line.product.medidas != null}">-->
-<!--                - -->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"-->
-<!--                   class="btn btn-sm btn-outline-danger">-->
-<!--                    - -->
-<!--                </a>-->
-<!--                <span class="mx-2"-->
-<!--                      th:text="${line.quantity}"></span>-->
-<!--                <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"-->
-<!--                   class="btn btn-sm btn-outline-success">-->
-<!--                    +-->
-<!--                </a>-->
-<!--            </td>-->
-<!--            <td th:text="${line.product.price * line.quantity} + '€'"></td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-    <div class="row g-3 mt-4">
-        <div class="col-12" th:each="line : ${purchaseLines}">
-            <div class="purchase-card p-2 d-flex align-items-center gap-3">
-
-                <!-- IMAGEN -->
-                <img th:src="${line.product.image}"
-                     alt="producto"
-                     style="width: 100px; height: 100px; object-fit: cover; border-radius: 15px;">
-
-                <!-- INFO -->
-                <div class="flex-grow-1">
-                    <h5 class="mb-1" th:text="${line.product.name}"></h5>
-                    <p class="text-muted small mb-1"
-                       th:text="${line.product.shortDescription}">
-                    </p>
-                    <span th:if="${line.talla != null}"
-                          class="badge bg-dark"
-                          th:text="'Talla: ' + ${line.talla}">
-                    </span>
-                </div>
-
-                <!-- CANTIDAD -->
-                <div class="text-center">
-                    <div class="d-flex align-items-center gap-2">
-                        <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"
-                           class="btn btn-sm btn-outline-danger rounded-pill">-</a>
-                        <span class="fw-bold"
-                              th:text="${line.quantity}"></span>
-                        <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"
-                           class="btn btn-sm btn-outline-success rounded-pill">+</a>
-                    </div>
-                </div>
-                <!-- PRECIO -->
-                <div class="text-end">
-                    <div class="purchase-price">
-                        <span th:text="${#numbers.formatDecimal(line.product.price * line.quantity,1,2)}"></span> €
-                    </div>
-                    <a th:href="@{/products/{id}(id=${line.product.id})}"
-                       class="btn btn-sm btn-black mt-2">
-                        Ver
-                    </a>
-                </div>
+    <div class="row g-4">
+        <!-- Cart items -->
+        <div class="col-lg-8">
+            <div th:if="${#lists.isEmpty(purchaseLines)}" class="empty-state text-center py-5">
+                <i class="fa-solid fa-cart-shopping fa-2x text-muted mb-3 d-block"></i>
+                <h5 class="mb-1">Tu carrito está vacío</h5>
+                <p class="text-muted mb-3">Añade productos para empezar tu pedido.</p>
+                <a th:href="@{/products}" class="btn btn-primary">
+                    <i class="fa-solid fa-store me-1"></i> Ir a la tienda
+                </a>
             </div>
-        </div>
-    </div>
-    <div class="purchase-header mt-1">
-        <h3 class="mb-1">
-            Total del carrito
-        </h3>
-        <div class="purchase-total">
-            <span th:text="${#numbers.formatDecimal(total,1,2)}"></span> €
-        </div>
-    </div>
 
-    <a th:if="${purchase}" th:href="@{/purchases/{id}(id=${purchase.id})}" class="btn btn-outline-dark btn-black mb-4 mt-3 ">
-        Ver Pedido
-    </a>
-    <hr>
-    <h4>Agregar más productos</h4>
-    <div class="album py-5 bg-body-tertiary container flex-grow-1 ">
-        <div class="container">
-            <div class="row">
-                <div class="col-0">
-                    <a th:href="@{/purchase-lines}" class="btn btn-sm btn-outline-info column">
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </a>
-                    <a th:href="@{/purchase-lines}" class="btn btn-sm btn-outline-info">
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </a>
-                    <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <div id="sombra" th:each="product : ${products}" class="col mt-4 mb-4">
-                            <div>
-                                <a th:href="@{/products/{id}(id=${product.id})}">
-                                    <img th:src="${product.image}" class="card-img-top"  alt="..." role="img" width="400" height="400">
-                                </a>
-                                <div class="card-body" >
-                                    <a th:href="@{/products/{id}(id=${product.id})}">
-                                        <h5 class="card-title" th:text="${product.name}">Titulo</h5>
-                                        <p class="card-text" th:text="${product.shortDescription}">Descripcion</p>
-                                    </a>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h2 class="align-items-start card-title" th:text="${product.price} + '€'">€</h2>
-                                        <div class="btn-group">
-                                            <a th:href="@{/products/{id}(id=${product.id})}" style="text-decoration: none; color: inherit;">
-                                                <button th:href="@{/products}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            </a>
+            <div class="d-grid gap-3" th:unless="${#lists.isEmpty(purchaseLines)}">
+                <div class="purchase-card p-3 d-flex flex-column flex-sm-row align-items-center gap-3"
+                     th:each="line : ${purchaseLines}">
+                    <img th:src="${line.product.image}" alt="Producto" class="purchase-thumb flex-shrink-0">
 
-                                            <form th:action="@{/purchase-lines/create}" method="post">
-                                                <input type="hidden"
-                                                       name="productId"
-                                                       th:value="${product.id}">
-                                                <button type="submit"
-                                                        class="btn btn-sm btn-outline-secondary">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="flex-grow-1 text-center text-sm-start">
+                        <h5 class="mb-1" th:text="${line.product.name}">Producto</h5>
+                        <p class="text-muted small mb-1" th:text="${line.product.shortDescription}">Descripción</p>
+                        <span th:if="${line.talla != null}" class="badge text-bg-dark" th:text="'Talla: ' + ${line.talla}"></span>
+                        <div class="small text-muted">
+                            <span th:text="${#numbers.formatDecimal(line.product.price,1,2)}">0</span> € / ud.
                         </div>
                     </div>
-                </div>
-            </div>
-                </div>
-                <form th:action="@{/products}" method="get" class="col">
-                    <label class="form-label form-label-sm">Buscar:</label>
-                    <input type="text" name="name" class=" form-control-sm col-3"
-                           placeholder="Busca por título..." th:value="${param.name}">
-                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-magnifying-glass"></i>Buscar</button>
-                    <a th:href="@{products/create}" class="btn btn-secondary btn-sm col-1 visually-hidden">
-                        <i class="fa-solid fa-plus"></i>
-                    </a>
-                </form>
-            </div>
 
+                    <div class="d-flex align-items-center gap-2">
+                        <a th:href="@{/purchase-lines/decrease/{id}(id=${line.id})}"
+                           class="btn btn-sm btn-outline-secondary rounded-circle" title="Quitar uno">
+                            <i class="fa-solid fa-minus"></i>
+                        </a>
+                        <span class="fw-bold" style="min-width:1.5rem;text-align:center" th:text="${line.quantity}">1</span>
+                        <a th:href="@{/purchase-lines/increase/{id}(id=${line.id})}"
+                           class="btn btn-sm btn-outline-secondary rounded-circle" title="Añadir uno">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                    </div>
+
+                    <div class="text-end">
+                        <div class="purchase-price">
+                            <span th:text="${#numbers.formatDecimal(line.product.price * line.quantity,1,2)}">0</span> €
+                        </div>
+                        <a th:href="@{/products/{id}(id=${line.product.id})}" class="btn btn-sm btn-link text-secondary p-0">Ver producto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order summary -->
+        <div class="col-lg-4">
+            <div class="purchase-header position-sticky" style="top:6rem">
+                <h2 class="h5 mb-3">Resumen del pedido</h2>
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="purchase-muted">Subtotal</span>
+                    <span class="fw-semibold"><span th:text="${#numbers.formatDecimal(total,1,2)}">0</span> €</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="purchase-muted">Envío</span>
+                    <span class="text-success fw-semibold">Gratis</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="fw-bold">Total</span>
+                    <span class="purchase-total"><span th:text="${#numbers.formatDecimal(total,1,2)}">0</span> €</span>
+                </div>
+                <a th:if="${purchase != null and !#lists.isEmpty(purchaseLines)}"
+                   th:href="@{/purchases/{id}(id=${purchase.id})}" class="btn btn-primary w-100">
+                    <i class="fa-solid fa-bag-shopping me-1"></i> Ver / finalizar pedido
+                </a>
+                <a th:href="@{/products}" class="btn btn-outline-secondary w-100 mt-2">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Seguir comprando
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suggested products -->
+    <hr class="my-5">
+    <h2 class="section-title h4 mb-4">Agregar más productos</h2>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+        <div class="col" th:each="product : ${products}">
+            <div class="card product-card hover-lift">
+                <a th:href="@{/products/{id}(id=${product.id})}">
+                    <img th:src="${product.image}" class="product-thumb" alt="Producto">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <a th:href="@{/products/{id}(id=${product.id})}" class="link-dark">
+                        <h5 class="card-title h6 mb-1" th:text="${product.name}">Producto</h5>
+                    </a>
+                    <div class="mt-auto d-flex justify-content-between align-items-center pt-2">
+                        <span class="product-price fs-6" th:text="${product.price} + ' €'">€</span>
+                        <form th:action="@{/purchase-lines/create}" method="post" class="m-0">
+                            <input type="hidden" name="productId" th:value="${product.id}">
+                            <button type="submit" class="btn btn-sm btn-primary" title="Añadir al carrito">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
 </body>
 </html>

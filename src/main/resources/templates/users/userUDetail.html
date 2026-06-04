@@ -1,191 +1,139 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head th:replace="~{layout/head :: head('Detalle Usuario')}"></head>
-<script>
-    function showSection(sectionId) {
-
-        document.getElementById('reviewsSection')
-            .classList.add('d-none');
-
-        document.getElementById('favoritesSection')
-            .classList.add('d-none');
-
-        document.getElementById(sectionId)
-            .classList.remove('d-none');
-    }
-</script>
-<body class="d-flex flex-column min-vh-100 bg-light">
-
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/head :: head('Mi perfil')}"></head>
+<body class="d-flex flex-column min-vh-100">
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
-<a href="/profile"><span class="position-fixed bottom-0 end-0 m-4 p-3 bg-primary text-white rounded-circle shadow-lg">
-        <i class="fa-solid fa-arrow-up"></i>
+<main class="container flex-grow-1">
 
-    </span>
-</a>
-<main class="flex-grow-1 my-4">
-    <div class="container-fluid position-relative min-vh-100 d-flex justify-content-center align-items-center overflow-hidden">
-
-    <img src="/images/img.png"
-         class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
-         alt="background">
-        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-
-        <!--<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center rounded-3" style="background: linear-gradient(to bottom,#ffffff 25%, #ffffff 50%, grey 75%, grey 100%);"> -->
-        <div class="card shadow-lg" style="max-width: 1280px; width: 100%; max-height: 720px; height: 100%">
-            <h1 class="mb-3 align-self-start card-header">
-                <span>Perfil: </span>
-                <span th:text="${user.username}">username</span>
-            </h1>
-            <div class="card-body">
-                <div class="text-center mb-4">
-                    <div class="rounded-circle d-inline-flex justify-content-center align-items-center overflow-hidden"
-                         style="width: 128px; height: 128px;">
-
-                        <i th:unless="${user.imageUrl}"
-                           class="fa-solid fa-user"
-                           style="font-size: 124px; color: orange; background: #F0F2F5; background-size: cover"></i>
-
-                        <img th:if="${user.imageUrl}"
-                             th:src="${user.imageUrl}"
-                             alt="Foto de perfil"
-                             style="width:100%; height:100%; object-fit:cover;">
-                    </div>
+    <!-- Profile hero -->
+    <div class="hero p-4 p-md-5 mb-4">
+        <div class="row align-items-center g-4">
+            <div class="col-auto">
+                <div class="icon-circle bg-white shadow" style="width:120px;height:120px;font-size:3rem;">
+                    <img th:if="${user.imageUrl}" th:src="${user.imageUrl}" alt="Avatar"
+                         class="rounded-circle object-fit-cover" style="width:120px;height:120px;">
+                    <i th:unless="${user.imageUrl}" class="fa-solid fa-user text-primary"></i>
                 </div>
-                <dl class="row mb-0">
-                    <dt class="col-sm-3">Username</dt>
-                    <dd class="col-sm-9" th:text="${user.username}"></dd>
-
-                    <dt class="col-sm-3 mt-5">Email</dt>
-                    <dd class="col-sm-9 mt-5" th:text="${user.email}"></dd>
-                </dl>
             </div>
-            <div class="row g-3 mb-4">
-                <a href="#reviewsSection" class="col-md-4" style="color: inherit; text-decoration: none" onclick="showSection('reviewsSection')">
-                <div role="button">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <h3 class="card-title my-2" th:text="${userStats.countReviews()}"></h3>
-                            <!-- se puede mostrar tambien la nota media de sus reseñas AVG(r.rating) -->
-                            <p class="card-text text-muted">Reseñas escritas</p>
-                        </div>
-                    </div>
+            <div class="col">
+                <h1 class="h2 mb-1" th:text="${user.username}">Usuario</h1>
+                <p class="text-white-50 mb-3"><i class="fa-solid fa-envelope me-1"></i><span th:text="${user.email}"></span></p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a th:href="@{/profile/edit/{id}(id=${user.id})}" class="btn btn-primary">
+                        <i class="fa-solid fa-user-pen me-1"></i> Editar perfil
+                    </a>
+                    <a th:href="@{/products}" class="btn btn-outline-light">
+                        <i class="fa-solid fa-store me-1"></i> Ir a la tienda
+                    </a>
                 </div>
-                </a>
-                <a href="#favoritesSection" class="col-md-4" style="color: inherit; text-decoration: none" onclick="showSection('favoritesSection')">
-                <div role="button">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fa-solid fa-heart text-danger"></i>
-                            <h3 class="card-title my-2" th:text="${userStats.countFavorites()}"></h3>
-                            <!-- se puede mostrar tambien la nota media de sus reseñas AVG(r.rating) -->
-                            <p class="card-text text-muted">Favoritos</p>
-                        </div>
-                    </div>
-                </div>
-                </a>
-                <a th:href="@{/purchases}" class="col-md-4" style="color: inherit; text-decoration: none">
-                    <div id="purchasesSection" role="button" style="cursor: pointer">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-body">
-                                <i class="fa-solid fa-ticket text-primary"></i>
-                                <h3 class="card-title my-2" th:text="${userStats.countPurchase()}"></h3>
-                                <p class="card-text text-muted">Compras Realizadas</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="card-footer d-flex justify-content-center gap-2">
-                <a th:href="@{/products}" class="btn btn-sm btn-outline-secondary">
-                    <i class="fa-solid fa-arrow-left me-1"></i> Volver
-                </a>
-                <a th:href="@{profile/edit/{id}(id=${user.id})}"
-                   class="btn btn-sm btn-outline-success">
-                    <i class="fa-solid fa-user-pen me-1"></i> Editar
-                </a>
             </div>
         </div>
     </div>
-    <div id="reviewsSection" class="d-none">
-        <h2 class="mt-5" autofocus>
-            <i class="fa-regular fa-comments text-primary me-2" ></i> Reviews de este usuario
-        </h2>
-        <div th:if="${userStats.reviews().isEmpty()}" class="alert alert-light border">
-            <i class="fa-regular fa-face-smile me-1"></i>
-            No has hecho ningun comentario tadavia.
+
+    <!-- Stats -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div role="button" onclick="showSection('reviewsSection')" class="card text-center hover-lift h-100">
+                <div class="card-body">
+                    <i class="fa-solid fa-star text-warning fa-2x mb-2"></i>
+                    <h3 class="mb-0" th:text="${userStats.countReviews()}">0</h3>
+                    <p class="text-muted mb-0">Reseñas escritas</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div role="button" onclick="showSection('favoritesSection')" class="card text-center hover-lift h-100">
+                <div class="card-body">
+                    <i class="fa-solid fa-heart text-danger fa-2x mb-2"></i>
+                    <h3 class="mb-0" th:text="${userStats.countFavorites()}">0</h3>
+                    <p class="text-muted mb-0">Favoritos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <a th:href="@{/purchases}" class="text-decoration-none">
+                <div class="card text-center hover-lift h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-ticket text-primary fa-2x mb-2"></i>
+                        <h3 class="mb-0 text-dark" th:text="${userStats.countPurchase()}">0</h3>
+                        <p class="text-muted mb-0">Compras realizadas</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Reviews section -->
+    <div id="reviewsSection" class="mb-4">
+        <h2 class="section-title h4 mb-3"><i class="fa-regular fa-comments text-primary me-2"></i>Mis reseñas</h2>
+        <div th:if="${userStats.reviews().isEmpty()}" class="empty-state text-muted p-4">
+            <i class="fa-regular fa-face-smile me-1"></i> Todavía no has escrito ninguna reseña.
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-3" th:unless="${userStats.reviews().isEmpty()}">
             <div class="col" th:each="review : ${userStats.reviews()}">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 hover-lift">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${review.title}">Título</h5>
-                        <p class="card-text" th:text="${review.comment}">Descripción</p>
-                        <span class="badge bg-warning text-dark">
-                            <i class="fa-solid fa-star me-1"></i>
-                            <span th:text="${review.rating + ' / 5'}"></span>
-                        </span>
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0" th:text="${review.title}">Título</h5>
+                            <span class="badge text-bg-warning text-dark">
+                                <i class="fa-solid fa-star me-1"></i><span th:text="${review.rating} + ' / 5'"></span>
+                            </span>
+                        </div>
+                        <p class="card-text text-muted" th:text="${review.comment}">Comentario</p>
                     </div>
-                    <div class="card-footer text-muted small bg-transparent">
+                    <div class="card-footer bg-transparent text-muted small">
                         <i class="fa-regular fa-calendar me-1"></i>
-                        <span th:text="${review.createdAt}"></span>
+                        <span th:text="${review.createdAt != null} ? ${#temporals.format(review.createdAt, 'dd/MM/yyyy')} : '—'"></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="favoritesSection" class="d-none">
-        <h2 class="mt-5 mb-4" autofocus>
-            <i class="fa-solid fa-star text-warning me-2"></i>
-            Favoritos
-        </h2>
-        <div th:if="${userStats.favoriteProduct().isEmpty()}" class="alert alert-light border">
-            <i class="fa-regular fa-heart me-1"></i>
-            Este usuario aún no ha marcado productos favoritos.
+
+    <!-- Favorites section -->
+    <div id="favoritesSection" class="d-none mb-5">
+        <h2 class="section-title h4 mb-3"><i class="fa-solid fa-heart text-danger me-2"></i>Mis favoritos</h2>
+        <div th:if="${userStats.favoriteProduct().isEmpty()}" class="empty-state text-muted p-4">
+            <i class="fa-regular fa-heart me-1"></i> Aún no has marcado productos favoritos.
         </div>
-        <div class="row row-cols-1 row-cols-md-3 g-3" th:unless="${userStats.favoriteProduct().isEmpty()}">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3" th:unless="${userStats.favoriteProduct().isEmpty()}">
             <div class="col" th:each="fav : ${userStats.favoriteProduct()}">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fa-solid fa-store text-primary me-2"></i>
-                            <a th:href="@{/products/{id}(id=${fav.product.id})}"
-                            th:text="${fav.product.name}">Producto</a>
-                        </h5>
-                        <small class="text-muted">
-                            Marcado el
-                            <span th:text="${#temporals.format(fav.createdAt, 'dd/MM/yyyy')}"></span>
-                        </small>
+                <div class="card h-100 hover-lift">
+                    <div class="row g-0 h-100">
                         <div class="col-4">
-                            <img th:src="${fav.product.image}"
-                                class="img-fluid h-100 w-100 object-fit-cover rounded-end"
-                                alt="Producto">
+                            <img th:src="${fav.product.image}" class="img-fluid h-100 w-100 object-fit-contain bg-light rounded-start p-2" alt="Producto">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title h6">
+                                    <a th:href="@{/products/{id}(id=${fav.product.id})}" class="link-dark" th:text="${fav.product.name}">Producto</a>
+                                </h5>
+                                <p class="product-price fs-6 mb-1" th:text="${fav.product.price} + ' €'"></p>
+                                <small class="text-muted">
+                                    <i class="fa-regular fa-clock me-1"></i>
+                                    <span th:text="${#temporals.format(fav.createdAt, 'dd/MM/yyyy')}"></span>
+                                </small>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>
-<script th:replace="~{layout/footer :: scripts}"></script>
-
+<script>
+    function showSection(sectionId) {
+        document.getElementById('reviewsSection').classList.add('d-none');
+        document.getElementById('favoritesSection').classList.add('d-none');
+        const target = document.getElementById(sectionId);
+        if (target) {
+            target.classList.remove('d-none');
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+</script>
 </body>
 </html>
-<!-- TODO
-
-id
-username
-email
-rol
-
-firstName
-lastName
-avatar
-
-reviews: count
-orders: count, sum
--->
