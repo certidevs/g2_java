@@ -40,7 +40,12 @@
                                 <div class="text-muted small d-flex flex-wrap gap-2 align-items-center">
                                     <span th:if="${review.product != null}" class="fw-semibold text-dark" th:text="${review.product.name}"></span>
                                     <span class="d-flex align-items-center gap-1">
-                                        <i class="fa-solid fa-user"></i>
+                                        <img th:if="${review.user != null and review.user.imageUrl != null}"
+                                             th:src="${review.user.imageUrl}"
+                                             alt="Avatar"
+                                             class="rounded-circle border"
+                                             style="width:28px;height:28px;object-fit:cover;">
+                                        <i th:unless="${review.user != null and review.user.imageUrl != null}" class="fa-solid fa-user"></i>
                                         <span th:if="${review.user == null}">Anónimo</span>
                                         <span th:if="${review.user != null}" th:text="${review.user.username}"></span>
                                     </span>
