@@ -85,8 +85,15 @@
                             <input type="hidden" name="type" value="PRODUCT">
                             <input type="hidden" name="markId" th:value="${product.id}">
                             <input type="hidden" name="redirectUrl" th:value="@{/products}">
-                            <button class="btn btn-sm btn-link text-warning p-0" type="submit" title="Favorito">
-                                <i class="fa-regular fa-star fs-5"></i>
+
+                            <button type="submit" class="btn btn-sm btn-link p-0">
+
+                                <i class="fa-star fs-5"
+                                   th:classappend="${likeproductsIds.contains(product.id)}
+                                     ? ' fa-solid text-warning'
+                                     : ' fa-regular text-muted'">
+                                </i>
+
                             </button>
                         </form>
                     </div>

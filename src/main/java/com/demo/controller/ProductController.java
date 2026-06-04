@@ -6,8 +6,10 @@ import com.demo.repository.CategoryRepository;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.ReviewRepository;
 import com.demo.service.FileService;
+import com.demo.service.LikeService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @AllArgsConstructor
@@ -24,11 +27,16 @@ public class ProductController {
     private final ReviewRepository reviewRepository;
     private final CategoryRepository categoryRepository;
     private final FileService fileService;
+    private final LikeService likeService;
 
     @GetMapping("/products")
-    public String productList(Model model, @RequestParam(required = false)String name) {
+    public String productList(Model model, @RequestParam(required = false)String name ,
+                              @AuthenticationPrincipal User user) {
         List<Product> products = productRepository.findActivoFiltering(name);
-        model.addAttribute("products", products);
+        if (user != null) {
+            model.addAttribute("likeproductsIds",
+                    likeService.findProductsIdsByUserid(user.getId()));
+        }        model.addAttribute("products", products);
         return "products/productsList";
     }
     @GetMapping("filter-mintomax")
@@ -40,6 +48,7 @@ public class ProductController {
     @GetMapping("filter-maxtomin")
     public String productMaxToMin(Model model, @RequestParam(required = false)Double prices){
         List<Product> products = productRepository.findActivoMaxMin(prices);
+
         model.addAttribute("products", products);
         return "products/productsList";
     }

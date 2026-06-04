@@ -5,13 +5,12 @@ import com.demo.model.Product;
 import com.demo.model.Review;
 import com.demo.repository.CategoryRepository;
 import com.demo.repository.ProductRepository;
+import com.demo.service.FileService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +21,7 @@ public class CategoryController {
 
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
+    private final FileService fileService;
 
     @GetMapping("categories")
     public String categoriesList( Model model){
@@ -77,9 +77,16 @@ public class CategoryController {
         return "redirect:/category";
     }
     @PostMapping("categories")
-    public String saveCategory(@ModelAttribute Category category) {
+    public String saveCategory(@ModelAttribute Category category,
+                               @RequestParam("imageFile") MultipartFile imageFile) {
+
+        String photo = fileService.store(imageFile);
+        if (photo != null) {
+            category.setImage(photo);
+        }
         category.setActivo(true);
         categoryRepository.save(category);
         return "redirect:/categories/" + category.getId();
     }
-}
+    }
+
