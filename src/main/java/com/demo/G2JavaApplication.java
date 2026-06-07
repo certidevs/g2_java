@@ -56,35 +56,35 @@ public class G2JavaApplication {
         Category c1 = new Category();
         c1.setName("Creatina");
         c1.setDescription("La creatina es un aminoácido que se sintetiza en el hígado y se almacena en los músculos. Cuando se combina con fosfato, es una fuente de energía fácilmente disponible en el organismo. Aquí puedes encontrar todos los tipos.");
-        c1.setImage("/images/categories/creatina.png");
+        c1.setImageFile("/images/categories/creatina.png");
         c1.setActivo(true);
         categoryRepository.save(c1);
 
         Category objects2 = new Category();
         objects2.setName("Crema de arroz");
         objects2.setDescription("La crema de arroz  es un carbohidrato complejo de digestión rápida obtenido a partir de la harina de arroz. Lo que la convierte en una excelente opicón para proporcionar energía antes , durante o después del ejercicio.");
-        objects2.setImage("/images/categories/CremaArroz.png");
+        objects2.setImageFile("/images/categories/CremaArroz.png");
         objects2.setActivo(true);
         categoryRepository.save(objects2);
 
         Category objects3 = new Category();
         objects3.setName("Proteínas");
         objects3.setDescription("La proteína en polvo es un tipo de suplemento que aporta de forma rápida y sencilla proteínas de alta calidad a nuestro organismo. Aquí puedes encontrar todos los tipos.");
-        objects3.setImage("/images/categories/proteinas.png");
+        objects3.setImageFile("/images/categories/proteinas.png");
         objects3.setActivo(true);
         categoryRepository.save(objects3);
 
         Category objects4 = new Category();
         objects4.setName("Ropa y accesorios");
         objects4.setDescription("Ropa y accesorios deportivos");
-        objects4.setImage("/images/categories/RopaYAccesorios.png");
+        objects4.setImageFile("/images/categories/RopaYAccesorios.png");
         objects4.setActivo(true);
         categoryRepository.save(objects4);
 
         Category objects5 = new Category();
         objects5.setName("Suplementos");
         objects5.setDescription("Ayudas para rendir a tu 100%");
-        objects5.setImage("/images/categories/vitaminas.png");
+        objects5.setImageFile("/images/categories/vitaminas.png");
         objects5.setActivo(true);
         categoryRepository.save(objects5);
 
