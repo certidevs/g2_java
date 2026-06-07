@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class CategoryController {
     private final FileService fileService;
 
     @GetMapping("categories")
-    public String categoriesList( Model model){
+    public String categoriesList(Model model) {
         List<Category> categories = categoryRepository.findAllByActivoTrue();
         model.addAttribute("categories", categories);
         return "categories/categoriesList";
@@ -53,21 +54,24 @@ public class CategoryController {
         }
         return "redirect:/categoriesList";
     }
+
     @GetMapping("categories/new")
-    public String newCategory(Model model){
+    public String newCategory(Model model) {
         model.addAttribute("category", new Category());
         return "categories/category-form";
     }
+
     @GetMapping("categories/edit/{id}")
-    public String editCategory(@PathVariable Long id, Model model){
+    public String editCategory(@PathVariable Long id, Model model) {
         model.addAttribute("category", categoryRepository.findById(id).orElseThrow());
         return "categories/category-form";
     }
+
     @GetMapping("categories/deactivate/{id}")
     public String deactivateCategory(@PathVariable Long id, Model model) {
         Optional<Category> categoryOptional = categoryRepository.findById(id);
 
-        if(categoryOptional.isPresent()) {
+        if (categoryOptional.isPresent()) {
             Category down = categoryOptional.get();
             down.setActivo(false);
             categoryRepository.save(down);
@@ -76,17 +80,30 @@ public class CategoryController {
 
         return "redirect:/category";
     }
-    @PostMapping("categories")
-    public String saveCategory(@ModelAttribute Category category,
-                               @RequestParam("imageFile") MultipartFile imageFile) {
 
-        String photo = fileService.store(imageFile);
-        if (photo != null) {
-            category.setImage(photo);
+    @PostMapping("/categories")
+    public String saveCategory(
+            @ModelAttribute Category category,
+            @RequestParam("file") MultipartFile imageFile , RedirectAttributes red) {
+
+        try {
+            String photo = fileService.store(imageFile);
+
+            if (photo != null) {
+                category.setImageFile(photo);
+            }
+
+            category.setActivo(true);
+            categoryRepository.save(category);
+            red.addFlashAttribute("message", "Categoría guardada con éxito.");
+            return "redirect:/categories";
+        } catch (IllegalArgumentException e){
+            red.addFlashAttribute("error" , e.getMessage());
+            return "redirect:/categories/new";
+        }catch (Exception e) {
+            red.addFlashAttribute("error" , "Ocurrio un error al guardar.");
+            return "redirect:/categories/new";
         }
-        category.setActivo(true);
-        categoryRepository.save(category);
-        return "redirect:/categories/" + category.getId();
     }
-    }
+}
 
