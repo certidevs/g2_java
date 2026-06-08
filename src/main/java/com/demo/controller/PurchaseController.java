@@ -56,7 +56,7 @@ private final ProductRepository productRepository;
 
         return "purchases/purchaseDetails";
     }
-@GetMapping("purchase/{id}/finish")
+@PostMapping("purchases/{id}/finish")
 public String finish(@PathVariable Long id, @RequestParam(required = false) Double tip) {
     Purchase purchase =  purchaseRepository.findById(id).orElseThrow();
     purchase.setStatus(PurchaseStatus.FINISHED);

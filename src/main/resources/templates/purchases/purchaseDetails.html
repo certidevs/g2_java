@@ -203,10 +203,12 @@
                 </div>
 
                 <div class="d-flex flex-wrap gap-2 mb-5">
-                    <a th:if="${purchase.status.name() == 'PENDING'}" th:href="@{/purchase/{id}/finish(id=${purchase.id})}"
-                       class="btn btn-primary btn-lg">
-                        <i class="fa-solid fa-circle-check me-1"></i> Finalizar compra
-                    </a>
+                    <button th:if="${purchase.status.name() == 'PENDING'}"
+                            type="submit"
+                            class="btn btn-primary btn-lg">
+                        <i class="fa-solid fa-circle-check me-1"></i>
+                        Finalizar compra
+                    </button>
                     <a th:href="@{/purchase-lines}" class="btn btn-outline-secondary btn-lg">
                         <i class="fa-solid fa-cart-shopping me-1"></i> Volver al carrito
                     </a>
