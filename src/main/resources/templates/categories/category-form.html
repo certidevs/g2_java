@@ -33,6 +33,7 @@
 
                     <div class="mb-4">
                         <label for="file" class="form-label">Imagen (Archivo)</label>
+                        <input type="hidden" th:field="*{imageFile}">
                         <input type="file" class="form-control" id="file" name="file" accept="image/*">
                         <img id="preview" alt="Previsualización" class="mt-3 rounded"
                              style="max-height:150px; display:none"
