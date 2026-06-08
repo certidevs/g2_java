@@ -62,30 +62,7 @@ public class PurchaseLineController {
         return "purchaseLines/purchaseLinesList";
     }
 
-//    @GetMapping("/form/{id}")
-//    public String showForm(@PathVariable Long id, Model model) {
-//        PurchaseLine purchaseLine = new PurchaseLine();
-//        if (id != null) {
-//            Optional<Product> product = productRepository.findById(id);
-//            if (product.isPresent()) {
-//                purchaseLine.setProduct(product.get());
-//                purchaseLine.setUnitPrice(product.get().getPrice());
-//                model.addAttribute("category", product.get().getCategory());
-//                model.addAttribute("purchaseLine", purchaseLine);
-//                return "purchaseLines/purchaseLines-form";
-//            }
-//        }
-//            return "redirect:/products";
-//
-//
-//    }
-//
-//    @PostMapping
-//    public String createPurchaseLine(@ModelAttribute PurchaseLine purchaseLine) {
-//        System.out.println("ACCION COMPLETADA CON EXITO: " + purchaseLine);
-//        purchaseLineRepository.save(purchaseLine);
-//        return "redirect:/purchase-lines";
-//    }
+
     // TODO REVISAR STATUS
 @PostMapping("/create")
 public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPrincipal User user) {
