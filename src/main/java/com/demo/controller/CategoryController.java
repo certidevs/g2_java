@@ -84,10 +84,10 @@ public class CategoryController {
     @PostMapping("/categories")
     public String saveCategory(
             @ModelAttribute Category category,
-            @RequestParam("file") MultipartFile imageFile , RedirectAttributes red) {
+            @RequestParam MultipartFile file , RedirectAttributes red) {
 
         try {
-            String photo = fileService.store(imageFile);
+            String photo = fileService.store(file);
 
             if (photo != null) {
                 category.setImageFile(photo);
