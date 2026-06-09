@@ -22,8 +22,8 @@
             <div class="text-center text-md-start">
                 <h1 class="h3 mb-2" th:text="${category.name}">Nombre</h1>
                 <p class="text-muted mb-2" th:text="${category.description}">Descripción</p>
-                <span th:if="${category.activo}" class="badge text-bg-success">Activada</span>
-                <span th:unless="${category.activo}" class="badge text-bg-danger">Desactivada</span>
+                <span sec:authorize="hasRole('ADMIN')" th:if="${category.activo}" class="badge text-bg-success">Activada</span>
+                <span sec:authorize="hasRole('ADMIN')" th:unless="${category.activo}" class="badge text-bg-danger">Desactivada</span>
             </div>
         </div>
     </div>
