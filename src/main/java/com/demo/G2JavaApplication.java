@@ -55,35 +55,35 @@ public class G2JavaApplication {
 
         Category c1 = new Category();
         c1.setName("Creatina");
-        c1.setDescription("La creatina es un aminoácido que se sintetiza en el hígado y se almacena en los músculos. Cuando se combina con fosfato, es una fuente de energía fácilmente disponible en el organismo. Aquí puedes encontrar todos los tipos.");
+        c1.setDescription("La creatina, el aliado indiscutible de los deportistas. Recuperación muscular, aumento de fuerza y mejora en el rendimiento. Todo en uno.");
         c1.setImageFile("/images/categories/CreatinaHardCore.png");
         c1.setActivo(true);
         categoryRepository.save(c1);
 
         Category objects2 = new Category();
         objects2.setName("Crema de arroz");
-        objects2.setDescription("La crema de arroz  es un carbohidrato complejo de digestión rápida obtenido a partir de la harina de arroz. Lo que la convierte en una excelente opicón para proporcionar energía antes , durante o después del ejercicio.");
+        objects2.setDescription("Carbohidrato de absorción rápida, 50g y 200ml agua/leche, ideal para antes o después de entrenar. Disponible en varios sabores, vegana y sin lactosa.");
         objects2.setImageFile("/images/categories/CremaDeArrozHardCore.jpg");
         objects2.setActivo(true);
         categoryRepository.save(objects2);
 
         Category objects3 = new Category();
         objects3.setName("Proteínas");
-        objects3.setDescription("La proteína en polvo es un tipo de suplemento que aporta de forma rápida y sencilla proteínas de alta calidad a nuestro organismo. Aquí puedes encontrar todos los tipos.");
+        objects3.setDescription("El suplemento deportivo más famoso, ideal para aumentar tu ingesta de proteínas, mejorar tu recuperación y ayudarte a alcanzar tus objetivos de entrenamiento.");
         objects3.setImageFile("/images/categories/ProteinaHardCore.jpg");
         objects3.setActivo(true);
         categoryRepository.save(objects3);
 
         Category objects4 = new Category();
         objects4.setName("Ropa y accesorios");
-        objects4.setDescription("Ropa y accesorios deportivos");
+        objects4.setDescription("Material y outfits imprescindibles para darlo todo en tu deporte favorito");
         objects4.setImageFile("/images/categories/RopaYAccesorios3.jpg");
         objects4.setActivo(true);
         categoryRepository.save(objects4);
 
         Category objects5 = new Category();
         objects5.setName("Suplementos");
-        objects5.setDescription("Ayudas para rendir a tu 100%");
+        objects5.setDescription("Suplementos deportivos que llevarán tu entrenamiento al siguiente nivel");
         objects5.setImageFile("/images/categories/SupleHardCore.jpg");
         objects5.setActivo(true);
         categoryRepository.save(objects5);
