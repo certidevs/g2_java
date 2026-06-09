@@ -90,6 +90,7 @@ private final ProductRepository productRepository;
         purchase.setCardExpirationDate(cardExpirationDate);
         purchase.setStatus(PurchaseStatus.FINISHED);
         purchase.setTotalPrice(purchaseLinesRepository.calculateTotalPrice(purchase.getId()));
+        purchase.setPurchaseDate(LocalDateTime.now());
         // iva, service charge, terrace
 
 
