@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,7 +28,6 @@ public class PurchaseController {
     private final PurchaseLineRepository purchaseLinesRepository;
 private final ProductRepository productRepository;
 
-//     @GetMapping orders
 //     filtrar por restaurante, filtrar por usuario
 
     //Para guardar las compras en tu cuenta de usuario
@@ -45,7 +45,6 @@ private final ProductRepository productRepository;
         return "purchases/purchaseList";
     }
 
-    // @GetMapping orders/{id}
     @GetMapping("purchases/{id}")
     public String purchase(Model model, @PathVariable Long id){
         Purchase purchase = purchaseRepository.findById(id).orElseThrow();
@@ -57,18 +56,47 @@ private final ProductRepository productRepository;
         return "purchases/purchaseDetails";
     }
 @PostMapping("purchases/{id}/finish")
-public String finish(@PathVariable Long id, @RequestParam(required = false) Double tip) {
-    Purchase purchase =  purchaseRepository.findById(id).orElseThrow();
-    purchase.setStatus(PurchaseStatus.FINISHED);
-    purchase.setPurchaseDate(LocalDateTime.now());
-    purchase.setTotalPrice(purchaseLinesRepository.calculateTotalPrice(purchase.getId()));
-    // iva, service charge, terrace
+    public String finish(
+            @PathVariable Long id,
+            @RequestParam(required = false) Double tip,
+            @RequestParam(required = false) String cardOwner,
+            @RequestParam(required = false) String cardNumber,
+            @RequestParam(required = false) String cardExpirationDate,
+            @RequestParam(required = false) String cardSecretCode,
+            RedirectAttributes redirectAttributes
+    ) {
+        Purchase purchase =  purchaseRepository.findById(id).orElseThrow();
+        // 1111 2222 3333 4444 -> 1111222233334444
+        String number = cardNumber == null ? "" : cardNumber.replace("\\s", "");
+        if (!number.matches("\\d{16}")) {
+            redirectAttributes.addFlashAttribute("error", "Invalid card number");
+            return "redirect:/purchases/" + id;
+        }
+        // TODO verificar que no esté caducada
+        if(cardExpirationDate == null || !cardExpirationDate.matches("\\d{2}/\\d{2}")) {
+            redirectAttributes.addFlashAttribute("error", "La caducidad debe tener formato MM/YY");
+            return "redirect:/purchases/" + id;
+        }
+        if(cardSecretCode == null ||  !cardSecretCode.matches("\\d{3}")) {
+            redirectAttributes.addFlashAttribute("error", "Invalid card secret code");
+            return "redirect:/purchases/" + id;
+        }
+        if(cardOwner == null || cardOwner.isBlank()) {
+            redirectAttributes.addFlashAttribute("error", "Card owner is required");
+            return "redirect:/purchases/" + id;
+        }
+        purchase.setCardNumber(cardNumber);
+        purchase.setCardOwner(cardOwner);
+        purchase.setCardExpirationDate(cardExpirationDate);
+        purchase.setStatus(PurchaseStatus.FINISHED);
+        purchase.setTotalPrice(purchaseLinesRepository.calculateTotalPrice(purchase.getId()));
+        // iva, service charge, terrace
 
-//    purchaseLinesRepository.deleteAll(purchase.getPurchaseLines());
-    purchaseRepository.save(purchase);
-    return  "redirect:/purchases";
-}
 
+        purchaseRepository.save(purchase);
+        redirectAttributes.addFlashAttribute("message", "Pedido finalizado correctamente");
+        return "redirect:/purchases/" + id;
+    }
 
     // @GetMapping purchases/{id}/finish
     // TODO finish de compra

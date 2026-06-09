@@ -31,6 +31,13 @@ private Long id;
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
 
+    // pago
+    // private PaymentMethod method; // CASH, CARD
+    private String cardOwner; // titular
+    private String cardNumber; // XXXXYYYYZZZZWWWW
+    private String cardExpirationDate; // MM-YY
+
+
     @ToString.Exclude
     @ManyToOne
     private User user;
