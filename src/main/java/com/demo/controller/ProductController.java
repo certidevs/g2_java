@@ -40,16 +40,39 @@ public class ProductController {
         return "products/productsList";
     }
     @GetMapping("filter-mintomax")
-    public String productMinToMax(Model model, @RequestParam(required = false)Double price) {
-        List<Product> products = productRepository.findActivoMinMax(price);
+    public String productMinToMax(
+            Model model,
+            @AuthenticationPrincipal User user) {
+
+        List<Product> products =
+                productRepository.findActivoMinMax(null);
+
+        if (user != null) {
+            model.addAttribute(
+                    "likeproductsIds",
+                    likeService.findProductsIdsByUserid(user.getId()));
+        }
+
         model.addAttribute("products", products);
+
         return "products/productsList";
     }
     @GetMapping("filter-maxtomin")
-    public String productMaxToMin(Model model, @RequestParam(required = false)Double prices){
-        List<Product> products = productRepository.findActivoMaxMin(prices);
+    public String productMaxToMin(
+            Model model,
+            @AuthenticationPrincipal User user) {
+
+        List<Product> products =
+                productRepository.findActivoMaxMin(null);
+
+        if (user != null) {
+            model.addAttribute(
+                    "likeproductsIds",
+                    likeService.findProductsIdsByUserid(user.getId()));
+        }
 
         model.addAttribute("products", products);
+
         return "products/productsList";
     }
     @GetMapping("products/deactivate/{id}")
