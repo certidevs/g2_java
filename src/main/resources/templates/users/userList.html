@@ -5,6 +5,10 @@
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="container flex-grow-1">
+
+    <div th:if="${message}" class="alert alert-success d-flex align-items-center gap-2">
+        <i class="fa-solid fa-circle-check"></i> <span th:text="${message}"></span>
+    </div>
     <div class="mb-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1 class="section-title h2 mb-0">Usuarios</h1>
@@ -44,9 +48,6 @@
         </div>
     </div>
 
-    <div th:if="${message}" class="alert alert-success d-flex align-items-center gap-2">
-        <i class="fa-solid fa-circle-check"></i> <span th:text="${message}"></span>
-    </div>
 
     <div class="card">
         <div class="table-responsive">
@@ -84,13 +85,16 @@
                     </td>
                     <td class="text-end pe-4">
                         <div class="btn-group">
-                            <a th:href="@{/admin/users/{id}(id=${user.id})}" class="btn btn-sm btn-outline-primary" title="Ver">
+                            <a th:href="@{/admin/users/{id}(id=${user.id})}" class="btn btn-sm btn-outline-primary"
+                               title="Ver">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <a th:href="@{/admin/users/edit/{id}(id=${user.id})}" class="btn btn-sm btn-outline-secondary" title="Editar">
+                            <a th:href="@{/admin/users/edit/{id}(id=${user.id})}"
+                               class="btn btn-sm btn-outline-secondary" title="Editar">
                                 <i class="fa-solid fa-user-pen"></i>
                             </a>
-                            <a th:href="@{/admin/users/deactivate/{id}(id=${user.id})}" class="btn btn-sm btn-outline-danger" title="Desactivar"
+                            <a th:href="@{/admin/users/deactivate/{id}(id=${user.id})}"
+                               class="btn btn-sm btn-outline-danger" title="Desactivar"
                                onclick="return confirm('¿Desactivar este usuario?')">
                                 <i class="fa-solid fa-user-slash"></i>
                             </a>
