@@ -135,6 +135,10 @@ public class UserService implements UserDetailsService {
         return userRepository.save(userDB); // guardamos el usuario actualizado en base de datos
     }
 
+    public List<User> findByUsernameContaining(String username) {
+        return userRepository.findByUsernameContainingIgnoreCase(username);
+    }
+
 
     /*public User updateLimited(User userForm) {
         User userDB = findById(userForm.getId()); // primero sacamos el usuario de base de datos

@@ -20,8 +20,16 @@ public class UserController {
     private final FileService fileService;
 
     @GetMapping("admin/users")
-    public String list(Model model) {
-        model.addAttribute("users", userService.findAll());
+    public String list(@RequestParam(required = false) String username, Model model) {
+
+        if (username != null && !username.isBlank()) {
+            model.addAttribute("users",
+                    userService.findByUsernameContaining(username));
+        } else {
+            model.addAttribute("users", userService.findAll());
+        }
+        model.addAttribute("username", username); // para mantener el valor en el input
+
         return "users/userList";
     }
 
