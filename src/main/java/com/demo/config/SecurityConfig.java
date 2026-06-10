@@ -32,6 +32,8 @@ public class SecurityConfig {
                                 "/uploads/**", "/images/**", "/webjars/**").permitAll()
 
 
+                        //Ruta de Home
+                        .requestMatchers(HttpMethod.GET, "/home").permitAll()
                         //Rutas de Productos
                         .requestMatchers(HttpMethod.GET, "/products").permitAll()
                         .requestMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
@@ -48,7 +50,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/categories/*").permitAll()
 
                         // Rutas de Reviews(Opiniones)
-
                         .requestMatchers(HttpMethod.GET, "/reviews-productos").permitAll()
                         .requestMatchers(HttpMethod.POST, "/reviews").authenticated()
                         .requestMatchers(HttpMethod.GET, "/reviews/new").authenticated()
@@ -76,7 +77,7 @@ public class SecurityConfig {
 
         http.formLogin(form ->
                 form.loginPage("/login")
-                        .defaultSuccessUrl("/products", true)
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
         );
         http.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout"));
