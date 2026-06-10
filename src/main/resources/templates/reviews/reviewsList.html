@@ -9,9 +9,10 @@
 <main class="container flex-grow-1">
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
         <h1 class="section-title h2 mb-0">Opiniones de clientes</h1>
-        <a sec:authorize="isAuthenticated()" th:href="@{/reviews/new}" class="btn btn-primary">
-            <i class="fa-solid fa-plus me-1"></i> Nueva opinión
-        </a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/reviews/new}"
+           class="btn btn-success">
+        <i class="fa-solid fa-plus me-1"></i> Nueva opinión
+    </a>
     </div>
 
     <div th:if="${#lists.isEmpty(reviewsproductos)}" class="empty-state text-center py-5">

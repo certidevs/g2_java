@@ -81,6 +81,7 @@ public class UserController {
         return "users/userForm";
     }
 
+
     @PostMapping("/admin/users")
     public String save(@ModelAttribute User user, RedirectAttributes ra,@RequestParam("imageFile") MultipartFile imageFile) {
         String gympcic = fileService.store(imageFile);

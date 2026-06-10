@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/head :: head('Bienvenida')}"></head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+
+<main class="container flex-grow-1">
+
+    <!-- HERO BIENVENIDA -->
+    <section class="hero p-5 mb-5 text-center text-white rounded-4"
+             style="background: linear-gradient(135deg,#111827,#1f2937);">
+
+        <img th:src="@{/images/fivechillingA.png}" height="80" class="mb-3 rounded-3">
+
+        <h1 class="display-5 fw-bold mb-3">
+            Bienvenido a Five Chill Guys Gym 💪
+        </h1>
+
+        <p class="lead text-white-50 mb-4">
+            Tu tienda online de suplementación, ropa deportiva y equipamiento fitness.
+            Todo lo que necesitas para mejorar tu rendimiento en un solo lugar.
+        </p>
+
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+            <a th:href="@{/products}" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-store me-1"></i> Ver productos
+            </a>
+
+            <a th:href="@{/categories}" class="btn btn-outline-light btn-lg">
+                <i class="fa-solid fa-layer-group me-1"></i> Categorías
+            </a>
+
+            <a th:href="@{/reviews-productos}" class="btn btn-outline-light btn-lg">
+                <i class="fa-regular fa-comment me-1"></i> Opiniones
+            </a>
+        </div>
+    </section>
+
+    <!-- SOBRE EL PROYECTO -->
+    <section class="mb-5">
+
+        <h2 class="mb-3">Sobre el proyecto</h2>
+
+        <p class="text-muted">
+            Five Chill Guys Gym es una tienda online desarrollada como proyecto full-stack.
+            Permite explorar productos deportivos, organizados por categorías, consultar opiniones
+            de usuarios y gestionar compras desde un carrito.
+        </p>
+
+        <p class="text-muted">
+            El sistema está construido con Spring Boot, Thymeleaf y Spring Security, con roles
+            de usuario y administrador para la gestión completa de la plataforma.
+        </p>
+
+    </section>
+
+    <!-- SECCIONES PRINCIPALES -->
+    <section class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <i class="fa-solid fa-store fa-2x text-primary mb-3"></i>
+                <h5>Productos</h5>
+                <p class="text-muted small">
+                    Explora suplementos, ropa y equipamiento fitness.
+                </p>
+                <a th:href="@{/products}" class="btn btn-sm btn-primary">Entrar</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <i class="fa-solid fa-layer-group fa-2x text-success mb-3"></i>
+                <h5>Categorías</h5>
+                <p class="text-muted small">
+                    Organiza los productos por tipo de entrenamiento.
+                </p>
+                <a th:href="@{/categories}" class="btn btn-sm btn-success">Entrar</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 text-center p-3">
+                <i class="fa-solid fa-comment fa-2x text-warning mb-3"></i>
+                <h5>Opiniones</h5>
+                <p class="text-muted small">
+                    Opiniones reales de clientes sobre productos.
+                </p>
+                <a th:href="@{/reviews-productos}" class="btn btn-sm btn-warning">Entrar</a>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+
+</body>
+</html>
