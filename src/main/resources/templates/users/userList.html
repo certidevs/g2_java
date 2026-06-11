@@ -93,21 +93,36 @@
                                class="btn btn-sm btn-outline-secondary" title="Editar">
                                 <i class="fa-solid fa-user-pen"></i>
                             </a>
+
+                            <!-- DESACTIVAR -->
                             <a th:if="${user.online}"
-                               th:href="@{/admin/users/deactivate/{id}(id=${user.id})}"
-                               class="btn btn-sm btn-outline-danger"
-                               title="Desactivar"
-                               onclick="return confirm('¿Desactivar este usuario?')">
+                               href="#"
+                               class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
+                               data-bs-toggle="modal"
+                               data-bs-target="#userActionModal"
+                               th:attr="data-url=@{/admin/users/deactivate/{id}(id=${user.id})}"
+                               data-action="desactivar"
+                               data-name="este usuario">
+
                                 <i class="fa-solid fa-user-slash"></i>
+                                <span class="d-none d-md-inline">Desactivar</span>
                             </a>
 
+                            <!-- ACTIVAR -->
                             <a th:unless="${user.online}"
-                               th:href="@{/admin/users/activate/{id}(id=${user.id})}"
-                               class="btn btn-sm btn-outline-success"
-                               title="Activar"
-                               onclick="return confirm('¿Activar este usuario?')">
+                               href="#"
+                               class="btn btn-sm btn-outline-success d-flex align-items-center gap-1"
+                               data-bs-toggle="modal"
+                               data-bs-target="#userActionModal"
+                               th:attr="data-url=@{/admin/users/activate/{id}(id=${user.id})}"
+                               data-action="activar"
+                               data-name="este usuario">
+
                                 <i class="fa-solid fa-user-check"></i>
+                                <span class="d-none d-md-inline">Activar</span>
                             </a>
+
+
                         </div>
                     </td>
                 </tr>
@@ -116,7 +131,62 @@
         </div>
     </div>
 </main>
-
 <footer th:replace="~{layout/footer :: footer}"></footer>
-</body>
+
+<div class="modal fade" id="userActionModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar acción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p id="modalMessage">¿Estás seguro?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+
+                <a id="confirmActionBtn" class="btn btn-primary" href="#">
+                    Confirmar
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    const userActionModal = document.getElementById('userActionModal');
+
+    let actionUrl = null;
+
+    userActionModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+
+        actionUrl = button.getAttribute('data-url');
+        const action = button.getAttribute('data-action');
+
+        const message = document.getElementById('modalMessage');
+        const confirmBtn = document.getElementById('confirmActionBtn');
+
+        message.textContent = `¿Seguro que quieres ${action} este usuario?`;
+
+        confirmBtn.className =
+            action === 'activar'
+                ? 'btn btn-success'
+                : 'btn btn-danger';
+    });
+
+    // CLICK DEL BOTÓN CONFIRMAR
+    document.getElementById('confirmActionBtn').addEventListener('click', function () {
+        if (actionUrl) {
+            window.location.href = actionUrl;
+        }
+    });
+</script></body>
+
 </html>
