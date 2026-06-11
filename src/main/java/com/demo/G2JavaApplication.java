@@ -52,6 +52,13 @@ public class G2JavaApplication {
         us4.setRole(Role.ROLE_ADMIN);
         userRepository.save(us4);
 
+        User us5 = new User();
+        us5.setEmail("alexvegaban@gmail.com");
+        us5.setUsername("Alex");
+        us5.setPassword("1234");
+        us5.setRole(Role.ROLE_ADMIN);
+        userRepository.save(us5);
+
 
         Category c1 = new Category();
         c1.setName("Creatina");
