@@ -5,7 +5,7 @@
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="container flex-grow-1">
-
+<div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb mb-0">
