@@ -28,7 +28,7 @@ La aplicación ha sido diseñada siguiendo la arquitectura MVC (Model-View-Contr
 
 ---
 
-# 🚀 Tecnologías Utilizadas
+# Tecnologías Utilizadas
 
 ## Backend
 
@@ -208,7 +208,7 @@ La aplicación utiliza Spring Security para implementar:
 
 ---
 
-# ⚙️ Configuración
+# Configuración
 
 ## Base de Datos
 
@@ -291,7 +291,7 @@ java -jar target/g2_java-0.0.1-SNAPSHOT.jar
 
 ---
 
-# 🧪 Testing
+# Testing
 
 Ejecutar todas las pruebas:
 
@@ -301,7 +301,7 @@ mvn test
 
 ---
 
-# 📦 Dependencias Principales
+# Dependencias Principales
 
 ### Spring
 
