@@ -68,16 +68,17 @@ public class CategoryController {
     }
 
     @GetMapping("categories/deactivate/{id}")
-    public String deactivateCategory(@PathVariable Long id, Model model) {
+    public String deactivateCategory(@PathVariable Long id, Model model , RedirectAttributes ra) {
         Optional<Category> categoryOptional = categoryRepository.findById(id);
 
         if (categoryOptional.isPresent()) {
             Category down = categoryOptional.get();
             down.setActivo(false);
             categoryRepository.save(down);
+            ra.addFlashAttribute("message", "Categoria desactivada correctamente.");
+
             return "redirect:/categories";
         }
-
         return "redirect:/category";
     }
 

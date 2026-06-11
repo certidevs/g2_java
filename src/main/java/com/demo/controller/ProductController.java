@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -76,7 +77,7 @@ public class ProductController {
         return "products/productsList";
     }
     @GetMapping("products/deactivate/{id}")
-    public String productsDeactivate(@PathVariable Long id, Model model) {
+    public String productsDeactivate(@PathVariable Long id, Model model , RedirectAttributes ra) {
         Optional<Product> restaurantOptional = productRepository.findById(id);
 
         if(restaurantOptional.isPresent()) {
@@ -84,7 +85,7 @@ public class ProductController {
             down.setActivo(false);
             productRepository.save(down);
         }
-
+        ra.addFlashAttribute("message", "Producto desactivado correctamente.");
         return "redirect:/products";
     }
 
