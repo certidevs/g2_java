@@ -11,8 +11,8 @@
         <h1 class="section-title h2 mb-0">Opiniones de clientes</h1>
         <a sec:authorize="isAuthenticated()" th:href="@{/reviews/new}"
            class="btn btn-success">
-        <i class="fa-solid fa-plus me-1"></i> Nueva opinión
-    </a>
+            <i class="fa-solid fa-plus me-1"></i> Nueva opinión
+        </a>
     </div>
 
     <div th:if="${#lists.isEmpty(reviewsproductos)}" class="empty-state text-center py-5">
@@ -85,7 +85,11 @@
                             </a>
                             <a sec:authorize="hasRole('ADMIN')" th:href="@{/reviews/desactivate/{id}(id=${review.id})}"
                                class="btn btn-sm btn-outline-danger"
-                               onclick="return confirm('¿Desactivar esta opinión?')">
+                               data-bs-toggle="modal"
+                               data-bs-target="#userActionModal"
+                               th:attr="data-url=@{/reviews/desactivate/{id}(id=${review.id})}"
+                               data-action="desactivar"
+                               data-name="esta opinión">
                                 <i class="fa-solid fa-trash me-1"></i> Desactivar
                             </a>
                         </div>
@@ -94,8 +98,54 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="userActionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar acción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalMessage">¿Estás seguro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a id="confirmActionBtn" class="btn btn-danger" href="#">Confirmar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>
+<script>
+    const userActionModal = document.getElementById('userActionModal');
+
+    let actionUrl = null;
+
+    userActionModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+
+        actionUrl = button.getAttribute('data-url');
+        const action = button.getAttribute('data-action');
+        // Capturamos el nuevo atributo data-name
+        const entityName = button.getAttribute('data-name');
+        const message = document.getElementById('modalMessage');
+        const confirmBtn = document.getElementById('confirmActionBtn');
+        // Usamos la variable entityName para que el mensaje sea natural
+        message.textContent = `¿Seguro que quieres ${action} ${entityName}?`;
+        confirmBtn.className =
+            action === 'activar'
+                ? 'btn btn-success'
+                : 'btn btn-danger';
+    });
+    // CLICK DEL BOTÓN CONFIRMAR
+    document.getElementById('confirmActionBtn').addEventListener('click', function () {
+        if (actionUrl) {
+            window.location.href = actionUrl;
+        }
+    });
+</script>
 </body>
 </html>

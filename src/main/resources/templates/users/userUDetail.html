@@ -18,7 +18,8 @@
             </div>
             <div class="col">
                 <h1 class="h2 mb-1" th:text="${user.username}">Usuario</h1>
-                <p class="text-white-50 mb-3"><i class="fa-solid fa-envelope me-1"></i><span th:text="${user.email}"></span></p>
+                <p class="text-white-50 mb-3"><i class="fa-solid fa-envelope me-1"></i><span
+                        th:text="${user.email}"></span></p>
                 <div class="d-flex flex-wrap gap-2">
                     <a th:href="@{/profile/edit/{id}(id=${user.id})}" class="btn btn-primary">
                         <i class="fa-solid fa-user-pen me-1"></i> Editar perfil
@@ -92,22 +93,26 @@
     </div>
 
     <!-- Favorites section -->
-    <div id="favoritesSection" class="d-none mb-5">
+    <div id="favoritesSection" class="mb-5">
         <h2 class="section-title h4 mb-3"><i class="fa-solid fa-heart text-danger me-2"></i>Mis favoritos</h2>
         <div th:if="${userStats.favoriteProduct().isEmpty()}" class="empty-state text-muted p-4">
             <i class="fa-regular fa-heart me-1"></i> Aún no has marcado productos favoritos.
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3" th:unless="${userStats.favoriteProduct().isEmpty()}">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3"
+             th:unless="${userStats.favoriteProduct().isEmpty()}">
             <div class="col" th:each="fav : ${userStats.favoriteProduct()}">
                 <div class="card h-100 hover-lift">
                     <div class="row g-0 h-100">
                         <div class="col-4">
-                            <img th:src="${fav.product.image}" class="img-fluid h-100 w-100 object-fit-contain bg-light rounded-start p-2" alt="Producto">
+                            <img th:src="${fav.product.image}"
+                                 class="img-fluid h-100 w-100 object-fit-contain bg-light rounded-start p-2"
+                                 alt="Producto">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
                                 <h5 class="card-title h6">
-                                    <a th:href="@{/products/{id}(id=${fav.product.id})}" class="link-dark" th:text="${fav.product.name}">Producto</a>
+                                    <a th:href="@{/products/{id}(id=${fav.product.id})}" class="link-dark"
+                                       th:text="${fav.product.name}">Producto</a>
                                 </h5>
                                 <p class="product-price fs-6 mb-1" th:text="${fav.product.price} + ' €'"></p>
                                 <small class="text-muted">
@@ -121,6 +126,47 @@
             </div>
         </div>
     </div>
+
+    <div id="ordersSection" class="mb-5">
+        <h2 class="section-title h4 mb-3">
+            <i class="fa-solid fa-ticket text-primary me-2"></i>
+            Mis compras
+        </h2>
+
+        <div th:if="${userStats.purchases().isEmpty()}" class="empty-state text-muted p-4">
+            <i class="fa-regular fa-face-smile me-1"></i>
+            Aún no has realizado compras.
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 g-3"
+             th:unless="${userStats.purchases().isEmpty()}">
+
+            <div class="col" th:each="p : ${userStats.purchases()}">
+                <div class="card h-100 hover-lift">
+                    <div class="card-body">
+
+                        <h5 class="card-title h6 mb-1">
+                            <i class="fa-solid fa-box me-1 text-primary"></i>
+                            Compra #<span th:text="${p.id}"></span>
+                        </h5>
+
+                        <p class="text-muted mb-1">
+                            <span th:text="${p.totalPrice}"></span> €
+                        </p>
+
+                        <p class="text-muted mb-1">
+                            <span th:text="${p.purchaseDate}"></span>
+                        </p>
+
+                        <p class="text-muted mb-1">
+                            Estado:
+                            <span th:text="${p.status}"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>
@@ -128,10 +174,12 @@
     function showSection(sectionId) {
         document.getElementById('reviewsSection').classList.add('d-none');
         document.getElementById('favoritesSection').classList.add('d-none');
+        document.getElementById('ordersSection').classList.add('d-none');
+
         const target = document.getElementById(sectionId);
         if (target) {
             target.classList.remove('d-none');
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.scrollIntoView({behavior: 'smooth', block: 'start'});
         }
     }
 </script>

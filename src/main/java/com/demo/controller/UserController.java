@@ -64,14 +64,26 @@ public class UserController {
     }
 
     @GetMapping("admin/users/deactivate/{id}")
-    public String deactivate(@PathVariable Long id) {
+    public String deactivate(@PathVariable Long id , RedirectAttributes ra) {
 
         User user = userService.findById(id);
         user.setOnline(false);
         userService.update(user);
+        ra.addFlashAttribute("message", "Usuario desactivado correctamente");
+
         return "redirect:/admin/users";
     }
 
+    @GetMapping("admin/users/activate/{id}")
+    public String activate(@PathVariable Long id , RedirectAttributes ra) {
+
+        User user = userService.findById(id);
+        user.setOnline(true);
+        userService.update(user);
+        ra.addFlashAttribute("message", "Usuario activado correctamente");
+
+        return "redirect:/admin/users";
+    }
 
     @GetMapping("admin/users/new")
     public String newUser(Model model) {
