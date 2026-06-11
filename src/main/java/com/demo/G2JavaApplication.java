@@ -91,8 +91,8 @@ public class G2JavaApplication {
 
         Product producto = Product.builder()
                 .name("Creatina Creapure, Sabor Fresa")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Creatina Creapure® sabor fresa de alta pureza para mejorar fuerza, rendimiento y recuperación muscular.")
+                .longDescription("La Creatina Creapure® sabor fresa está formulada con materia prima de máxima pureza para ayudarte a aumentar la fuerza, mejorar el rendimiento físico y potenciar la recuperación muscular. Su excelente disolución y agradable sabor la convierten en una opción ideal para deportistas que buscan mejorar su rendimiento en entrenamientos intensos y sesiones de alta exigencia. Perfecta para combinar con cualquier rutina deportiva y objetivos de ganancia muscular.")
                 .price(44.99)
                 .stock(99)
                 .category(c1)
@@ -101,8 +101,8 @@ public class G2JavaApplication {
                 .build();
         Product producto2 = Product.builder()
                 .name("Crema de arroz proteica")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Crema de arroz rica en proteínas, ideal para desayunos y comidas pre o post entrenamiento.")
+                .longDescription("Nuestra crema de arroz proteica combina carbohidratos de fácil digestión con un alto aporte proteico para ofrecerte energía sostenida y recuperación muscular. Perfecta para deportistas y personas activas, su textura cremosa y preparación rápida la convierten en una opción ideal para desayunos fitness, meriendas saludables o comidas pre y post entreno. Fácil de mezclar con frutas, frutos secos o suplementos.")
                 .price(8.99)
                 .stock(10)
                 .category(objects2)
@@ -111,8 +111,8 @@ public class G2JavaApplication {
                 .build();
         Product producto3 = Product.builder()
                 .name("Proteina whey Isolate, Chocolate")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Proteína Whey Isolate sabor chocolate con alta concentración proteica y rápida absorción.")
+                .longDescription("La Whey Isolate sabor chocolate aporta proteína de alta calidad con una absorción rápida para favorecer el desarrollo y mantenimiento muscular. Su fórmula baja en grasas y azúcares es ideal para deportistas que buscan maximizar la recuperación después del entrenamiento. Disfruta de un delicioso sabor chocolate y una textura suave en cada batido.")
                 .price(34.99)
                 .stock(0)
                 .category(objects3)
@@ -121,8 +121,8 @@ public class G2JavaApplication {
                 .build();
         Product producto4 = Product.builder()
                 .name("Energy bar flapjack (choco,berrys,almond)")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Barrita energética tipo flapjack con avena y deliciosos sabores para obtener energía inmediata.")
+                .longDescription("Las Energy Bar Flapjack son el snack perfecto para mantener la energía durante el día o antes de entrenar. Elaboradas con avena de calidad y disponibles en sabores chocolate, frutos rojos y almendra, aportan carbohidratos de liberación sostenida para mejorar el rendimiento físico y combatir la fatiga. Ideales para deportistas, excursiones o como snack saludable.")
                 .price(7.99)
                 .stock(20)
                 .category(objects3)
@@ -131,8 +131,8 @@ public class G2JavaApplication {
                 .build();
         Product producto5 = Product.builder()
                 .name("Isotonica en polvo (Limon)")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Bebida isotónica en polvo sabor limón para reponer electrolitos e hidratar durante el ejercicio.")
+                .longDescription("Nuestra isotónica en polvo sabor limón ayuda a mantener una hidratación óptima durante entrenamientos intensos y actividades deportivas. Su fórmula con electrolitos contribuye a reponer minerales perdidos por el sudor y mantener el rendimiento físico. Fácil de preparar y con un refrescante sabor cítrico, es ideal para running, ciclismo, gimnasio y deportes de resistencia.")
                 .price(29.99)
                 .stock(99)
                 .category(objects5)
@@ -141,8 +141,8 @@ public class G2JavaApplication {
                 .build();
         Product producto6 = Product.builder()
                 .name("Camiseta gimnasio, nike©")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Camiseta deportiva Nike® ligera y transpirable para entrenamientos y uso diario.")
+                .longDescription("La camiseta de gimnasio Nike® combina comodidad, estilo y transpirabilidad para acompañarte en cada entrenamiento. Fabricada con materiales ligeros y de secado rápido, ayuda a mantener la frescura incluso en sesiones intensas. Su diseño moderno y ajuste cómodo la convierten en una prenda ideal tanto para el gimnasio como para uso casual deportivo.")
                 .price(24.99)
                 .stock(50)
                 .category(objects4)
@@ -152,8 +152,8 @@ public class G2JavaApplication {
                 .build();
         Product producto7 = Product.builder()
                 .name("Pantalones cortos gimnasio, Puma©")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Pantalones cortos Puma® diseñados para máxima comodidad y libertad de movimiento.")
+                .longDescription("Entrena con total comodidad gracias a los pantalones cortos Puma®. Su tejido ligero y flexible permite una movilidad óptima durante ejercicios de fuerza, cardio o entrenamiento funcional. Incorporan un diseño moderno y deportivo ideal para quienes buscan rendimiento y estilo dentro y fuera del gimnasio.")
                 .price(22.99)
                 .stock(50)
                 .category(objects4)
@@ -163,8 +163,8 @@ public class G2JavaApplication {
                 .build();
         Product producto8 = Product.builder()
                 .name("Under Armour © Slipspeed, entrenamiento")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Zapatillas Under Armour® de entrenamiento con gran amortiguación, estabilidad y confort.")
+                .longDescription("Las Under Armour® Slipspeed están diseñadas para ofrecer rendimiento, estabilidad y comodidad en entrenamientos de alta intensidad. Su estructura ligera y transpirable proporciona un ajuste seguro y una excelente amortiguación para proteger cada pisada. Perfectas para gimnasio, cardio, HIIT o uso deportivo diario.")
                 .price(162.95)
                 .stock(89)
                 .category(objects4)
@@ -174,8 +174,8 @@ public class G2JavaApplication {
                 .build();
         Product producto9 = Product.builder()
                 .name("Camiseta futbol españa Mundial 2026, Adidas©")
-                .shortDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies.")
-                .longDescription("Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim netus ultricies, dui molestie condimentum mollis bibendum potenti iaculis conubia ut, nascetur facilisis nullam venenatis ridiculus consequat cum porta cras. Tortor vel fringilla tincidunt cum eros placerat neque pharetra sapien egestas.")
+                .shortDescription("Camiseta oficial Adidas® selección España Mundial 2026 con diseño moderno y deportivo.")
+                .longDescription("Luce los colores de la selección española con la camiseta oficial Adidas® Mundial 2026. Diseñada con materiales transpirables y tecnología de secado rápido, ofrece comodidad tanto en el campo como en el día a día. Su diseño moderno combina estilo, pasión por el fútbol y máxima calidad deportiva.")
                 .price(99.99)
                 .stock(0)
                 .category(objects4)
@@ -185,8 +185,8 @@ public class G2JavaApplication {
                 .build();
         Product producto10 = Product.builder()
                 .name("Creatina Creapure Vegana©")
-                .shortDescription("Te ayuda a rendir mejor en los entrenos")
-                .longDescription("Creatina Vegana con certificado 'Creapure' para asegurar su máxima calidad")
+                .shortDescription("Creatina vegana Creapure® de máxima calidad para potenciar fuerza y rendimiento deportivo.")
+                .longDescription("La Creatina Creapure® Vegana ofrece una fórmula pura y de alta calidad pensada para mejorar el rendimiento físico, aumentar la fuerza y favorecer la recuperación muscular. Ideal para deportistas veganos y personas que buscan suplementos de máxima pureza y eficacia. Fácil de mezclar y perfecta para cualquier rutina fitness.")
                 .price(49.99)
                 .stock(0)
                 .category(c1)
@@ -196,8 +196,8 @@ public class G2JavaApplication {
                 .build();
         Product producto11 = Product.builder()
                 .name("Quema Grasas 120Caps")
-                .shortDescription("Te ayuda a definir")
-                .longDescription("QuemaGrasas con ingredientes naturales para ayudarte a definir el cuerpo")
+                .shortDescription("Complemento alimenticio diseñado para apoyar la definición y el metabolismo energético.")
+                .longDescription("El Quema Grasas 120 Caps combina ingredientes seleccionados para ayudarte en tus objetivos de definición y control de peso. Su fórmula está diseñada para complementar una alimentación equilibrada y una rutina de ejercicio regular, favoreciendo el metabolismo energético y aportando un extra de motivación en etapas de definición muscular.")
                 .price(19.99)
                 .stock(2)
                 .category(objects5)
@@ -207,8 +207,8 @@ public class G2JavaApplication {
                 .build();
         Product producto12 = Product.builder()
                 .name("Glutanima")
-                .shortDescription("Te ayuda a recuperarte de los entrenos")
-                .longDescription("La glutamina es un aminoácido clave para la recuperación muscular después de un entreno, la salud intestinal y el fortalecimiento del sistema inmunológico.")
+                .shortDescription("Glutamina de alta calidad para favorecer la recuperación muscular y reducir el desgaste físico.")
+                .longDescription("La glutamina es un aminoácido esencial en procesos de recuperación y mantenimiento muscular. Este suplemento ayuda a disminuir el desgaste tras entrenamientos intensos, favorece la recuperación física y contribuye al correcto funcionamiento del sistema inmunológico. Ideal para deportistas de fuerza, resistencia y alto rendimiento.")
                 .price(24.49)
                 .stock(2)
                 .category(objects5)
@@ -218,9 +218,9 @@ public class G2JavaApplication {
                 .build();
         Product producto13 = Product.builder()
                 .name("Crema de Arroz 1000g , Vegana y sin Lactosa - Neutro")
-                .shortDescription("Crema de Arroz 1000g , Sabor Neutro")
-                .longDescription("La textura suave de esta crema de arroz es lo que la distingue. Se disuelve rapidamente en agua, leche o bebida vegetal, facilitando su preparacion en cualquier momento del dia. Puede combinarse con frutas, frutos secos, miel o cualquier complemento de tu eleccion, haciendo de cada porcion una experiencia personalizada. " +
-                                 "No importa si la prefieres como parte de un desayuno energetico o como una opcion ligera antes de dormir, " +"esta crema se adapta a tus necesidades.")
+                .shortDescription("Crema de arroz vegana y sin lactosa, perfecta para aportar energía de fácil digestión.")
+                .longDescription("La crema de arroz 1000g sabor neutro es una excelente fuente de carbohidratos de rápida digestión, ideal para deportistas y personas activas. Su textura suave y cremosa permite prepararla fácilmente con agua," +
+                                 "leche o bebida vegetal. Perfecta para desayunos, comidas pre entreno o recuperación post ejercicio. Además, su fórmula vegana y sin lactosa la hace apta para múltiples tipos de alimentación.")
                 .price(15.49)
                 .stock(5)
                 .category(objects2)
@@ -230,9 +230,9 @@ public class G2JavaApplication {
                 .build();
         Product producto14 = Product.builder()
                 .name("Crema De Arroz (1 Kg) - Sin gluten, sin azúcar - Chocolate Avellana")
-                .shortDescription("Crema De Arroz (1KG) , sin azucar - Sabor Avellana")
-                .longDescription(" Como fuente de hidratos de carbono, ayuda a reponer las reservas de glucógeno en los músculos y a evitar la fatiga. Una fórmula sencilla sin ingredientes de origen animal, por lo que es ideal para veganos y vegetarianos." +
-                                 " La ausencia de gluten en la harina de arroz significa que puede ser utilizado con seguridad por personas con alergias o intolerancias.Disponible en los sabores Chocolate, Chocolate Avellana y Galletas.")
+                .shortDescription("Crema de arroz sabor chocolate avellana sin gluten y sin azúcar añadida.")
+                .longDescription(" Disfruta de una fuente de energía deliciosa y fácil de digerir con esta crema de arroz sabor chocolate avellana. Elaborada sin gluten y sin azúcar añadido, es perfecta para deportistas que buscan carbohidratos de calidad para mejorar el rendimiento y recuperar glucógeno muscular." +
+                                 " Su excelente sabor y textura cremosa la convierten en una opción ideal para desayunos, meriendas y comidas pre o post entrenamiento.")
                 .price(17.45)
                 .stock(3)
                 .category(objects2)
