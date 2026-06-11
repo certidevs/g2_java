@@ -34,7 +34,7 @@ private final ProductRepository productRepository;
     @GetMapping("purchases")
     public String purchases(Model model,
                             @AuthenticationPrincipal User user) {
-        model.addAttribute("purchases",  purchaseRepository.findAll());
+//        model.addAttribute("purchases",  purchaseRepository.findAll());
 
         if (user.getRole().equals(Role.ROLE_ADMIN)) {
             model.addAttribute("purchases",purchaseRepository.findAll());

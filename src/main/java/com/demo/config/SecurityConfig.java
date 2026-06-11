@@ -33,6 +33,7 @@ public class SecurityConfig {
 
 
                         //Ruta de Home
+                        .requestMatchers(HttpMethod.GET, "/").permitAll()
                         .requestMatchers(HttpMethod.GET, "/home").permitAll()
                         //Rutas de Productos
                         .requestMatchers(HttpMethod.GET, "/products").permitAll()
@@ -77,7 +78,7 @@ public class SecurityConfig {
 
         http.formLogin(form ->
                 form.loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/home")
                         .permitAll()
         );
         http.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout"));
