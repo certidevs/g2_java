@@ -1,4 +1,4 @@
-# 🛒 G2 Java - Plataforma de Tienda Online
+# G2 Java - Plataforma de Tienda Online
 
 <p align="center">
   <img src="https://img.shields.io/badge/Java-25-orange?logo=openjdk&logoColor=white" alt="Java 25">
@@ -10,7 +10,7 @@
 </p>
 
 
-## 📖 Descripción
+## Descripción
 
 G2 Java es una aplicación web desarrollada con Spring Boot que implementa una plataforma de comercio electrónico. El sistema permite la gestión de usuarios, productos, categorías, compras, favoritos y reseñas, proporcionando una experiencia completa de tienda online.
 
@@ -18,7 +18,7 @@ La aplicación ha sido diseñada siguiendo la arquitectura MVC (Model-View-Contr
 
 ---
 
-# 🎯 Objetivos del Proyecto
+# Objetivos del Proyecto
 
 * Aplicar el desarrollo de aplicaciones web con Spring Boot.
 * Implementar persistencia de datos mediante JPA/Hibernate.
@@ -58,7 +58,7 @@ La aplicación ha sido diseñada siguiendo la arquitectura MVC (Model-View-Contr
 
 ---
 
-# 🏗️ Arquitectura del Proyecto
+# Arquitectura del Proyecto
 
 El proyecto sigue una arquitectura por capas:
 
@@ -104,7 +104,7 @@ src/main/java/com/demo
 
 ---
 
-# 🗂️ Modelo de Datos
+# Modelo de Datos
 
 ## Usuario (User)
 
@@ -153,7 +153,7 @@ Gestiona los productos marcados como favoritos por cada usuario.
 
 ---
 
-# 🔐 Seguridad
+# Seguridad
 
 La aplicación utiliza Spring Security para implementar:
 
@@ -165,7 +165,7 @@ La aplicación utiliza Spring Security para implementar:
 
 ---
 
-# 📋 Funcionalidades Principales
+# Funcionalidades Principales
 
 ## Gestión de Usuarios
 
@@ -239,7 +239,7 @@ spring.servlet.multipart.max-file-size=10MB
 
 ---
 
-# 🗄️ Consola H2
+# Consola H2
 
 Una vez iniciada la aplicación:
 
@@ -257,7 +257,7 @@ Password:
 
 ---
 
-# 🔧 Instalación
+# Instalación
 
 ## Requisitos
 
@@ -333,7 +333,7 @@ mvn test
 
 ---
 
-# 👥 Roles del Sistema
+# Roles del Sistema
 
 ## Usuario
 
@@ -366,7 +366,7 @@ Puede:
 | Moderar reseñas y gestionar usuarios                    | No | No | Sí |
 ---
 
-# 📚 Aprendizajes Obtenidos
+# Aprendizajes Obtenidos
 
 Durante el desarrollo de este proyecto se han trabajado los siguientes conceptos:
 
@@ -381,13 +381,13 @@ Durante el desarrollo de este proyecto se han trabajado los siguientes conceptos
 
 ---
 
-# 👨‍💻 Equipo de Desarrollo
+# Equipo de Desarrollo
 
 Proyecto académico desarrollado por el Grupo 2 como práctica de desarrollo de aplicaciones Java utilizando Spring Boot.
 
 ---
 
-# 📄 Licencia
+# Licencia
 
 Proyecto desarrollado con fines educativos y formativos.
 
