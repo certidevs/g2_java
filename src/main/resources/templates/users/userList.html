@@ -93,10 +93,20 @@
                                class="btn btn-sm btn-outline-secondary" title="Editar">
                                 <i class="fa-solid fa-user-pen"></i>
                             </a>
-                            <a th:href="@{/admin/users/deactivate/{id}(id=${user.id})}"
-                               class="btn btn-sm btn-outline-danger" title="Desactivar"
+                            <a th:if="${user.online}"
+                               th:href="@{/admin/users/deactivate/{id}(id=${user.id})}"
+                               class="btn btn-sm btn-outline-danger"
+                               title="Desactivar"
                                onclick="return confirm('¿Desactivar este usuario?')">
                                 <i class="fa-solid fa-user-slash"></i>
+                            </a>
+
+                            <a th:unless="${user.online}"
+                               th:href="@{/admin/users/activate/{id}(id=${user.id})}"
+                               class="btn btn-sm btn-outline-success"
+                               title="Activar"
+                               onclick="return confirm('¿Activar este usuario?')">
+                                <i class="fa-solid fa-user-check"></i>
                             </a>
                         </div>
                     </td>

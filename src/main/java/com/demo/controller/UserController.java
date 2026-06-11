@@ -72,6 +72,15 @@ public class UserController {
         return "redirect:/admin/users";
     }
 
+    @GetMapping("admin/users/activate/{id}")
+    public String activate(@PathVariable Long id) {
+
+        User user = userService.findById(id);
+        user.setOnline(true);
+        userService.update(user);
+
+        return "redirect:/admin/users";
+    }
 
     @GetMapping("admin/users/new")
     public String newUser(Model model) {
