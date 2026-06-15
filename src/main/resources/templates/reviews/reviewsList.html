@@ -7,6 +7,12 @@
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="container flex-grow-1">
+
+    <div th:if="${message}" class="alert alert-success" role="alert">
+        <i class="fa-solid fa-check-circle me-2"></i>
+        <span th:text="${message}"></span>
+    </div>
+
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
         <h1 class="section-title h2 mb-0">Opiniones de clientes</h1>
         <a sec:authorize="isAuthenticated()" th:href="@{/reviews/new}"
@@ -79,7 +85,9 @@
                                class="btn btn-sm btn-outline-secondary">
                                 <i class="fa-solid fa-eye me-1"></i> Ver
                             </a>
-                            <a sec:authorize="isAuthenticated()" th:href="@{/reviews/edit/{id}(id=${review.id})}"
+                            <a sec:authorize="isAuthenticated()"
+                               th:if="${currentUser != null and review.user != null and currentUser.id == review.user.id}"
+                               th:href="@{/reviews/edit/{id}(id=${review.id})}"
                                class="btn btn-sm btn-outline-secondary">
                                 <i class="fa-solid fa-pen me-1"></i> Editar
                             </a>

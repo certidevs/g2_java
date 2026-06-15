@@ -34,21 +34,24 @@ public class ReviewController {
     //Hacemos el mapeo para mostrar la lista de reseñas
     @GetMapping("/reviews-productos")
     //Cargamos los datos
-    public String reviewsList(Model model){
-       // model.addAttribute("reviewsproductos", reviewRepository.findAll()); para que no se sobreescriba con el filtro de que una review esté activa
+    public String reviewsList(Model model, @AuthenticationPrincipal User user) {
+        // model.addAttribute("reviewsproductos", reviewRepository.findAll()); para que no se sobreescriba con el filtro de que una review esté activa
         model.addAttribute("reviewsproductos", reviewRepository.findByActiveTrueOrderByCreatedAtDesc());
+        model.addAttribute("currentUser", user);
         return "reviews/reviewsList";
     }
-//Formulario de Reviews Vacio, para crear Review existente
+
+    //Formulario de Reviews Vacio, para crear Review existente
     @GetMapping("/reviews/new")
-    public String newReviews(Model model){
+    public String newReviews(Model model) {
         model.addAttribute("review", new Review());
-        model.addAttribute("products" , productRepository.findAll());
+        model.addAttribute("products", productRepository.findAll());
         return "reviews/reviewForm";
     }
-//Para que al escribir una opinion en "product" funcione ese boton para ese producto específico
+
+    //Para que al escribir una opinion en "product" funcione ese boton para ese producto específico
     @GetMapping("/reviews/new/{id}")
-    public String WritteReviewInProduct(@PathVariable Long id, Model model){
+    public String WritteReviewInProduct(@PathVariable Long id, Model model) {
 
         Review review = new Review();
         review.setProduct(productRepository.findById(id).orElseThrow());
@@ -64,9 +67,15 @@ public class ReviewController {
     //Todo Editar un Review Existente
 
     @GetMapping("/reviews/edit/{id}")
-    public String editReviews(@PathVariable Long id, Model model){
-        model.addAttribute("review", reviewRepository.findById(id).orElseThrow()); //Review existente para editarlo(Actualizarlo)
-        model.addAttribute("products" , productRepository.findAll());
+    public String editReviews(@PathVariable Long id, Model model, @AuthenticationPrincipal User user) {
+        //model.addAttribute("review", reviewRepository.findById(id).orElseThrow()); //Review existente para editarlo(Actualizarlo)
+        Review review = reviewRepository.findById(id).orElseThrow();
+        if (user == null || review.getUser() == null || user.getId() == null
+                || !review.getUser().getId().equals(user.getId())) {
+            return "redirect:/reviews-productos";
+        }
+        model.addAttribute("review", review);
+        model.addAttribute("products", productRepository.findAll());
         return "reviews/reviewForm";
     }
 
@@ -78,7 +87,7 @@ public class ReviewController {
     }
 
     @GetMapping("reviews/desactivate/{id}")
-    public String desactivateReviews(@PathVariable Long id , RedirectAttributes ra){
+    public String desactivateReviews(@PathVariable Long id, RedirectAttributes ra) {
 
         Review review = reviewRepository.findById(id).orElseThrow();
         review.setActive(false);
@@ -89,15 +98,28 @@ public class ReviewController {
 
     //Recibir datos , Guardar DB
     @PostMapping("/reviews")
-    public String createReviews(@ModelAttribute Review review, @AuthenticationPrincipal User user){
-        System.out.println("Review recibida" +review);
-        if(user != null) {
+    public String createReviews(@ModelAttribute Review review,
+                                @AuthenticationPrincipal User user) {
+
+        System.out.println("Review recibida " + review);
+
+        if (review.getId() != null) {
+
+            Review existing = reviewRepository.findById(review.getId()).orElseThrow();
+
+            if (user == null || existing.getUser() == null ||
+                    !existing.getUser().getId().equals(user.getId())) {
+                return "redirect:/reviews-productos";
+            }
+            review.setUser(existing.getUser());
+            review.setCreatedAt(existing.getCreatedAt());
+        } else {
+            // CREATE nuevo
             review.setUser(user);
+            review.setCreatedAt(LocalDateTime.now());
         }
-        review.setCreatedAt(LocalDateTime.now());
         reviewRepository.save(review);
+
         return "redirect:/reviews-productos";
     }
-
-
 }
