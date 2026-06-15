@@ -40,14 +40,14 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/products/deactivate/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/products/new").hasRole("ADMIN") // solo admin puede acceder a formulario de nuevo restaurante
-                        .requestMatchers(HttpMethod.POST, "/products/edit/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/products/edit/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/products/*").permitAll()
                         // Rutas de Categorias
                         .requestMatchers(HttpMethod.GET, "/categories").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/categories/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/categories/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/categories/desactivate/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/categories/new").hasRole("ADMIN") // solo admin puede acceder a formulario de nuevo restaurante
-                        .requestMatchers(HttpMethod.POST, "/categories/edit/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/categories/edit/*").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/categories/*").permitAll()
 
                         // Rutas de Reviews(Opiniones)
