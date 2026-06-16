@@ -26,7 +26,6 @@ private Long id;
 
     private LocalDateTime purchaseDate;
 
-    private String discountCode;//Dogo10%
 
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;

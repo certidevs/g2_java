@@ -1,5 +1,6 @@
 package com.demo.repository;
 
+import com.demo.model.Product;
 import com.demo.model.PurchaseLine;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,9 @@ public interface PurchaseLineRepository extends JpaRepository<PurchaseLine, Long
 
 
     Optional<PurchaseLine> findByPurchaseIdAndProductId(Long purchaseId, Long productId);
+    public interface ProductRepository extends JpaRepository<Product, Long> {
+
+        List<Product> findByActivoTrue();
+
+    }
 }

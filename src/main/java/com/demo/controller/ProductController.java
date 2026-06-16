@@ -78,10 +78,10 @@ public class ProductController {
     }
     @GetMapping("products/deactivate/{id}")
     public String productsDeactivate(@PathVariable Long id, Model model , RedirectAttributes ra) {
-        Optional<Product> restaurantOptional = productRepository.findById(id);
+        Optional<Product> productOptional = productRepository.findById(id);
 
-        if(restaurantOptional.isPresent()) {
-            Product down = restaurantOptional.get();
+        if(productOptional.isPresent()) {
+            Product down = productOptional.get();
             down.setActivo(false);
             productRepository.save(down);
         }

@@ -58,8 +58,7 @@ public class PurchaseLineController {
         purchaseRepository.save(purchase);
         model.addAttribute("purchase", purchase);
 
-        model.addAttribute("products", productRepository.findAll());
-        return "purchaseLines/purchaseLinesList";
+        model.addAttribute("products", productRepository.findByActivoTrue());        return "purchaseLines/purchaseLinesList";
     }
 
 

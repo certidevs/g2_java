@@ -22,7 +22,9 @@ public class PurchaseLine {
 
     private String talla;
 
-@ManyToOne
+    private String discountCode;//Dogo10%
+
+    @ManyToOne
     private Purchase purchase;
 @ManyToOne
     private Product product;
