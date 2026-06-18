@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.demo</groupId>
     <artifactId>g2_java</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>g2_java</name>
     <description>g2_java</description>
     <url/>
