@@ -29,7 +29,8 @@
                     </div>
                     <div class="product-price fs-4 text-success mb-2" th:text="${review.product.price} + ' €'"></div>
                     <p class="text-muted mb-0" th:text="${review.product.shortDescription}">Descripción</p>
-                    <a th:href="@{/products/{id}(id=${review.product.id})}" class="btn btn-sm btn-outline-secondary mt-3">
+                    <a th:href="@{/products/{id}(id=${review.product.id})}" class="btn btn-sm"
+                       style="background-color: #fd7e14; color: white; border: none;">
                         <i class="fa-solid fa-box me-1"></i> Ver producto
                     </a>
                 </div>
