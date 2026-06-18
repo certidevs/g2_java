@@ -58,7 +58,12 @@ public class SecurityConfig {
                         //requestMatchers("/reviews/new/**").authenticated() con esta , sería como poner los 2 news de arriba con * y sin él
                         .requestMatchers(HttpMethod.GET, "/reviews/edit/*").authenticated()
                         .requestMatchers(HttpMethod.GET, "/reviews/desactivate/*").hasRole("ADMIN") //Falta crear disable
+                        //Para proteger las reviews activadas y desactivadas
+                        .requestMatchers(HttpMethod.GET, "/reviews/desactivated").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/reviews/activate/*").hasRole("ADMIN")
+                        //esto es para permitir que cualquiera pueda ver las reviews
                         .requestMatchers(HttpMethod.GET, "/reviews/*").permitAll()
+
 
                         //Rutas Purchase(Compra)
                         .requestMatchers(HttpMethod.GET, "/purchase-lines").authenticated()

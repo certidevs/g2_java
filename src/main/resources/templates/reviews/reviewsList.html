@@ -14,11 +14,30 @@
     </div>
 
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
-        <h1 class="section-title h2 mb-0">Opiniones de clientes</h1>
-        <a sec:authorize="isAuthenticated()" th:href="@{/reviews/new}"
-           class="btn btn-success">
-            <i class="fa-solid fa-plus me-1"></i> Nueva opinión
-        </a>
+        <h1 class="section-title h2 mb-0">
+            <span th:text="${currentPath == '/reviews/desactivated'} ? 'Opiniones Desactivadas' : 'Opiniones de clientes'"></span>
+        </h1>
+
+        <div class="d-flex gap-2">
+            <a sec:authorize="isAuthenticated()" th:href="@{/reviews/new}"
+               class="btn btn-success">
+                <i class="fa-solid fa-plus me-1"></i> Nueva opinión
+            </a>
+
+            <a sec:authorize="hasRole('ADMIN')"
+               th:if="${currentPath != '/reviews/desactivated'}"
+               th:href="@{/reviews/desactivated}"
+               class="btn btn-outline-secondary">
+                <i class="fa-solid fa-eye-slash me-1"></i> Ver desactivadas
+            </a>
+
+            <a sec:authorize="hasRole('ADMIN')"
+               th:if="${currentPath == '/reviews/desactivated'}"
+               th:href="@{/reviews-productos}"
+               class="btn btn-outline-primary">
+                <i class="fa-solid fa-eye me-1"></i> Ver activas
+            </a>
+        </div>
     </div>
 
     <div th:if="${#lists.isEmpty(reviewsproductos)}" class="empty-state text-center py-5">
@@ -91,15 +110,25 @@
                                class="btn btn-sm btn-outline-secondary">
                                 <i class="fa-solid fa-pen me-1"></i> Editar
                             </a>
-                            <a sec:authorize="hasRole('ADMIN')" th:href="@{/reviews/desactivate/{id}(id=${review.id})}"
-                               class="btn btn-sm btn-outline-danger"
-                               data-bs-toggle="modal"
-                               data-bs-target="#userActionModal"
-                               th:attr="data-url=@{/reviews/desactivate/{id}(id=${review.id})}"
-                               data-action="desactivar"
-                               data-name="esta opinión">
-                                <i class="fa-solid fa-trash me-1"></i> Desactivar
-                            </a>
+                            <div sec:authorize="hasRole('ADMIN')">
+                                <a th:if="${review.active}"
+                                   href="#"
+                                   class="btn btn-sm btn-outline-danger"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#userActionModal"
+                                   th:attr="data-url=@{/reviews/desactivate/{id}(id=${review.id})}, data-action='desactivar', data-name='esta opinión'">
+                                    <i class="fa-solid fa-trash me-1"></i> Desactivar
+                                </a>
+
+                                <a th:unless="${review.active}"
+                                   href="#"
+                                   class="btn btn-sm btn-outline-success"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#userActionModal"
+                                   th:attr="data-url=@{/reviews/activate/{id}(id=${review.id})}, data-action='activar', data-name='esta opinión'">
+                                    <i class="fa-solid fa-check me-1"></i> Activar
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

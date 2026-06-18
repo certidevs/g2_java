@@ -37,6 +37,7 @@ public class ReviewController {
     public String reviewsList(Model model, @AuthenticationPrincipal User user) {
         // model.addAttribute("reviewsproductos", reviewRepository.findAll()); para que no se sobreescriba con el filtro de que una review esté activa
         model.addAttribute("reviewsproductos", reviewRepository.findByActiveTrueOrderByCreatedAtDesc());
+        model.addAttribute("currentPath", "/reviews-productos");
         model.addAttribute("currentUser", user);
         return "reviews/reviewsList";
     }
@@ -94,6 +95,26 @@ public class ReviewController {
         reviewRepository.save(review);
         ra.addFlashAttribute("message", "Opinión desactivada correctamente.");
         return "redirect:/reviews-productos";
+    }
+    @GetMapping("reviews/activate/{id}")
+    public String activateReviews(@PathVariable Long id, RedirectAttributes ra) {
+        Review review = reviewRepository.findById(id).orElseThrow();
+        review.setActive(true);
+        reviewRepository.save(review);
+        ra.addFlashAttribute("message", "Opinión reactivada correctamente.");
+        // Redirige a la lista de desactivadas para que el Admin siga gestionando
+        return "redirect:/reviews/desactivated";
+    }
+// Esto es para
+    @GetMapping("/reviews/desactivated")
+    public String listDesactivatedReviews(Model model, @AuthenticationPrincipal User user) {
+        // Usamos el método que ya tienes en tu repositorio
+        model.addAttribute("reviewsproductos", reviewRepository.findByActiveFalseOrderByCreatedAtDesc());
+        model.addAttribute("currentPath", "/reviews/desactivated");
+        model.addAttribute("currentUser", user);
+
+        // Reutilizamos la misma vista que ya tienes
+        return "reviews/reviewsList";
     }
 
     //Recibir datos , Guardar DB
