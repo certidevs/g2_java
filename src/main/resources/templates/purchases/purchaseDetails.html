@@ -36,8 +36,8 @@
                         <dt class="col-sm-4 text-muted fw-normal">Fecha</dt>
                         <dd class="col-sm-8" th:text="${purchase.purchaseDate != null} ? ${#temporals.format(purchase.purchaseDate, 'dd/MM/yyyy HH:mm')} : '—'"></dd>
 
-                        <dt class="col-sm-4 text-muted fw-normal">Código descuento</dt>
-                        <dd class="col-sm-8" th:text="${purchase.discountCode != null} ? ${purchase.discountCode} : '—'"></dd>
+                       <!-- <dt class="col-sm-4 text-muted fw-normal">Código descuento</dt> -->
+                      <!--  <dd class="col-sm-8" th:text="${purchase.discountCode != null} ? ${purchase.discountCode} : '—'"></dd> -->
 
                         <dt class="col-sm-4 text-muted fw-normal">Total</dt>
                         <dd class="col-sm-8 fs-5 fw-bold text-success mb-0">
@@ -178,7 +178,7 @@
                     <label class="form-label" for="cardOwner">Titular de la tarjeta</label>
                     <input type="text" id="cardOwner" name="cardOwner"
                            class="form-control" required>
-                    <small class="text-muted">Tu nombre completo</small>
+                    <small class="text-muted">Formato: Tu nombre completo</small>
                 </div>
 
                 <div class="col-md-6">

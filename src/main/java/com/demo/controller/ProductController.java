@@ -89,6 +89,46 @@ public class ProductController {
         return "redirect:/products";
     }
 
+    @GetMapping("products/deactivated")
+    public String deactivatedProducts(
+            Model model,
+            @AuthenticationPrincipal User user) {
+
+        model.addAttribute(
+                "products",
+                productRepository.findByActivoFalse()
+        );
+
+        model.addAttribute("deactivatedView", true);
+
+        if (user != null) {
+            model.addAttribute(
+                    "likeproductsIds",
+                    likeService.findProductsIdsByUserid(user.getId())
+            );
+        }
+
+        return "products/productsList";
+    }
+    @GetMapping("products/activate/{id}")
+    public String activateProduct(
+            @PathVariable Long id,
+            RedirectAttributes ra) {
+
+        Product product = productRepository.findById(id)
+                .orElseThrow();
+
+        product.setActivo(true);
+        productRepository.save(product);
+
+        ra.addFlashAttribute(
+                "message",
+                "Producto reactivado correctamente."
+        );
+
+        return "products/productsList";
+    }
+
     @GetMapping("products/{id}")
     public String productDetail(@PathVariable Long id, Model model) {
 

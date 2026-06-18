@@ -8,10 +8,12 @@ import com.demo.repository.ProductRepository;
 import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.PurchaseRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
@@ -47,7 +49,11 @@ private final ProductRepository productRepository;
 
     @GetMapping("purchases/{id}")
     public String purchase(Model model, @PathVariable Long id){
-        Purchase purchase = purchaseRepository.findById(id).orElseThrow();
+        Purchase purchase = purchaseRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Purchase not found"
+                ));
         model.addAttribute("purchase", purchase);
         model.addAttribute("purchaseLines", purchaseLinesRepository.findByPurchaseId(id));
         model.addAttribute("countUserPurchases", purchaseRepository.countByUser_Id(purchase.getUser().getId()));
@@ -84,6 +90,14 @@ private final ProductRepository productRepository;
         if(cardOwner == null || cardOwner.isBlank()) {
             redirectAttributes.addFlashAttribute("error", "Card owner is required");
             return "redirect:/purchases/" + id;
+        }
+        if(!cardOwner.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+        redirectAttributes.addFlashAttribute("error", "El titular solo puede contener letras");
+        return "redirect:/purchases/" + id;
+        }
+        if(!cardOwner.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+\\s+[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+        redirectAttributes.addFlashAttribute("error", "Debe indicar nombre y apellido");
+        return "redirect:/purchases/" + id;
         }
         purchase.setCardNumber(cardNumber);
         purchase.setCardOwner(cardOwner);

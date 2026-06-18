@@ -54,9 +54,13 @@
                     <a th:href="@{/filter-maxtomin}" class="btn btn-outline-secondary" title="Precio: mayor a menor">
                         <i class="fa-solid fa-arrow-down-wide-short"></i>
                     </a>
-                    <a th:href="@{/products/create}" sec:authorize="hasRole('ADMIN')" class="btn btn-primary" title="Añadir producto">
-                        <i class="fa-solid fa-plus"></i>
-                    </a>
+                    <div class="col-auto d-flex gap-2">
+                        <a sec:authorize="hasRole('ADMIN')"
+                           th:href="@{/products/deactivated}"
+                           class="btn btn-outline-warning">
+                            Productos desactivados
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
@@ -128,15 +132,21 @@
                                class="btn btn-outline-secondary btn-sm flex-fill">
                                 <i class="fa-solid fa-pencil me-1"></i> Editar
                             </a>
-                            <a href="#"
-                               class="btn btn-outline-warning btn-sm flex-fill"
-                               data-bs-toggle="modal"
-                               data-bs-target="#userActionModal"
-                               th:attr="data-url=@{/products/deactivate/{id}(id=${product.id})}"
-                               data-action="dar de baja"
-                               data-name="este producto">
-                                <i class="fa-solid fa-ban me-1"></i> Baja
-                            </a>
+                            <div sec:authorize="hasRole('ADMIN')" class="d-flex gap-2 mt-2">
+
+                                <a th:if="${deactivatedView == null}"
+                                   th:href="@{/products/deactivate/{id}(id=${product.id})}"
+                                   class="btn btn-outline-warning btn-sm flex-fill">
+                                    Baja
+                                </a>
+
+                                <a th:if="${deactivatedView != null}"
+                                   th:href="@{/products/activate/{id}(id=${product.id})}"
+                                   class="btn btn-outline-success btn-sm flex-fill">
+                                    Activar
+                                </a>
+
+                            </div>
                         </div>
                     </div>
                 </div>

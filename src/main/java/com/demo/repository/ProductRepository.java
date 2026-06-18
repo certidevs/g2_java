@@ -15,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductsByPriceOrderByPriceAsc(Double price);
     //Precio Mayor a menor
     List<Product> findProductsByPriceOrderByPriceDesc(Double price);
-
+List<Product> findByActivoFalse();
     List<Product> findByActivoTrue();
     Optional<Product> findByIdAndActivoTrue(Long id);
     @Query("""
