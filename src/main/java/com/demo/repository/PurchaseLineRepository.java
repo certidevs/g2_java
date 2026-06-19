@@ -21,9 +21,4 @@ public interface PurchaseLineRepository extends JpaRepository<PurchaseLine, Long
 
 
     Optional<PurchaseLine> findByPurchaseIdAndProductId(Long purchaseId, Long productId);
-    public interface ProductRepository extends JpaRepository<Product, Long> {
-
-        List<Product> findByActivoTrue();
-
     }
-}
