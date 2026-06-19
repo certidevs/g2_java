@@ -5,6 +5,18 @@
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="container flex-grow-1">
+    <div th:if="${successMessage}"
+         id="success-message"
+         class="alert alert-success alert-dismissible fade show">
+
+        <span th:text="${successMessage}"></span>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+
+    </div>
 
     <div th:if="${message}" class="alert alert-success d-flex align-items-center gap-2" role="alert">
         <i class="fa-solid fa-circle-check"></i> <span th:text="${message}"></span>
@@ -201,6 +213,16 @@
             window.location.href = actionUrl;
         }
     });
+        window.addEventListener('load', function() {
+        setTimeout(function() {
+            const alert = document.getElementById('success-message');
+
+            if(alert){
+                alert.remove();
+            }
+        }, 1000);
+    });
+
 </script>
 </body>
 </html>

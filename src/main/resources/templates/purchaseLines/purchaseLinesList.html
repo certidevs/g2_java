@@ -6,7 +6,18 @@
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="container flex-grow-1">
+    <div th:if="${successMessage}"
+         id="success-message"
+         class="alert alert-success alert-dismissible fade show">
 
+        <span th:text="${successMessage}"></span>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+
+    </div>
     <div class="purchase-header mb-4">
         <h1 class="h3 mb-1">
             <i class="fa-solid fa-cart-shopping text-primary me-2"></i> Tu carrito
@@ -118,5 +129,16 @@
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>
+<script>
+    window.addEventListener('load', function() {
+setTimeout(function() {
+const alert = document.getElementById('success-message');
+
+if(alert){
+alert.remove();
+}
+}, 1000);
+});
+</script>
 </body>
 </html>

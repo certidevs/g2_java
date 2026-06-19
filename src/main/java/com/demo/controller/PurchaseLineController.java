@@ -9,6 +9,7 @@ import com.demo.repository.PurchaseLineRepository;
 import com.demo.repository.ProductRepository;
 import com.demo.repository.PurchaseRepository;
 import com.demo.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +18,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -58,55 +60,70 @@ public class PurchaseLineController {
         purchaseRepository.save(purchase);
         model.addAttribute("purchase", purchase);
 
-        model.addAttribute("products", productRepository.findByActivoTrue());
-
-        return "purchaseLines/purchaseLinesList";
+        model.addAttribute("products", productRepository.findByActivoTrue());        return "purchaseLines/purchaseLinesList";
     }
 
 
     // TODO REVISAR STATUS
-@PostMapping("/create")
-public String createPurchaseLine(@RequestParam Long productId, @AuthenticationPrincipal User user) {
+    @PostMapping("/create")
+    public String createPurchaseLine(
+            @RequestParam Long productId,
+            @AuthenticationPrincipal User user,
+            HttpServletRequest request,
+            RedirectAttributes redirectAttributes) {
 
-    Product product = productRepository.findById(productId).orElseThrow();
+        Product product = productRepository.findById(productId).orElseThrow();
 
-    Optional<Purchase> purchaseOptional = purchaseRepository.findFirstByStatusAndUserId(PurchaseStatus.PENDING, user.getId());
-    Purchase purchase;
-    if (purchaseOptional.isPresent()) {
-        purchase = purchaseOptional.get();
-    } else {
-        purchase = new Purchase();
-        purchase.setStatus(PurchaseStatus.PENDING);
-        purchase.setTotalPrice(0d);
-        purchase.setUser(user);
+        Optional<Purchase> purchaseOptional =
+                purchaseRepository.findFirstByStatusAndUserId(
+                        PurchaseStatus.PENDING,
+                        user.getId());
+
+        Purchase purchase;
+
+        if (purchaseOptional.isPresent()) {
+            purchase = purchaseOptional.get();
+        } else {
+            purchase = new Purchase();
+            purchase.setStatus(PurchaseStatus.PENDING);
+            purchase.setTotalPrice(0d);
+            purchase.setUser(user);
+            purchaseRepository.save(purchase);
+        }
+
+        Optional<PurchaseLine> purchaseLineOptional =
+                purchaseLineRepository.findByPurchaseIdAndProductId(
+                        purchase.getId(),
+                        productId);
+
+        PurchaseLine line;
+
+        if (purchaseLineOptional.isPresent()) {
+            line = purchaseLineOptional.get();
+            line.setQuantity(line.getQuantity() + 1);
+        } else {
+            line = new PurchaseLine();
+            line.setProduct(product);
+            line.setPurchase(purchase);
+            line.setQuantity(1);
+            line.setUnitPrice(product.getPrice());
+        }
+
+        purchaseLineRepository.save(line);
+
+        Double totalPrice =
+                purchaseLineRepository.calculateTotalPrice(purchase.getId());
+
+        purchase.setTotalPrice(totalPrice);
         purchaseRepository.save(purchase);
+
+        redirectAttributes.addFlashAttribute(
+                "successMessage",
+                "✅ Producto añadido al carrito");
+
+        return "redirect:" + request.getHeader("Referer");
     }
 
-
-    Optional<PurchaseLine> purchaseLineOptional = purchaseLineRepository.findByPurchaseIdAndProductId(purchase.getId(), productId);
-    PurchaseLine line;
-
-    if (purchaseLineOptional.isPresent()) {
-        line = purchaseLineOptional.get();
-        line.setQuantity(line.getQuantity() + 1);
-    } else {
-        line = new PurchaseLine();
-        line.setProduct(product);
-        line.setPurchase(purchase);
-        line.setQuantity(1);
-        line.setUnitPrice(product.getPrice());
-    }
-    purchaseLineRepository.save(line);
-
-
-    // recalcular precio total purchase
-
-    Double totalPrice = purchaseLineRepository.calculateTotalPrice(purchase.getId());
-    purchase.setTotalPrice(totalPrice);
-    purchaseRepository.save(purchase);
-
-    return "redirect:/purchase-lines";
-}
 @GetMapping("/increase/{id}")
 public String increaseQuantity(@PathVariable Long id) {
 
