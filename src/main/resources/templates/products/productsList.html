@@ -66,6 +66,9 @@
                     <a th:href="@{/filter-maxtomin}" class="btn btn-outline-secondary" title="Precio: mayor a menor">
                         <i class="fa-solid fa-arrow-down-wide-short"></i>
                     </a>
+                    <a th:href="@{/products/create}" sec:authorize="hasRole('ADMIN')" class="btn btn-primary" title="Añadir producto">
+                        <i class="fa-solid fa-plus "></i>
+                    </a>
                     <div class="col-auto d-flex gap-2">
                         <a sec:authorize="hasRole('ADMIN')"
                            th:href="@{/products/deactivated}"
