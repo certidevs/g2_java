@@ -37,7 +37,7 @@
         <div class="col-md-4">
             <div role="button" onclick="showSection('reviewsSection')" class="card text-center hover-lift h-100">
                 <div class="card-body">
-                    <i class="fa-solid fa-star text-warning fa-2x mb-2"></i>
+                    <i class="fa-regular fa-comment text-primary fa-2x mb-2"></i>
                     <h3 class="mb-0" th:text="${userStats.countReviews()}">0</h3>
                     <p class="text-muted mb-0">Reseñas escritas</p>
                 </div>
@@ -46,7 +46,7 @@
         <div class="col-md-4">
             <div role="button" onclick="showSection('favoritesSection')" class="card text-center hover-lift h-100">
                 <div class="card-body">
-                    <i class="fa-solid fa-heart text-danger fa-2x mb-2"></i>
+                    <i class="fa-solid fa-star text-warning fa-2x mb-2"></i>
                     <h3 class="mb-0" th:text="${userStats.countFavorites()}">0</h3>
                     <p class="text-muted mb-0">Favoritos</p>
                 </div>
@@ -94,7 +94,7 @@
 
     <!-- Favorites section -->
     <div id="favoritesSection" class="mb-5">
-        <h2 class="section-title h4 mb-3"><i class="fa-solid fa-heart text-danger me-2"></i>Mis favoritos</h2>
+        <h2 class="section-title h4 mb-3"><i class="fa-solid fa-star text-warning me-2"></i>Mis favoritos</h2>
         <div th:if="${userStats.favoriteProduct().isEmpty()}" class="empty-state text-muted p-4">
             <i class="fa-regular fa-heart me-1"></i> Aún no has marcado productos favoritos.
         </div>
